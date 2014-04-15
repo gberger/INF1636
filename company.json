@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "COMPANHIA FERROVIÁRIA",
+    "multiplier": 50,
+    "mortgage": 100
+  },
+  {
+    "id": 2,
+    "name": "COMPANHIA DE VIAÇÃO",
+    "multiplier": 50,
+    "mortgage": 100
+  },
+  {
+    "id": 3,
+    "name": "COMPANHIA DE TÁXI",
+    "multiplier": 40,
+    "mortgage": 75
+  },
+  {
+    "id": 4,
+    "name": "COMPANHIA DE NAVEGAÇÃO",
+    "multiplier": 40,
+    "mortgage": 75
+  },
+  {
+    "id": 5,
+    "name": "COMPANHIA DE AVIAÇÃO",
+    "multiplier": 50,
+    "mortgage": 100
+  },
+  {
+    "id": 6,
+    "name": "COMPANHIA DE TÁXI AÉREO",
+    "multiplier": 50,
+    "mortgage": 100
+  }
+]

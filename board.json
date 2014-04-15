@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "name": "PONTO DE PARTIDA",
+    "type": "start",
+    "cardId": null
+  },
+  {
+    "id": 2,
+    "name": "LEBLON",
+    "type": "terrain",
+    "cardId": 20
+  },
+  {
+    "id": 3,
+    "name": "SORTE",
+    "type": "chance",
+    "cardId": null
+  },
+  {
+    "id": 4,
+    "name": "AV. PRESIDENTE VARGAS",
+    "type": "terrain",
+    "cardId": 9
+  },
+  {
+    "id": 5,
+    "name": "AV. NOSSA S. DE COPACABANA",
+    "type": "terrain",
+    "cardId": 6
+  },
+  {
+    "id": 6,
+    "name": "COMPANHIA FERROVIÁRIA",
+    "type": "company",
+    "cardId": 1
+  },
+  {
+    "id": 7,
+    "name": "AV. BRIGADEIRO FARIA LIMA",
+    "type": "terrain",
+    "cardId": 4
+  },
+  {
+    "id": 8,
+    "name": "COMPANHIA DE VIAÇÃO",
+    "type": "company",
+    "cardId": 2
+  },
+  {
+    "id": 9,
+    "name": "AV. REBOUÇAS",
+    "type": "terrain",
+    "cardId": 10
+  },
+  {
+    "id": 10,
+    "name": "AV. 9 DE JULHO",
+    "type": "terrain",
+    "cardId": 1
+  },
+  {
+    "id": 11,
+    "name": "PRISÃO",
+    "type": "jail",
+    "cardId": null
+  },
+  {
+    "id": 12,
+    "name": "AV. EUROPA",
+    "type": "terrain",
+    "cardId": 5
+  },
+  {
+    "id": 13,
+    "name": "SORTE",
+    "type": "chance",
+    "cardId": null
+  },
+  {
+    "id": 14,
+    "name": "RUA AUGUSTA",
+    "type": "terrain",
+    "cardId": 22
+  },
+  {
+    "id": 15,
+    "name": "AV. PACAEMBÚ",
+    "type": "terrain",
+    "cardId": 7
+  },
+  {
+    "id": 16,
+    "name": "COMPANHIA DE TÁXI",
+    "type": "company",
+    "cardId": 3
+  },
+  {
+    "id": 17,
+    "name": "SORTE",
+    "type": "chance",
+    "cardId": null
+  },
+  {
+    "id": 18,
+    "name": "INTERLAGOS",
+    "type": "terrain",
+    "cardId": 16
+  },
+  {
+    "id": 19,
+    "name": "LUCROS",
+    "type": "profits",
+    "cardId": null
+  },
+  {
+    "id": 20,
+    "name": "MORUMBI",
+    "type": "terrain",
+    "cardId": 21
+  },
+  {
+    "id": 21,
+    "name": "LIVRE",
+    "type": "free",
+    "cardId": null
+  },
+  {
+    "id": 22,
+    "name": "FLAMENGO",
+    "type": "terrain",
+    "cardId": 15
+  },
+  {
+    "id": 23,
+    "name": "SORTE",
+    "type": "chance",
+    "cardId": null
+  },
+  {
+    "id": 24,
+    "name": "BOTAFOGO",
+    "type": "terrain",
+    "cardId": 12
+  },
+  {
+    "id": 25,
+    "name": "IMPOSTO",
+    "type": "irs",
+    "cardId": null
+  },
+  {
+    "id": 26,
+    "name": "COMPANHIA DE NAVEGAÇÃO",
+    "type": "company",
+    "cardId": 4
+  },
+  {
+    "id": 27,
+    "name": "AV. BRASIL",
+    "type": "terrain",
+    "cardId": 3
+  },
+  {
+    "id": 28,
+    "name": "SORTE",
+    "type": "chance",
+    "cardId": null
+  },
+  {
+    "id": 29,
+    "name": "AV. PAULISTA",
+    "type": "terrain",
+    "cardId": 8
+  },
+  {
+    "id": 30,
+    "name": "JARDIM EUROPA",
+    "type": "terrain",
+    "cardId": 18
+  },
+  {
+    "id": 31,
+    "name": "VÁ PARA A PRISÃO",
+    "type": "goToJail",
+    "cardId": null
+  },
+  {
+    "id": 32,
+    "name": "COPACABANA",
+    "type": "terrain",
+    "cardId": 14
+  },
+  {
+    "id": 33,
+    "name": "COMPANHIA DE AVIAÇÃO",
+    "type": "company",
+    "cardId": 5
+  },
+  {
+    "id": 34,
+    "name": "AV. VIEIRA SOUTO",
+    "type": "terrain",
+    "cardId": 11
+  },
+  {
+    "id": 35,
+    "name": "AV. ATLÂNTICA",
+    "type": "terrain",
+    "cardId": 2
+  },
+  {
+    "id": 36,
+    "name": "COMPANHIA DE TÁXI AÉREO",
+    "type": "company",
+    "cardId": 6
+  },
+  {
+    "id": 37,
+    "name": "IPANEMA",
+    "type": "terrain",
+    "cardId": 17
+  },
+  {
+    "id": 38,
+    "name": "SORTE",
+    "type": "chance",
+    "cardId": null
+  },
+  {
+    "id": 39,
+    "name": "JARDIM PAULISTA",
+    "type": "terrain",
+    "cardId": 19
+  },
+  {
+    "id": 40,
+    "name": "BROOKLIN",
+    "type": "terrain",
+    "cardId": 13
+  }
+]

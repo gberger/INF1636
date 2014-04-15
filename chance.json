@@ -1,0 +1,180 @@
+[
+  {
+    "title": "SORTE",
+    "text": "A prefeitura mandou abrir uma nova avenida, para o que desapropriou vários prédios. Em consequência seu terreno valorizou.",
+    "type": "receive",
+    "amount": 25
+  },
+  {
+    "title": "SORTE",
+    "text": "Houve um assalto à sua loja, mas você estava segurado.",
+    "type": "receive",
+    "amount": 150
+  },
+  {
+    "title": "SORTE",
+    "text": "Um amigo tinha lhe pedido um empréstimo e se esqueceu de devolver. Ele acaba de se lembrar.",
+    "type": "receive",
+    "amount": 80
+  },
+  {
+    "title": "SORTE",
+    "text": "Você está com sorte. Suas ações na Bolsa de Valores estão em alta.",
+    "type": "receive",
+    "amount": 200
+  },
+  {
+    "title": "SORTE",
+    "text": "Você trocou seu carro com um amigo e ainda saiu lucrando.",
+    "type": "receive",
+    "amount": 50
+  },
+  {
+    "title": "SORTE",
+    "text": "Você acaba de receber uma parcela do seu 13º salário.",
+    "type": "receive",
+    "amount": 50
+  },
+  {
+    "title": "SORTE",
+    "text": "Você tirou o primeiro lugar no Torneio de Tênis do seu clube. Parabéns!",
+    "type": "receive",
+    "amount": 100
+  },
+  {
+    "title": "SORTE",
+    "text": "O seu cachorro policial tirou o 1º prêmio na exposição do Kennel Club",
+    "type": "receive",
+    "amount": 100
+  },
+  {
+    "title": "SORTE",
+    "text": "Saída livre da prisão. (Conserve este cartão para quando lhe for preciso ou negocie-o em qualquer ocasião, por preço a combinar)",
+    "type": "jailPass"
+  },
+  {
+    "title": "SORTE",
+    "text": "Avance até o ponto de partida e... Receba 200",
+    "type": "goToStart",
+    "amount": 0
+  },
+  {
+    "title": "SORTE",
+    "text": "Você apostou com os parceiros deste jogo e ganhou.",
+    "type": "bet",
+    "amount": 50
+  },
+  {
+    "title": "SORTE",
+    "text": "Você saiu de férias e se hospedou na casa de um amigo. Você economizou o hotel.",
+    "type": "receive",
+    "amount": 45
+  },
+  {
+    "title": "SORTE",
+    "text": "Inesperadamente você recebeu uma herança que já estava esquecida.",
+    "type": "receive",
+    "amount": 100
+  },
+  {
+    "title": "SORTE",
+    "text": "Você foi promovido a diretor da sua empresa.",
+    "type": "receive",
+    "amount": 100
+  },
+  {
+    "title": "SORTE",
+    "text": "Você jogou na Loteria Esportiva com um grupo de amigos. Ganharam!",
+    "type": "receive",
+    "amount": 20
+  },
+  {
+    "title": "AZAR",
+    "text": "Um amigo pediu-lhe um empréstimo. Você não pode recusar.",
+    "type": "charge",
+    "amount": 15
+  },
+  {
+    "title": "AZAR",
+    "text": "Você vai casar e está comprando um apartamento novo.",
+    "type": "charge",
+    "amount": 25
+  },
+  {
+    "title": "AZAR",
+    "text": "O médico lhe recomendou repouso num bom hotel de montanha.",
+    "type": "charge",
+    "amount": 45
+  },
+  {
+    "title": "AZAR",
+    "text": "Você achou interessante assistir à estréia da temporada de ballet. Compre os ingressos.",
+    "type": "charge",
+    "amount": 30
+  },
+  {
+    "title": "AZAR",
+    "text": "Parabéns! Você convidou seus amigos para festejar o aniversário.",
+    "type": "charge",
+    "amount": 100
+  },
+  {
+    "title": "AZAR",
+    "text": "Você é papai outra vez! Despesas de maternidade.",
+    "type": "charge",
+    "amount": 100
+  },
+  {
+    "title": "AZAR",
+    "text": "Papai os livros do ano passado não servem mais, preciso de livros novos.",
+    "type": "charge",
+    "amount": 40
+  },
+  {
+    "title": "AZAR",
+    "text": "Vá para a prisão sem receber nada. (Talvez eu lhe faça uma visita...)",
+    "type": "goToJail"
+  },
+  {
+    "title": "AZAR",
+    "text": "Você estacionou seu carro em lugar proibido e entrou na contra mão.",
+    "type": "charge",
+    "amount": 30
+  },
+  {
+    "title": "AZAR",
+    "text": "Você acaba de receber a comunicação do Imposto de Renda",
+    "type": "charge",
+    "amount": 50
+  },
+  {
+    "title": "AZAR",
+    "text": "Seu clube está ampliando as piscinas. Os sócios devem contribuir.",
+    "type": "charge",
+    "amount": 25
+  },
+  {
+    "title": "AZAR",
+    "text": "Renove a tempo a licença do seu automóvel.",
+    "type": "charge",
+    "amount": 30
+  },
+  {
+    "title": "AZAR",
+    "text": "Seus parentes do interior vieram passar umas \"férias\" na sua casa.",
+    "type": "charge",
+    "amount": 45
+  },
+  {
+    "title": "AZAR",
+    "text": "Seus filhos já vão para a escola. Pague a primeira mensalidade.",
+    "type": "charge",
+    "amount": 50
+  },
+  {
+    "title": "AZAR",
+    "text": "A geada prejudicou a sua safra de café.",
+    "type": "charge",
+    "amount": 50
+  }
+]
