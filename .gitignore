@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 # Created by http://www.gitignore.io
 
 ### Java ###
->>>>>>> add gitignore
 *.class
 
 # Mobile Tools for Java (J2ME)
@@ -16,8 +13,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-<<<<<<< HEAD
-=======
 
 
 ### Eclipse ###
@@ -58,7 +53,7 @@ local.properties
 .AppleDouble
 .LSOverride
 
-# Icon must ends with two \r.
+# Icon must end with two \r
 Icon
 
 # Thumbnails
@@ -68,4 +63,10 @@ Icon
 .Spotlight-V100
 .Trashes
 
->>>>>>> add gitignore
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
