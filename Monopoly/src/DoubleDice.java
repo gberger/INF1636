@@ -1,4 +1,4 @@
-private class Dice {
+class Dice {
   private int max;
 
   public Dice() {
@@ -10,14 +10,14 @@ private class Dice {
   }
 
   public int roll() {
-    return Math.random() * this.max + 1;
+    return (int) (Math.random() * this.max + 1);
   }
 }
 
 public class DoubleDice {
   private Dice dice;
   private int doubleCounter;
-  private int[2] lastRoll;
+  private int[] lastRoll;
 
   public DoubleDice() {
     this.dice = new Dice();
@@ -25,6 +25,8 @@ public class DoubleDice {
   }
 
   public void roll() {
+    this.lastRoll = new int[2];
+    
     this.lastRoll[0] = dice.roll();
     this.lastRoll[1] = dice.roll();
 
@@ -33,7 +35,7 @@ public class DoubleDice {
     }
   }
 
-  public int[2] getLastRoll() {
+  public int[] getLastRoll() {
     return this.lastRoll;
   }
 

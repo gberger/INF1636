@@ -50,7 +50,8 @@
   {
     "title": "SORTE",
     "text": "Saída livre da prisão. (Conserve este cartão para quando lhe for preciso ou negocie-o em qualquer ocasião, por preço a combinar)",
-    "type": "jailPass"
+    "type": "jailPass",
+    "amount": 0
   },
   {
     "title": "SORTE",
@@ -133,7 +134,8 @@
   {
     "title": "AZAR",
     "text": "Vá para a prisão sem receber nada. (Talvez eu lhe faça uma visita...)",
-    "type": "goToJail"
+    "type": "goToJail",
+    "amount": 0
   },
   {
     "title": "AZAR",

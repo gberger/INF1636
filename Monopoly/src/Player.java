@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
   private int position;
   private int money;
@@ -7,7 +10,7 @@ public class Player {
   public Player() {
     this.position = 0;
     this.money = (8*1) + (10*5) + (10*10) + (10*50) + (8*100) + (2*500);
-    this.cards = new List<Card>();
+    this.cards = new ArrayList<Card>();
     this.inJail = false;
   }
 
@@ -35,5 +38,10 @@ public class Player {
 
   public void receive(int x){
     this.money += x;
+  }
+
+  public int getLastRollTotal() {
+    // TODO Auto-generated method stub
+    return 0;
   }
 }
