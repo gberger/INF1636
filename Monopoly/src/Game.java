@@ -60,9 +60,6 @@ public class Game {
   }
   
 
-  /**
-   * @param players
-   */
   public Game(List<Player> players){
     try {
       this.initializeBoard();
