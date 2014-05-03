@@ -15,6 +15,22 @@ public class CompanyCard extends Card {
     this.mortgage = new Long((long) jobj.get("mortgage")).intValue();
   }
 
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getMultiplier() {
+    return multiplier;
+  }
+
+  public int getMortgage() {
+    return mortgage;
+  }
+
   private int getCharge(Player player) {
     return this.multiplier * player.getLastRollTotal();
   }
