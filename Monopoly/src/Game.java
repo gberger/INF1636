@@ -16,6 +16,7 @@ public class Game {
   private CompanyDeck companyDeck;
   private TerrainDeck terrainDeck;
   private List<Player> players;
+  private int currentPlayerIndex;
   
   private void initializeChanceDeck() throws IOException, ParseException {
     JSONParser parser = new JSONParser();
@@ -73,15 +74,40 @@ public class Game {
     } 
     
     this.players = players;
+    this.currentPlayerIndex = 0;
     
     System.out.println("Initialized succesfully!");
     System.out.println(this.chanceDeck.get(0).getText());
     System.out.println(this.terrainDeck.get(0).getColor());
     System.out.println(this.players.get(0).getName());
   }
-  
-  public List<Player> getPlayers(){
+
+  public Board getBoard() {
+    return this.board;
+  }
+
+  public ChanceDeck getChanceDeck() {
+    return this.chanceDeck;
+  }
+
+  public CompanyDeck getCompanyDeck() {
+    return this.companyDeck;
+  }
+
+  public TerrainDeck getTerrainDeck() {
+    return this.terrainDeck;
+  }
+
+  public List<Player> getPlayers() {
     return this.players;
+  }
+
+  public int getCurrentPlayerIndex() {
+    return this.currentPlayerIndex;
+  }
+  
+  public Player getCurrentPlayer() {
+    return this.players.get(this.currentPlayerIndex);
   }
   
 }
