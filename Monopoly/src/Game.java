@@ -110,4 +110,9 @@ public class Game {
     return this.players.get(this.currentPlayerIndex);
   }
   
+  public void nextTurn() {
+    this.currentPlayerIndex += 1;
+    this.currentPlayerIndex %= this.players.size();
+  }
+  
 }
