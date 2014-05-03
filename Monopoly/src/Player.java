@@ -2,12 +2,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+  private String name;
+  private PlayerColor color;
   private int position;
   private int money;
   private List<Card> cards;
   private boolean inJail;
 
-  public Player() {
+  public Player(String name, PlayerColor color) {
+    this.name = name;
+    this.color = color;
     this.position = 0;
     this.money = (8*1) + (10*5) + (10*10) + (10*50) + (8*100) + (2*500);
     this.cards = new ArrayList<Card>();
@@ -17,6 +21,14 @@ public class Player {
   public void step() {
     this.position += 1;
     this.position %= 40;
+  }
+  
+  public String getName() {
+    return this.name;
+  }
+  
+  public PlayerColor getColor() {
+    return this.color;
   }
 
   public int getPosition() {

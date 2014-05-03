@@ -1,6 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
@@ -13,7 +15,8 @@ public class Game {
   private ChanceDeck chanceDeck;
   private CompanyDeck companyDeck;
   private TerrainDeck terrainDeck;
-  
+  private List<Player> players;
+    
   private void initializeBoard() throws IOException, ParseException {
     JSONParser parser = new JSONParser();
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/board.json"));
@@ -52,8 +55,17 @@ public class Game {
       e.printStackTrace();
       System.exit(1);
     } 
+    
+    this.players = new ArrayList<Player>();
+    players.add(new Player("Felipe", PlayerColor.BLUE));
+    players.add(new Player("Guilherme", PlayerColor.RED));
+    
     System.out.println("Initialized succesfully!");
     System.out.print(this.chanceDeck.get(0).getText());
+  }
+  
+  public List<Player> getPlayers(){
+    return this.players;
   }
   
 }
