@@ -22,9 +22,37 @@ public class TerrainCard extends Card {
     this.hotelCost = new Long((long) jobj.get("hotel")).intValue();
     this.mortgage = new Long((long) jobj.get("mortgage")).intValue();
   }
-  
+
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
   public TerrainColor getColor() {
-    return this.color;
+    return color;
+  }
+
+  public int getBuildings() {
+    return buildings;
+  }
+
+  public ArrayList getRent() {
+    return rent;
+  }
+
+  public int getHouseCost() {
+    return houseCost;
+  }
+
+  public int getHotelCost() {
+    return hotelCost;
+  }
+
+  public int getMortgage() {
+    return mortgage;
   }
 
   @Override
