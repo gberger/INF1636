@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "name": "AV. 9 DE JULHO",
     "color": "LIGHT_BLUE",
     "rent": [
@@ -16,7 +15,6 @@
     "mortgage": 110
   },
   {
-    "id": 2,
     "name": "AV. ATLÂNTICA",
     "color": "GREEN",
     "rent": [
@@ -32,7 +30,6 @@
     "mortgage": 150
   },
   {
-    "id": 3,
     "name": "AV. BRASIL",
     "color": "YELLOW",
     "rent": [
@@ -48,7 +45,6 @@
     "mortgage": 80
   },
   {
-    "id": 4,
     "name": "AV. BRIGADEIRO FARIA LIMA",
     "color": "LIGHT_BLUE",
     "rent": [
@@ -64,7 +60,6 @@
     "mortgage": 120
   },
   {
-    "id": 5,
     "name": "AV. EUROPA",
     "color": "PURPLE",
     "rent": [
@@ -80,7 +75,6 @@
     "mortgage": 100
   },
   {
-    "id": 6,
     "name": "AV. NOSSA S. DE COPACABANA",
     "color": "PINK",
     "rent": [
@@ -96,7 +90,6 @@
     "mortgage": 30
   },
   {
-    "id": 7,
     "name": "AV. PACAEMBÚ",
     "color": "PURPLE",
     "rent": [
@@ -112,7 +105,6 @@
     "mortgage": 90
   },
   {
-    "id": 8,
     "name": "AV. PAULISTA",
     "color": "YELLOW",
     "rent": [
@@ -128,7 +120,6 @@
     "mortgage": 70
   },
   {
-    "id": 9,
     "name": "AV. PRESIDENTE VARGAS",
     "color": "PINK",
     "rent": [
@@ -144,7 +135,6 @@
     "mortgage": 30
   },
   {
-    "id": 10,
     "name": "AV. REBOUÇAS",
     "color": "LIGHT_BLUE",
     "rent": [
@@ -160,7 +150,6 @@
     "mortgage": 110
   },
   {
-    "id": 11,
     "name": "AV. VIEIRA SOUTO",
     "color": "GREEN",
     "rent": [
@@ -176,7 +165,6 @@
     "mortgage": 160
   },
   {
-    "id": 12,
     "name": "BOTAFOGO",
     "color": "RED",
     "rent": [
@@ -192,7 +180,6 @@
     "mortgage": 50
   },
   {
-    "id": 13,
     "name": "BROOKLIN",
     "color": "DARK_BLUE",
     "rent": [
@@ -208,7 +195,6 @@
     "mortgage": 130
   },
   {
-    "id": 14,
     "name": "COPACABANA",
     "color": "GREEN",
     "rent": [
@@ -224,7 +210,6 @@
     "mortgage": 30
   },
   {
-    "id": 15,
     "name": "FLAMENGO",
     "color": "RED",
     "rent": [
@@ -240,7 +225,6 @@
     "mortgage": 60
   },
   {
-    "id": 16,
     "name": "INTERLAGOS",
     "color": "ORANGE",
     "rent": [
@@ -256,7 +240,6 @@
     "mortgage": 175
   },
   {
-    "id": 17,
     "name": "IPANEMA",
     "color": "GREEN",
     "rent": [
@@ -272,7 +255,6 @@
     "mortgage": 150
   },
   {
-    "id": 18,
     "name": "JARDIM EUROPA",
     "color": "YELLOW",
     "rent": [
@@ -288,7 +270,6 @@
     "mortgage": 70
   },
   {
-    "id": 19,
     "name": "JARDIM PAULISTA",
     "color": "DARK_BLUE",
     "rent": [
@@ -304,7 +285,6 @@
     "mortgage": 140
   },
   {
-    "id": 20,
     "name": "LEBLON",
     "color": "PINK",
     "rent": [
@@ -320,7 +300,6 @@
     "mortgage": 50
   },
   {
-    "id": 21,
     "name": "MORUMBI",
     "color": "ORANGE",
     "rent": [
@@ -336,7 +315,6 @@
     "mortgage": 200
   },
   {
-    "id": 22,
     "name": "RUA AUGUSTA",
     "color": "PURPLE",
     "rent": [

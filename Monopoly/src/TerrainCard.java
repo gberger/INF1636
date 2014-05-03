@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import org.json.simple.JSONObject;
 
 public class TerrainCard extends Card {
-  private int id;
   private String name;
   private TerrainColor color;
   private int buildings;
@@ -13,7 +12,6 @@ public class TerrainCard extends Card {
   private int mortgage;
 
   public TerrainCard(JSONObject jobj) {
-    this.id = new Long((long) jobj.get("id")).intValue();
     this.name = (String) jobj.get("name");
     this.color = TerrainColor.valueOf((String) jobj.get("color"));
     this.buildings = 0;
@@ -22,11 +20,7 @@ public class TerrainCard extends Card {
     this.hotelCost = new Long((long) jobj.get("hotel")).intValue();
     this.mortgage = new Long((long) jobj.get("mortgage")).intValue();
   }
-
-  public int getId() {
-    return id;
-  }
-
+  
   public String getName() {
     return name;
   }
