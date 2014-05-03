@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,17 +16,28 @@ public class BoardPanel extends JPanel {
   
   BufferedImage board;
   List<Player> players;
+  JSONObject pinImages = new JSONObject();
   
   
   public BoardPanel(List<Player> players) {
     this.players = players;
+    BufferedImage pin = null;
     this.setBounds(350,40,this.width,this.height);
-    this.setLayout(null);
     try {
       board = ImageIO.read(new File("img/board.jpg"));
     } catch (IOException ex) {
       System.out.println("Unable to load board image!");
     }
+    
+    for (PlayerColor color : PlayerColor.values()) {
+      try {
+        pin = ImageIO.read(new File("img/"+color.toString().toLowerCase()+"_pin.png"));
+      } catch (IOException ex) {
+        System.out.println("Unable to load pin image!");
+      }
+      pinImages.put(color.toString(), pin);
+    }
+    
   }
   
   protected JSONObject getPlaceCoordinates(int placeId)
@@ -56,7 +68,9 @@ public class BoardPanel extends JPanel {
   @Override
   protected void paintComponent(Graphics g) {
       BufferedImage pin = null;
-      super.paintComponent(g);
+      //super.paintComponent(g);
+      this.setBounds(350,40,this.width,this.height);
+      
       g.drawImage(board, 0, 0,this.width,this.height, null);
       
       
@@ -64,16 +78,15 @@ public class BoardPanel extends JPanel {
       
       for(int i=0;i<this.players.size();i++) {
         Player current = players.get(i);
-        try {
-          pin = ImageIO.read(new File("img/"+current.getColor().toString().toLowerCase()+"_pin.png"));
-        } catch (IOException ex) {
-          System.out.println("Unable to load pin image!");
-        }
+        
+        pin = (BufferedImage)pinImages.get(current.getColor().toString());
         
         JSONObject coord = this.getPlaceCoordinates(current.getPosition());
         playerCountByPlace[current.getPosition()]++;
         g.drawImage(pin, (int)coord.get("x")-(playerCountByPlace[current.getPosition()]*5), (int)coord.get("y"),15,24, null);
       }
+      
+      
       
   }
   

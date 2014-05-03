@@ -16,15 +16,16 @@ public class PlayerListPanel extends JPanel {
 
   public PlayerListPanel(Game game) {
     this.game = game;
-    this.setBounds(10,40,300,300);
+    this.setBounds(10,100,300,300);
     
-    //this.setLayout(null);
+    this.setLayout(null);
     
   }
   
   @Override
   protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
+    this.setBounds(10,100,300,300);
+    //super.paintComponent(g);
     List<Player> players = game.getPlayers();
     Graphics2D g2 = (Graphics2D)g;
     RenderingHints rh = new RenderingHints(
