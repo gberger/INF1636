@@ -18,21 +18,33 @@ public class Player {
     this.inJail = false;
   }
 
-  public void step() {
-    this.position += 1;
-    this.position %= 40;
-  }
-  
   public String getName() {
-    return this.name;
+    return name;
   }
-  
+
   public PlayerColor getColor() {
-    return this.color;
+    return color;
   }
 
   public int getPosition() {
-    return this.position;
+    return position;
+  }
+
+  public int getMoney() {
+    return money;
+  }
+
+  public List<Card> getCards() {
+    return cards;
+  }
+
+  public boolean isInJail() {
+    return inJail;
+  }
+
+  public void step() {
+    this.position += 1;
+    this.position %= 40;
   }
 
   public boolean affords(int price) {
