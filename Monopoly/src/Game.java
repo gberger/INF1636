@@ -45,7 +45,27 @@ public class Game {
     this.terrainDeck = new TerrainDeck(arr);
   }
   
+  private static List<Player> getHardcodedPlayers() {
+    List<Player> players = new ArrayList<Player>();
+    players.add(new Player("Felipe", PlayerColor.BLUE));
+    players.add(new Player("Guilherme", PlayerColor.RED));
+    return players;
+  }
+  
+  /**
+   * 
+   */
   public Game() {
+    this(getHardcodedPlayers());
+  }
+
+  /**
+   * @param players
+   */
+  /**
+   * @param players
+   */
+  public Game(List<Player> players){
     try {
       this.initializeBoard();
       this.initializeChanceDeck();
@@ -56,12 +76,11 @@ public class Game {
       System.exit(1);
     } 
     
-    this.players = new ArrayList<Player>();
-    players.add(new Player("Felipe", PlayerColor.BLUE));
-    players.add(new Player("Guilherme", PlayerColor.RED));
+    this.players = players;
     
     System.out.println("Initialized succesfully!");
-    System.out.print(this.chanceDeck.get(0).getText());
+    System.out.println(this.chanceDeck.get(0).getText());
+    System.out.println(this.players.get(0).getName());
   }
   
   public List<Player> getPlayers(){
