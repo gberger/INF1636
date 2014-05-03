@@ -16,13 +16,6 @@ public class Game {
   private CompanyDeck companyDeck;
   private TerrainDeck terrainDeck;
   private List<Player> players;
-    
-  private void initializeBoard() throws IOException, ParseException {
-    JSONParser parser = new JSONParser();
-    JSONArray arr = (JSONArray) parser.parse(new FileReader("data/board.json"));
-    
-    this.board = new Board(arr);
-  }
   
   private void initializeChanceDeck() throws IOException, ParseException {
     JSONParser parser = new JSONParser();
@@ -44,6 +37,14 @@ public class Game {
     
     this.terrainDeck = new TerrainDeck(arr);
   }
+
+  private void initializeBoard() throws IOException, ParseException {
+    JSONParser parser = new JSONParser();
+    JSONArray arr = (JSONArray) parser.parse(new FileReader("data/board.json"));
+
+    this.board = new Board(arr);
+  }
+
   /*
    * Normally, you'd pass a List<Player> to the constructor.
    * This calls the constructor with a hardcoded player list. 
@@ -62,10 +63,10 @@ public class Game {
 
   public Game(List<Player> players){
     try {
-      this.initializeBoard();
       this.initializeChanceDeck();
       this.initializeCompanyDeck();
       this.initializeTerrainDeck();
+      this.initializeBoard();
     } catch (IOException | ParseException e) {
       e.printStackTrace();
       System.exit(1);
