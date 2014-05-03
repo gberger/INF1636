@@ -5,7 +5,7 @@ import org.json.simple.JSONObject;
 public class TerrainCard extends Card {
   private int id;
   private String name;
-  private String color;
+  private TerrainColor color;
   private int buildings;
   private ArrayList rent;
   private int houseCost;
@@ -15,12 +15,16 @@ public class TerrainCard extends Card {
   public TerrainCard(JSONObject jobj) {
     this.id = new Long((long) jobj.get("id")).intValue();
     this.name = (String) jobj.get("name");
-    this.color = (String) jobj.get("color");
+    this.color = TerrainColor.valueOf((String) jobj.get("color"));
     this.buildings = 0;
     this.rent = (ArrayList) jobj.get("rent");
     this.houseCost = new Long((long) jobj.get("house")).intValue();
     this.hotelCost = new Long((long) jobj.get("hotel")).intValue();
     this.mortgage = new Long((long) jobj.get("mortgage")).intValue();
+  }
+  
+  public TerrainColor getColor() {
+    return this.color;
   }
 
   @Override

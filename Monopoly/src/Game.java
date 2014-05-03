@@ -60,6 +60,9 @@ public class Game {
   }
   
 
+  /**
+   * @param players
+   */
   public Game(List<Player> players){
     try {
       this.initializeBoard();
@@ -75,6 +78,7 @@ public class Game {
     
     System.out.println("Initialized succesfully!");
     System.out.println(this.chanceDeck.get(0).getText());
+    System.out.println(this.terrainDeck.get(0).getColor());
     System.out.println(this.players.get(0).getName());
   }
   

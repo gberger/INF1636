@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "AV. 9 DE JULHO",
-    "color": "BLUE",
+    "color": "LIGHT_BLUE",
     "rent": [
       18,
       90,
@@ -50,7 +50,7 @@
   {
     "id": 4,
     "name": "AV. BRIGADEIRO FARIA LIMA",
-    "color": "BLUE",
+    "color": "LIGHT_BLUE",
     "rent": [
       20,
       100,
@@ -66,7 +66,7 @@
   {
     "id": 5,
     "name": "AV. EUROPA",
-    "color": "ORANGE",
+    "color": "PURPLE",
     "rent": [
       16,
       80,
@@ -98,7 +98,7 @@
   {
     "id": 7,
     "name": "AV. PACAEMBÚ",
-    "color": "ORANGE",
+    "color": "PURPLE",
     "rent": [
       14,
       70,
@@ -146,7 +146,7 @@
   {
     "id": 10,
     "name": "AV. REBOUÇAS",
-    "color": "BLUE",
+    "color": "LIGHT_BLUE",
     "rent": [
       18,
       90,
@@ -194,7 +194,7 @@
   {
     "id": 13,
     "name": "BROOKLIN",
-    "color": "BLUE",
+    "color": "DARK_BLUE",
     "rent": [
       22,
       110,
@@ -242,7 +242,7 @@
   {
     "id": 16,
     "name": "INTERLAGOS",
-    "color": "YELLOW",
+    "color": "ORANGE",
     "rent": [
       35,
       175,
@@ -274,7 +274,7 @@
   {
     "id": 18,
     "name": "JARDIM EUROPA",
-    "color": "YELLO",
+    "color": "YELLOW",
     "rent": [
       10,
       50,
@@ -290,7 +290,7 @@
   {
     "id": 19,
     "name": "JARDIM PAULISTA",
-    "color": "BLUE",
+    "color": "DARK_BLUE",
     "rent": [
       24,
       120,
@@ -322,7 +322,7 @@
   {
     "id": 21,
     "name": "MORUMBI",
-    "color": "YELLOW",
+    "color": "ORANGE",
     "rent": [
       50,
       200,
@@ -338,7 +338,7 @@
   {
     "id": 22,
     "name": "RUA AUGUSTA",
-    "color": "ORANGE",
+    "color": "PURPLE",
     "rent": [
       14,
       70,
