@@ -17,6 +17,7 @@ public class Game {
   private TerrainDeck terrainDeck;
   private List<Player> players;
   private int currentPlayerIndex;
+  private DoubleDice dices = new DoubleDice();
   
   private void initializeChanceDeck() throws IOException, ParseException {
     JSONParser parser = new JSONParser();
@@ -106,6 +107,10 @@ public class Game {
     return this.currentPlayerIndex;
   }
   
+  public DoubleDice getDices() {
+    return this.dices;
+  }
+  
   public Player getCurrentPlayer() {
     return this.players.get(this.currentPlayerIndex);
   }
@@ -113,6 +118,15 @@ public class Game {
   public void nextTurn() {
     this.currentPlayerIndex += 1;
     this.currentPlayerIndex %= this.players.size();
+    
+    dices = new DoubleDice();
+  }
+  
+  public void runTurn() {
+    this.getCurrentPlayer().step(dices.getLastRollTotal());
+    if(!dices.lastRollWasDouble()) {
+      this.nextTurn();
+    }
   }
   
 }
