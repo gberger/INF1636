@@ -44,6 +44,13 @@ public class Game {
     
     this.terrainDeck = new TerrainDeck(arr);
   }
+  /*
+   * Normally, you'd pass a List<Player> to the constructor.
+   * This calls the constructor with a hardcoded player list. 
+   */
+  public Game() {
+    this(getHardcodedPlayers());
+  }
   
   private static List<Player> getHardcodedPlayers() {
     List<Player> players = new ArrayList<Player>();
@@ -52,19 +59,7 @@ public class Game {
     return players;
   }
   
-  /**
-   * 
-   */
-  public Game() {
-    this(getHardcodedPlayers());
-  }
 
-  /**
-   * @param players
-   */
-  /**
-   * @param players
-   */
   public Game(List<Player> players){
     try {
       this.initializeBoard();
