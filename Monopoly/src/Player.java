@@ -42,8 +42,8 @@ public class Player {
     return inJail;
   }
 
-  public void step() {
-    this.position += 1;
+  public void step(int places) {
+    this.position += places;
     this.position %= 40;
   }
 
