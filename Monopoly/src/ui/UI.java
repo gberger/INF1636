@@ -95,8 +95,7 @@ public class UI extends JFrame implements ActionListener {
         if(currPlayer.affords(card.getPrice())) {
           OfferDialog dialog = new OfferDialog(this, currPlayer, card);
           if(dialog.offerAccepted()) {
-            currPlayer.buyProperty(card);
-            this.repaint();
+            currPlayer.buyProperty(card);();
           }
         }
         
