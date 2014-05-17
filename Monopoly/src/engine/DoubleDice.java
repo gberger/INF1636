@@ -32,7 +32,7 @@ public class DoubleDice {
     this.lastRoll[0] = dice.roll();
     this.lastRoll[1] = dice.roll();
 
-    if(this.lastRollWasDouble()) {
+    if(this.wasLastRollDouble()) {
       this.doubleCounter += 1;
     }
   }
@@ -45,7 +45,7 @@ public class DoubleDice {
     return this.lastRoll[0] + this.lastRoll[1];
   }
 
-  public boolean lastRollWasDouble() {
+  public boolean wasLastRollDouble() {
     return this.lastRoll[0] == this.lastRoll[1];
   }
 

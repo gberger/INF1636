@@ -17,15 +17,15 @@ public class OfferDialog {
     UIManager.put("OptionPane.yesButtonText", "Sim");
     UIManager.put("OptionPane.noButtonText", "Não");
     
-    String message = card.getName()+"\n";
+    String message = card.getName() + "\n";
     
     if(card instanceof TerrainCard) {
-      message += "(dados especificos de terreno)";
+      message += "(dados especificos de terreno)\n";
     } else {
-      message += "(dados especificos de companhia)";
+      message += "(dados especificos de companhia)\n";
     }
     
-    message += "\nDeseja adquirir este item por $"+card.getPrice()+"?\n";
+    message += player.getName() + ", deseja adquirir esta carta por $" + card.getPrice() + "?\n";
     
     this.answer = JOptionPane.showConfirmDialog(window, message, "Oferta",
         JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);

@@ -19,7 +19,7 @@ public class Game {
   private TerrainDeck terrainDeck;
   private List<Player> players;
   private int currentPlayerIndex;
-  private DoubleDice dices = new DoubleDice();
+  private DoubleDice doubleDice = new DoubleDice();
   
   private void initializeChanceDeck() throws IOException, ParseException {
     JSONParser parser = new JSONParser();
@@ -110,7 +110,7 @@ public class Game {
   }
   
   public DoubleDice getDices() {
-    return this.dices;
+    return this.doubleDice;
   }
   
   public Player getCurrentPlayer() {
@@ -130,16 +130,17 @@ public class Game {
   }
   
   public void nextTurn() {
-    if(!dices.lastRollWasDouble()) {
+    if(!doubleDice.wasLastRollDouble()) {
       this.currentPlayerIndex += 1;
       this.currentPlayerIndex %= this.players.size();
     
-      dices = new DoubleDice();
+      doubleDice = new DoubleDice();
     }
   }
   
   public void movePin() {
-    this.getCurrentPlayer().step(dices.getLastRollTotal());
+    //TODO check for 3 doubles and go to jail
+    this.getCurrentPlayer().step(doubleDice.getLastRollTotal());
   }
   
 }

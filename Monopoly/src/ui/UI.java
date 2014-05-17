@@ -62,45 +62,54 @@ public class UI extends JFrame implements ActionListener {
   
   public void actionPerformed(ActionEvent e) {
     if ("rollDices".equals(e.getActionCommand())) {
-      this.dicesButton.setVisible(false);
-      this.movePinButton.setVisible(true);
-      game.getDices().roll();
-      int[] dicesValues = game.getDices().getLastRoll();
-      JOptionPane.showMessageDialog(null, "Seus dados foram "+dicesValues[0]+" e "+dicesValues[1]);
-      
+      this.rollDices();
     } else if ("movePin".equals(e.getActionCommand())) {
-      game.movePin();
-      this.movePinButton.setVisible(false);
-      this.dicesButton.setVisible(true);
-      
-      Square currSquare = game.getCurrentSquare();
-      Player currPlayer = game.getCurrentPlayer();
-      
-      if(currSquare.isOwnable()) {
-        OwnableCard card = (OwnableCard)currSquare.getAssociatedCard();
-        Player squareOwner = game.getCardOwner(card);
-        if(squareOwner == null) {
-          // Offer terrain/company to player
-          
-          if(currPlayer.affords(card.getPrice())) {
-            OfferDialog dialog = new OfferDialog(this, currPlayer, card);
-            if(dialog.offerAccepted()) {
-              currPlayer.buyProperty(card);
-              this.repaint();
-            }
-          }
-          
-        } else if (squareOwner != currPlayer) {
-          // TODO: Charge rent 
-        }
-        
-      }
-      
-      game.nextTurn();
-      
+      this.movePin();
     }
     this.repaint();
   } 
+  
+  private void rollDices() {
+    this.dicesButton.setVisible(false);
+    this.movePinButton.setVisible(true);
+    game.getDices().roll();
+    int[] dicesValues = game.getDices().getLastRoll();
+    JOptionPane.showMessageDialog(null, "Seus dados foram "+dicesValues[0]+" e "+dicesValues[1]);
+  }
+  
+  private void movePin() {
+    game.movePin();
+    this.movePinButton.setVisible(false);
+    this.dicesButton.setVisible(true);
+    
+    Square currSquare = game.getCurrentSquare();
+    Player currPlayer = game.getCurrentPlayer();
+    
+    if(currSquare.isOwnable()) {
+      OwnableCard card = (OwnableCard)currSquare.getAssociatedCard();
+      Player squareOwner = game.getCardOwner(card);
+      
+      if(squareOwner == null) {
+        // Offer terrain/company to player
+        
+        if(currPlayer.affords(card.getPrice())) {
+          OfferDialog dialog = new OfferDialog(this, currPlayer, card);
+          if(dialog.offerAccepted()) {
+            currPlayer.buyProperty(card);
+            this.repaint();
+          }
+        }
+        
+      } else if (squareOwner != currPlayer) {
+        // TODO: Charge rent 
+      }
+      // if squareOwner == currPlayer, do nothing
+      
+    }
+    
+    game.nextTurn();
+    
+  }
   
 
   
