@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
-public class TerrainCard extends OwnableCard {
+public class TerrainCard extends PropertyCard {
   private TerrainColor color;
   private int buildings;
   private ArrayList rent;

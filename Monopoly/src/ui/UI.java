@@ -85,8 +85,8 @@ public class UI extends JFrame implements ActionListener {
     Square currSquare = game.getCurrentSquare();
     Player currPlayer = game.getCurrentPlayer();
     
-    if(currSquare.isOwnable()) {
-      OwnableCard card = (OwnableCard)currSquare.getAssociatedCard();
+    if(currSquare.isProperty()) {
+      PropertyCard card = (PropertyCard)currSquare.getAssociatedCard();
       Player squareOwner = game.getCardOwner(card);
       
       if(squareOwner == null) {

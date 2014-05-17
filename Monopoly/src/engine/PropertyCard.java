@@ -1,6 +1,6 @@
 package engine;
 
-public abstract class OwnableCard extends Card {
+public abstract class PropertyCard extends Card {
   protected int price;
   protected int mortgage;
   protected String name;

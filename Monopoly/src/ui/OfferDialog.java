@@ -5,7 +5,7 @@ import java.awt.Window;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-import engine.OwnableCard;
+import engine.PropertyCard;
 import engine.Player;
 import engine.TerrainCard;
 
@@ -13,7 +13,7 @@ public class OfferDialog {
   
   private int answer = JOptionPane.NO_OPTION;
 
-  public OfferDialog(Window window, Player player, OwnableCard card) {
+  public OfferDialog(Window window, Player player, PropertyCard card) {
     UIManager.put("OptionPane.yesButtonText", "Sim");
     UIManager.put("OptionPane.noButtonText", "Não");
     

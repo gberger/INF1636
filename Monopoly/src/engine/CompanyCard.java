@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
-public class CompanyCard extends OwnableCard {
+public class CompanyCard extends PropertyCard {
   private int multiplier;
 
   public CompanyCard(JSONObject jobj) {

@@ -28,7 +28,7 @@ public class Square {
     return this.associatedCard;
   }
   
-  public boolean isOwnable() {
-    return (this.getAssociatedCard() instanceof OwnableCard);
+  public boolean isProperty() {
+    return (this.getAssociatedCard() instanceof PropertyCard);
   }
 }
