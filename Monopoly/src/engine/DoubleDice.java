@@ -1,3 +1,5 @@
+package engine;
+
 class Dice {
   private int max;
 

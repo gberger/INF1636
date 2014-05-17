@@ -1,3 +1,5 @@
+package ui;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -8,9 +10,12 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.text.html.StyleSheet;
 
+import engine.Game;
+import engine.Player;
+
 
 public class PlayerListPanel extends JPanel {
-  Game game;
+  private Game game;
 
   public PlayerListPanel(Game game) {
     this.game = game;

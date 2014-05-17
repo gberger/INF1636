@@ -1,5 +1,6 @@
+package engine;
+
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,6 +16,14 @@ public class TerrainDeck extends Deck<TerrainCard> {
       TerrainCard card = new TerrainCard(jobj);
       cards.add(card);
     }
+  }
+  
+  public TerrainCard findByName(String name) {
+    for(TerrainCard card : this.cards) {
+      if(name.equals(card.getName()))
+        return card;
+    }
+    return (TerrainCard)null;
   }
 
 }

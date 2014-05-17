@@ -1,3 +1,5 @@
+package ui;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,13 +11,16 @@ import javax.swing.JPanel;
 
 import org.json.simple.JSONObject;
 
+import engine.Player;
+import engine.PlayerColor;
+
 public class BoardPanel extends JPanel {
-  final int width = 600;
-  final int height = 600;
+  private final int width = 600;
+  private final int height = 600;
   
-  BufferedImage board;
-  List<Player> players;
-  JSONObject pinImages = new JSONObject();
+  private BufferedImage board;
+  private List<Player> players;
+  private JSONObject pinImages = new JSONObject();
   
   
   public BoardPanel(List<Player> players) {

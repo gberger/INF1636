@@ -1,3 +1,5 @@
+package ui;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -6,13 +8,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import engine.*;
+
 
 
 public class UI extends JFrame implements ActionListener {
-  Game game;
-  BoardPanel board;
-  PlayerListPanel playerList;
-  JButton dicesButton, movePinButton;
+  private Game game;
+  private BoardPanel board;
+  private PlayerListPanel playerList;
+  private JButton dicesButton, movePinButton;
   
   public UI(Game game) {
     this.game = game;
@@ -64,10 +68,35 @@ public class UI extends JFrame implements ActionListener {
       int[] dicesValues = game.getDices().getLastRoll();
       JOptionPane.showMessageDialog(null, "Seus dados foram "+dicesValues[0]+" e "+dicesValues[1]);
       
-    } else {
+    } else if ("movePin".equals(e.getActionCommand())) {
+      game.movePin();
       this.movePinButton.setVisible(false);
       this.dicesButton.setVisible(true);
-      game.runTurn();
+      
+      Square currSquare = game.getCurrentSquare();
+      Player currPlayer = game.getCurrentPlayer();
+      
+      if(currSquare.isOwnable()) {
+        OwnableCard card = (OwnableCard)currSquare.getAssociatedCard();
+        Player squareOwner = game.getCardOwner(card);
+        if(squareOwner == null) {
+          // Offer terrain/company to player
+          
+          if(currPlayer.affords(card.getPrice())) {
+            OfferDialog dialog = new OfferDialog(this, currPlayer, card);
+            if(dialog.offerAccepted()) {
+              currPlayer.buyProperty(card);
+              this.repaint();
+            }
+          }
+          
+        } else if (squareOwner != currPlayer) {
+          // TODO: Charge rent 
+        }
+        
+      }
+      
+      game.nextTurn();
       
     }
     this.repaint();

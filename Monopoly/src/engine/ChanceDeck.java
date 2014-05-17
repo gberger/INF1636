@@ -1,18 +1,19 @@
+package engine;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-
-public class CompanyDeck extends Deck<CompanyCard> {
-
-  public CompanyDeck(JSONArray arr) {
-    this.cards = new ArrayList<CompanyCard>();
+public class ChanceDeck extends Deck<ChanceCard> {
+  
+  public ChanceDeck(JSONArray arr) {
+    this.cards = new ArrayList<ChanceCard>();
     
     for(Object obj : arr){
       JSONObject jobj = (JSONObject) obj;
-      CompanyCard card = new CompanyCard(jobj);
+      ChanceCard card = new ChanceCard(jobj);
       cards.add(card);
     }
   }

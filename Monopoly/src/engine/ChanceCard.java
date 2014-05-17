@@ -1,3 +1,5 @@
+package engine;
+
 import org.json.simple.JSONObject;
 
 public class ChanceCard extends Card {

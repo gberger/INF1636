@@ -1,4 +1,6 @@
-abstract class Card {
+package engine;
+
+public abstract class Card {
   private int id;
   private boolean ownable;
   private boolean owned;

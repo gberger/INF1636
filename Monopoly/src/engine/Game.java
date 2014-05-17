@@ -1,3 +1,5 @@
+package engine;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -44,7 +46,7 @@ public class Game {
     JSONParser parser = new JSONParser();
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/board.json"));
 
-    this.board = new Board(arr);
+    this.board = new Board(arr, this.terrainDeck, this.companyDeck);
   }
 
   /*
@@ -115,18 +117,29 @@ public class Game {
     return this.players.get(this.currentPlayerIndex);
   }
   
-  public void nextTurn() {
-    this.currentPlayerIndex += 1;
-    this.currentPlayerIndex %= this.players.size();
-    
-    dices = new DoubleDice();
+  public Square getCurrentSquare() {
+    return this.board.getSquare(this.getCurrentPlayer().getPosition());
   }
   
-  public void runTurn() {
-    this.getCurrentPlayer().step(dices.getLastRollTotal());
-    if(!dices.lastRollWasDouble()) {
-      this.nextTurn();
+  public Player getCardOwner(Card card) {
+    for(Player player : this.players) {
+      if(player.getCards().contains(card))
+        return player;
     }
+    return (Player) null;
+  }
+  
+  public void nextTurn() {
+    if(!dices.lastRollWasDouble()) {
+      this.currentPlayerIndex += 1;
+      this.currentPlayerIndex %= this.players.size();
+    
+      dices = new DoubleDice();
+    }
+  }
+  
+  public void movePin() {
+    this.getCurrentPlayer().step(dices.getLastRollTotal());
   }
   
 }
