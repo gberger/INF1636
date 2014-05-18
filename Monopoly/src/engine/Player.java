@@ -45,10 +45,9 @@ public class Player {
     return inJail;
   }
 
-  public void step(int places) {
-    this.position += places;
+  public void step(){
+    this.position += 1;
     this.position %= 40;
-    this.lastRollTotal = places;
   }
 
   public boolean affords(int price) {
@@ -67,10 +66,6 @@ public class Player {
     this.money += x;
   }
 
-  public int getLastRollTotal() {
-    return this.lastRollTotal;
-  }
-  
   public void buyProperty(PropertyCard card) {
     this.charge(card.getPrice());
     this.cards.add(card);

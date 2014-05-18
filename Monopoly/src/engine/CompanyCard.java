@@ -18,10 +18,6 @@ public class CompanyCard extends PropertyCard {
     return multiplier;
   }
 
-  private int getCharge(Player player) {
-    return this.multiplier * player.getLastRollTotal();
-  }
-
   public int getRent(int roll) {
     return this.multiplier * roll;
   }

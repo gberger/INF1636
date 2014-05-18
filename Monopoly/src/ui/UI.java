@@ -81,21 +81,17 @@ public class UI extends JFrame implements ActionListener {
   private void rollDices() {
     this.dicesButton.setVisible(false);
     this.movePinButton.setVisible(true);
+
     int[] dicesValues = game.getDices().roll();
     // TODO mostrar imagem de dados
     this.showMessage("Seus dados foram " + dicesValues[0] + " e " + dicesValues[1]);
   }
   
   private void movePin() {
-    game.movePin();
     this.movePinButton.setVisible(false);
     this.dicesButton.setVisible(true);
-    
-    Square currSquare = game.getCurrentSquare();
-    Player currPlayer = game.getCurrentPlayer();
-    
-    currSquare.affectLandingPlayer(game, currPlayer, this);
-    
+
+    game.movePin(this);
     game.nextTurn();
   }
 }

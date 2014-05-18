@@ -11,6 +11,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import ui.UI;
+
 public class Game {
   
   private Board board;
@@ -108,19 +110,15 @@ public class Game {
   public int getCurrentPlayerIndex() {
     return this.currentPlayerIndex;
   }
-  
+
   public DoubleDice getDices() {
     return this.doubleDice;
   }
-  
+
   public Player getCurrentPlayer() {
     return this.players.get(this.currentPlayerIndex);
   }
-  
-  public Square getCurrentSquare() {
-    return this.board.getSquare(this.getCurrentPlayer().getPosition());
-  }
-  
+
   public Player getCardOwner(Card card) {
     for(Player player : this.players) {
       if(player.getCards().contains(card))
@@ -128,7 +126,7 @@ public class Game {
     }
     return (Player) null;
   }
-  
+
   public void nextTurn() {
     if(!doubleDice.wasLastRollDouble()) {
       this.currentPlayerIndex += 1;
@@ -137,10 +135,24 @@ public class Game {
       doubleDice = new DoubleDice();
     }
   }
-  
-  public void movePin() {
+
+  public void movePin(UI ui) {
     //TODO check for 3 doubles and go to jail
-    this.getCurrentPlayer().step(doubleDice.getLastRollTotal());
+
+    int steps = doubleDice.getLastRollTotal();
+
+    Player currPlayer = this.getCurrentPlayer();
+    Square currSquare = this.board.getSquare(currPlayer.getPosition());
+
+    for(int i = 0; i < steps; i++){
+      currPlayer.step();
+      currSquare = this.board.getSquare(currPlayer.getPosition());
+      currSquare.affectPassingPlayer(this, currPlayer, ui);
+      ui.repaint();
+      // TODO timer com repaint. Thread.sleep não funciona.
+    }
+
+    currSquare.affectLandingPlayer(this, currPlayer, ui);
   }
-  
+
 }
