@@ -8,11 +8,11 @@ import ui.UI;
 public abstract class Square {
   protected int id;
   protected Card associatedCard = null;
-  
+
   public int getId() {
     return this.id;
   }
-  
+
   public int getPosition() {
     return this.id;
   }
@@ -20,12 +20,14 @@ public abstract class Square {
   public Card getAssociatedCard() {
     return this.associatedCard;
   }
-  
+
   public boolean isProperty() {
-    return (associatedCard instanceof CompanyCard) || (associatedCard instanceof TerrainCard);
+    return (associatedCard instanceof PropertyCard);
   }
 
   public abstract void affectLandingPlayer(Game game, Player player, UI ui);
+
+  public abstract void affectPassingPlayer(Game game, Player player, UI ui);
 
   public static Square fromType(String type, JSONObject jobj, CompanyDeck companies, TerrainDeck terrains) {
     if("chance".equals(type)) {

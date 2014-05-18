@@ -10,6 +10,7 @@ public class TerrainSquare extends Square {
     this.associatedCard = terrains.findByName((String)jobj.get("name"));
   }
 
+  @Override
   public void affectLandingPlayer(Game game, Player player, UI ui) {
     Player owner = game.getCardOwner(this.associatedCard);
     TerrainCard card = (TerrainCard)associatedCard;
@@ -29,6 +30,11 @@ public class TerrainSquare extends Square {
       ui.showMessage(player.getName() + " pagou $" + value + " a " + owner.getName());
     }
     
+  }
+
+  @Override
+  public void affectPassingPlayer(Game game, Player player, UI ui) {
+    // do nothing
   }
 
 }

@@ -10,6 +10,7 @@ public class CompanySquare extends Square {
     this.associatedCard = companies.findByName((String)jobj.get("name"));
   }
   
+  @Override
   public void affectLandingPlayer(Game game, Player player, UI ui) {
     Player owner = game.getCardOwner(this.associatedCard);
     CompanyCard card = (CompanyCard)associatedCard;
@@ -30,5 +31,10 @@ public class CompanySquare extends Square {
     }
     
   }
-  
+
+  @Override
+  public void affectPassingPlayer(Game game, Player player, UI ui) {
+    // do nothing
+  }
+
 }
