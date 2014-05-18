@@ -6,19 +6,19 @@ public abstract class Card {
   private boolean owned;
   private Player owner;
 
-  private int getId(){
+  public int getId(){
     return this.id;
   }
 
-  private boolean isOwnable(){
+  public boolean isOwnable(){
     return this.ownable;
   }
 
-  private boolean isOwned(){
+  public boolean isOwned(){
     return this.owned;
   }
 
-  private Player getOwner(){
+  public Player getOwner(){
     return this.owner;
   }
 }

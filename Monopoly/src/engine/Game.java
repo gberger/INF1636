@@ -1,11 +1,9 @@
 package engine;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;

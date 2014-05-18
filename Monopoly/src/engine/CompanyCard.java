@@ -1,7 +1,5 @@
 package engine;
 
-import java.util.ArrayList;
-
 import org.json.simple.JSONObject;
 
 public class CompanyCard extends PropertyCard {

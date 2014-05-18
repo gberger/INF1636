@@ -10,7 +10,6 @@ public class Player {
   private int money;
   private List<Card> cards;
   private boolean inJail;
-  private int lastRollTotal;
 
   public Player(String name, PlayerColor color) {
     this.name = name;
