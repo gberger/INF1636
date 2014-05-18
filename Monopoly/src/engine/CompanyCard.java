@@ -22,10 +22,8 @@ public class CompanyCard extends PropertyCard {
     return this.multiplier * player.getLastRollTotal();
   }
 
-  @Override
-  public void affectLandingPlayer(Player player) {
-    // TODO Auto-generated method stub
-    
+  public int getRent(int roll) {
+    return this.multiplier * roll;
   }
  
 }

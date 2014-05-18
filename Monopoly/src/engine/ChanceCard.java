@@ -31,10 +31,4 @@ public class ChanceCard extends Card {
     return amount;
   }
 
-  @Override
-  public void affectLandingPlayer(Player player) {
-    // TODO Auto-generated method stub
-    
-  }
-
 }

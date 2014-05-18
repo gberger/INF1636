@@ -6,8 +6,6 @@ public abstract class Card {
   private boolean owned;
   private Player owner;
 
-  public abstract void affectLandingPlayer(Player player);
-
   private int getId(){
     return this.id;
   }
