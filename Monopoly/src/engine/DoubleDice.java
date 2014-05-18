@@ -26,7 +26,7 @@ public class DoubleDice {
     this.doubleCounter = 0;
   }
 
-  public void roll() {
+  public int[] roll() {
     this.lastRoll = new int[2];
 
     this.lastRoll[0] = dice.roll();
@@ -35,6 +35,8 @@ public class DoubleDice {
     if(this.wasLastRollDouble()) {
       this.doubleCounter += 1;
     }
+
+    return this.lastRoll;
   }
 
   public int[] getLastRoll() {

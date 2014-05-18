@@ -81,8 +81,7 @@ public class UI extends JFrame implements ActionListener {
   private void rollDices() {
     this.dicesButton.setVisible(false);
     this.movePinButton.setVisible(true);
-    game.getDices().roll();
-    int[] dicesValues = game.getDices().getLastRoll();
+    int[] dicesValues = game.getDices().roll();
     // TODO mostrar imagem de dados
     this.showMessage("Seus dados foram " + dicesValues[0] + " e " + dicesValues[1]);
   }
