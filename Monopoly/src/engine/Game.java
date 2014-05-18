@@ -28,6 +28,7 @@ public class Game {
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/chance.json"));
     
     this.chanceDeck = new ChanceDeck(arr);
+    System.out.println("Initialized Chance Deck succesfully!");
   }
   
   private void initializeCompanyDeck() throws IOException, ParseException {
@@ -35,6 +36,7 @@ public class Game {
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/company.json"));
     
     this.companyDeck = new CompanyDeck(arr);
+    System.out.println("Initialized Company Deck succesfully!");
   }
   
   private void initializeTerrainDeck() throws IOException, ParseException {
@@ -42,6 +44,7 @@ public class Game {
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/terrain.json"));
     
     this.terrainDeck = new TerrainDeck(arr);
+    System.out.println("Initialized Terrain Deck succesfully!");
   }
 
   private void initializeBoard() throws IOException, ParseException {
@@ -49,42 +52,41 @@ public class Game {
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/board.json"));
 
     this.board = new Board(arr, this.terrainDeck, this.companyDeck);
+    System.out.println("Initialized Board succesfully!");
   }
 
-  /*
-   * Normally, you'd pass a List<Player> to the constructor.
-   * This calls the constructor with a hardcoded player list. 
-   */
-  public Game() {
-    this(getHardcodedPlayers());
-  }
-  
-  private static List<Player> getHardcodedPlayers() {
-    List<Player> players = new ArrayList<Player>();
-    players.add(new Player("Felipe", PlayerColor.BLUE));
-    players.add(new Player("Guilherme", PlayerColor.RED));
-    return players;
-  }
-  
+  private void initializePlayers(String[] playerNames) throws IllegalArgumentException {
+    if(playerNames.length < 2 || playerNames.length > 6){
+      throw new IllegalArgumentException("Number of players must be between 2 and 6 (inclusive).");
+    }
 
-  public Game(List<Player> players){
+    this.players = new ArrayList<Player>();
+
+    for(int i = 0; i < playerNames.length; i++){
+      String name = playerNames[i];
+      PlayerColor color = PlayerColor.values()[i];
+      this.players.add(new Player(name, color));
+    }
+    this.currentPlayerIndex = 0;
+
+    System.out.println("Initialized Players succesfully!");
+  }
+
+  public Game(){
+    String[] hardcodedPlayers = new String[]{"Felipe", "Guilherme", "Ivan"};
+
     try {
       this.initializeChanceDeck();
       this.initializeCompanyDeck();
       this.initializeTerrainDeck();
       this.initializeBoard();
-    } catch (IOException | ParseException e) {
+      this.initializePlayers(hardcodedPlayers);
+    } catch (IOException | ParseException | IllegalArgumentException e) {
       e.printStackTrace();
       System.exit(1);
-    } 
-    
-    this.players = players;
-    this.currentPlayerIndex = 0;
-    
-    System.out.println("Initialized succesfully!");
-    System.out.println(this.chanceDeck.get(0).getText());
-    System.out.println(this.terrainDeck.get(0).getColor());
-    System.out.println(this.players.get(0).getName());
+    }
+
+    System.out.println("Initialized everything succesfully!");
   }
 
   public Board getBoard() {
