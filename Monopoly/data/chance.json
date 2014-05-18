@@ -1,49 +1,49 @@
 [
   {
     "title": "SORTE",
-    "text": "A prefeitura mandou abrir uma nova avenida, para o que desapropriou vários prédios. Em consequência seu terreno valorizou.",
+    "text": "A prefeitura mandou abrir uma nova avenida, para o que desapropriou vários prédios. Em consequência seu terreno valorizou. Receba $25.",
     "type": "receive",
     "amount": 25
   },
   {
     "title": "SORTE",
-    "text": "Houve um assalto à sua loja, mas você estava segurado.",
+    "text": "Houve um assalto à sua loja, mas você estava segurado. Receba $150.",
     "type": "receive",
     "amount": 150
   },
   {
     "title": "SORTE",
-    "text": "Um amigo tinha lhe pedido um empréstimo e se esqueceu de devolver. Ele acaba de se lembrar.",
+    "text": "Um amigo tinha lhe pedido um empréstimo e se esqueceu de devolver. Ele acaba de se lembrar. Receba $80.",
     "type": "receive",
     "amount": 80
   },
   {
     "title": "SORTE",
-    "text": "Você está com sorte. Suas ações na Bolsa de Valores estão em alta.",
+    "text": "Você está com sorte. Suas ações na Bolsa de Valores estão em alta. Receba $200.",
     "type": "receive",
     "amount": 200
   },
   {
     "title": "SORTE",
-    "text": "Você trocou seu carro com um amigo e ainda saiu lucrando.",
+    "text": "Você trocou seu carro com um amigo e ainda saiu lucrando. Receba $50.",
     "type": "receive",
     "amount": 50
   },
   {
     "title": "SORTE",
-    "text": "Você acaba de receber uma parcela do seu 13º salário.",
+    "text": "Você acaba de receber uma parcela do seu 13º salário. Receba $50.",
     "type": "receive",
     "amount": 50
   },
   {
     "title": "SORTE",
-    "text": "Você tirou o primeiro lugar no Torneio de Tênis do seu clube. Parabéns!",
+    "text": "Você tirou o primeiro lugar no Torneio de Tênis do seu clube. Parabéns! Receba $100.",
     "type": "receive",
     "amount": 100
   },
   {
     "title": "SORTE",
-    "text": "O seu cachorro policial tirou o 1º prêmio na exposição do Kennel Club",
+    "text": "O seu cachorro policial tirou o 1º prêmio na exposição do Kennel Club Receba $100.",
     "type": "receive",
     "amount": 100
   },
@@ -55,79 +55,79 @@
   },
   {
     "title": "SORTE",
-    "text": "Avance até o ponto de partida e... Receba 200",
+    "text": "Avance até o ponto de partida e... Receba $200.",
     "type": "goToStart",
     "amount": 0
   },
   {
     "title": "SORTE",
-    "text": "Você apostou com os parceiros deste jogo e ganhou.",
+    "text": "Você apostou com os parceiros deste jogo e ganhou. Receba $50 de cada jogador.",
     "type": "bet",
     "amount": 50
   },
   {
     "title": "SORTE",
-    "text": "Você saiu de férias e se hospedou na casa de um amigo. Você economizou o hotel.",
+    "text": "Você saiu de férias e se hospedou na casa de um amigo. Você economizou o hotel. Receba $45.",
     "type": "receive",
     "amount": 45
   },
   {
     "title": "SORTE",
-    "text": "Inesperadamente você recebeu uma herança que já estava esquecida.",
+    "text": "Inesperadamente você recebeu uma herança que já estava esquecida. Receba $100.",
     "type": "receive",
     "amount": 100
   },
   {
     "title": "SORTE",
-    "text": "Você foi promovido a diretor da sua empresa.",
+    "text": "Você foi promovido a diretor da sua empresa. Receba $100.",
     "type": "receive",
     "amount": 100
   },
   {
     "title": "SORTE",
-    "text": "Você jogou na Loteria Esportiva com um grupo de amigos. Ganharam!",
+    "text": "Você jogou na Loteria Esportiva com um grupo de amigos. Ganharam! Receba $20.",
     "type": "receive",
     "amount": 20
   },
   {
     "title": "AZAR",
-    "text": "Um amigo pediu-lhe um empréstimo. Você não pode recusar.",
+    "text": "Um amigo pediu-lhe um empréstimo. Você não pode recusar. Pague $15.",
     "type": "charge",
     "amount": 15
   },
   {
     "title": "AZAR",
-    "text": "Você vai casar e está comprando um apartamento novo.",
+    "text": "Você vai casar e está comprando um apartamento novo. Pague $25.",
     "type": "charge",
     "amount": 25
   },
   {
     "title": "AZAR",
-    "text": "O médico lhe recomendou repouso num bom hotel de montanha.",
+    "text": "O médico lhe recomendou repouso num bom hotel de montanha. Pague $45.",
     "type": "charge",
     "amount": 45
   },
   {
     "title": "AZAR",
-    "text": "Você achou interessante assistir à estréia da temporada de ballet. Compre os ingressos.",
+    "text": "Você achou interessante assistir à estréia da temporada de ballet. Compre os ingressos. Pague $30.",
     "type": "charge",
     "amount": 30
   },
   {
     "title": "AZAR",
-    "text": "Parabéns! Você convidou seus amigos para festejar o aniversário.",
+    "text": "Parabéns! Você convidou seus amigos para festejar o aniversário. Pague $100.",
     "type": "charge",
     "amount": 100
   },
   {
     "title": "AZAR",
-    "text": "Você é papai outra vez! Despesas de maternidade.",
+    "text": "Você é papai outra vez! Despesas de maternidade. Pague $100.",
     "type": "charge",
     "amount": 100
   },
   {
     "title": "AZAR",
-    "text": "Papai os livros do ano passado não servem mais, preciso de livros novos.",
+    "text": "Papai os livros do ano passado não servem mais, preciso de livros novos. Pague $40.",
     "type": "charge",
     "amount": 40
   },
@@ -139,43 +139,43 @@
   },
   {
     "title": "AZAR",
-    "text": "Você estacionou seu carro em lugar proibido e entrou na contra mão.",
+    "text": "Você estacionou seu carro em lugar proibido e entrou na contra mão. Pague $30.",
     "type": "charge",
     "amount": 30
   },
   {
     "title": "AZAR",
-    "text": "Você acaba de receber a comunicação do Imposto de Renda",
+    "text": "Você acaba de receber a comunicação do Imposto de Renda Pague $50.",
     "type": "charge",
     "amount": 50
   },
   {
     "title": "AZAR",
-    "text": "Seu clube está ampliando as piscinas. Os sócios devem contribuir.",
+    "text": "Seu clube está ampliando as piscinas. Os sócios devem contribuir. Pague $25.",
     "type": "charge",
     "amount": 25
   },
   {
     "title": "AZAR",
-    "text": "Renove a tempo a licença do seu automóvel.",
+    "text": "Renove a tempo a licença do seu automóvel. Pague $30.",
     "type": "charge",
     "amount": 30
   },
   {
     "title": "AZAR",
-    "text": "Seus parentes do interior vieram passar umas \"férias\" na sua casa.",
+    "text": "Seus parentes do interior vieram passar umas \"férias\" na sua casa. Pague $45.",
     "type": "charge",
     "amount": 45
   },
   {
     "title": "AZAR",
-    "text": "Seus filhos já vão para a escola. Pague a primeira mensalidade.",
+    "text": "Seus filhos já vão para a escola. Pague a primeira mensalidade. Pague $50.",
     "type": "charge",
     "amount": 50
   },
   {
     "title": "AZAR",
-    "text": "A geada prejudicou a sua safra de café.",
+    "text": "A geada prejudicou a sua safra de café. Pague $50.",
     "type": "charge",
     "amount": 50
   }
