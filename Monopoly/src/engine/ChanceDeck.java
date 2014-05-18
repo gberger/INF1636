@@ -17,7 +17,7 @@ public class ChanceDeck extends Deck<ChanceCard> {
       ChanceCard card = new ChanceCard(jobj);
       cards.add(card);
     }
-    
+
     Collections.shuffle(cards);
   }
 

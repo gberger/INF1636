@@ -36,7 +36,6 @@ public class ChanceCard extends Card {
   // Returns whether the card should be re-added to the deck or not
   public boolean affectPlayer(Game game, Player player, UI ui) {
     // TODO separate into sub-classes by type
-    // TODO ui.showMessage
 
     if("receive".equals(this.type)) {
       player.give(this.amount);
@@ -52,7 +51,7 @@ public class ChanceCard extends Card {
       player.give(this.amount);
       for(Player p : game.getPlayers()) {
         if(player != p){
-          p.charge(this.amount);  
+          p.charge(this.amount);
         }
       }
       return true;

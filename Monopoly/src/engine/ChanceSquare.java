@@ -13,9 +13,9 @@ public class ChanceSquare extends Square {
   public void affectLandingPlayer(Game game, Player player, UI ui) {
     ChanceDeck deck = game.getChanceDeck();
     ChanceCard card = deck.draw();
-    
+
     ui.showMessage(card.getText(), card.getTitle());
-    
+
     if(card.affectPlayer(game, player, ui)){
       deck.addToBottom(card);
     }
