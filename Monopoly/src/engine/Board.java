@@ -23,4 +23,13 @@ public class Board {
     return this.squares.get(id);
   }
   
+  public Square getJail() {
+    for(Square sq : this.squares) {
+      if(sq.getType() == SquareType.JAIL){
+        return sq;
+      }
+    }
+    return null;
+  }
+
 }

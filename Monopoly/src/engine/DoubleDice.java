@@ -28,7 +28,7 @@ public class DoubleDice {
 
   public void roll() {
     this.lastRoll = new int[2];
-    
+
     this.lastRoll[0] = dice.roll();
     this.lastRoll[1] = dice.roll();
 

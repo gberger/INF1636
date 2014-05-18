@@ -59,12 +59,11 @@ public class Player {
     return this.cards.contains(card);
   }
 
-  public int charge(int x){
+  public void charge(int x){
     this.money -= x;
-    return x;
   }
 
-  public void receive(int x){
+  public void give(int x){
     this.money += x;
   }
 
@@ -75,5 +74,14 @@ public class Player {
   public void buyProperty(PropertyCard card) {
     this.charge(card.getPrice());
     this.cards.add(card);
+  }
+
+  public void goToJail(Board board) {
+    this.position = board.getJail().getPosition();
+  }
+
+  public void payTo(Player owner, int rent) {
+    this.charge(rent);
+    owner.give(rent);
   }
 }

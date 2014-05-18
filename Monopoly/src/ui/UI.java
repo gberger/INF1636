@@ -60,6 +60,15 @@ public class UI extends JFrame implements ActionListener {
     this.repaint();
   }
   
+  public boolean askMessage (String message) {
+    QuestionDialog dialog = new QuestionDialog(this, message);
+    return dialog.getAnswer();
+  }
+  
+  public void showMessage (String message) {
+    JOptionPane.showMessageDialog(null, message);
+  }
+  
   public void actionPerformed(ActionEvent e) {
     if ("rollDices".equals(e.getActionCommand())) {
       this.rollDices();
@@ -74,7 +83,8 @@ public class UI extends JFrame implements ActionListener {
     this.movePinButton.setVisible(true);
     game.getDices().roll();
     int[] dicesValues = game.getDices().getLastRoll();
-    JOptionPane.showMessageDialog(null, "Seus dados foram "+dicesValues[0]+" e "+dicesValues[1]);
+    // TODO mostrar imagem de dados
+    this.showMessage("Seus dados foram " + dicesValues[0] + " e " + dicesValues[1]);
   }
   
   private void movePin() {
@@ -85,31 +95,8 @@ public class UI extends JFrame implements ActionListener {
     Square currSquare = game.getCurrentSquare();
     Player currPlayer = game.getCurrentPlayer();
     
-    if(currSquare.isProperty()) {
-      PropertyCard card = (PropertyCard)currSquare.getAssociatedCard();
-      Player squareOwner = game.getCardOwner(card);
-      
-      if(squareOwner == null) {
-        // Offer terrain/company to player
-        
-        if(currPlayer.affords(card.getPrice())) {
-          OfferDialog dialog = new OfferDialog(this, currPlayer, card);
-          if(dialog.offerAccepted()) {
-            currPlayer.buyProperty(card);();
-          }
-        }
-        
-      } else if (squareOwner != currPlayer) {
-        // TODO: Charge rent 
-      }
-      // if squareOwner == currPlayer, do nothing
-      
-    }
+    currSquare.affectLandingPlayer(game, currPlayer, this);
     
-    game.nextTurn();
-    
+    game.nextTurn();    
   }
-  
-
-  
 }
