@@ -14,7 +14,10 @@ public class Board {
 
     for(Object obj : arr){
       JSONObject jobj = (JSONObject) obj;
-      Square square = new Square(jobj, terrains, companies);
+
+      String type = (String)jobj.get("type");
+      Square square = Square.fromType(type, jobj, companies, terrains);
+
       squares.add(square.getId(),square);
     }
   }
@@ -25,7 +28,7 @@ public class Board {
   
   public Square getJail() {
     for(Square sq : this.squares) {
-      if(sq.getType() == SquareType.JAIL){
+      if(sq instanceof JailSquare){
         return sq;
       }
     }

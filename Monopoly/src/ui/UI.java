@@ -64,11 +64,11 @@ public class UI extends JFrame implements ActionListener {
     QuestionDialog dialog = new QuestionDialog(this, message);
     return dialog.getAnswer();
   }
-  
+
   public void showMessage (String message) {
     JOptionPane.showMessageDialog(null, message);
   }
-  
+
   public void actionPerformed(ActionEvent e) {
     if ("rollDices".equals(e.getActionCommand())) {
       this.rollDices();
@@ -97,6 +97,6 @@ public class UI extends JFrame implements ActionListener {
     
     currSquare.affectLandingPlayer(game, currPlayer, this);
     
-    game.nextTurn();    
+    game.nextTurn();
   }
 }
