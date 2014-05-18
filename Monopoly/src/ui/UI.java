@@ -66,7 +66,11 @@ public class UI extends JFrame implements ActionListener {
   }
 
   public void showMessage (String message) {
-    JOptionPane.showMessageDialog(null, message);
+    this.showMessage(message, "Mensagem");
+  }
+
+  public void showMessage (String message, String title) {
+    JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
   }
 
   public void actionPerformed(ActionEvent e) {

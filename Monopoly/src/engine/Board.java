@@ -25,10 +25,19 @@ public class Board {
   public Square getSquare(int id) {
     return this.squares.get(id);
   }
-  
+
   public Square getJail() {
     for(Square sq : this.squares) {
       if(sq instanceof JailSquare){
+        return sq;
+      }
+    }
+    return null;
+  }
+
+  public Square getStart() {
+    for(Square sq : this.squares) {
+      if(sq instanceof StartSquare){
         return sq;
       }
     }

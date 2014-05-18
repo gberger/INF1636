@@ -8,7 +8,7 @@ public class Player {
   private PlayerColor color;
   private int position;
   private int money;
-  private List<PropertyCard> cards;
+  private List<Card> cards;
   private boolean inJail;
   private int lastRollTotal;
 
@@ -17,7 +17,7 @@ public class Player {
     this.color = color;
     this.position = 0;
     this.money = (8*1) + (10*5) + (10*10) + (10*50) + (8*100) + (2*500);
-    this.cards = new ArrayList<PropertyCard>();
+    this.cards = new ArrayList<Card>();
     this.inJail = false;
   }
 
@@ -37,7 +37,7 @@ public class Player {
     return money;
   }
 
-  public List<PropertyCard> getCards() {
+  public List<Card> getCards() {
     return cards;
   }
 
@@ -75,8 +75,29 @@ public class Player {
     this.position = board.getJail().getPosition();
   }
 
+  public void goToStart(Board board) {
+    this.position = board.getStart().getPosition();
+    this.give(200);
+  }
+
   public void payTo(Player owner, int rent) {
     this.charge(rent);
     owner.give(rent);
   }
+
+  public void giveJailPass(ChanceCard jailPass) {
+    this.cards.add(jailPass);
+  }
+
+  public boolean hasJailPass() {
+    for(Card c : this.cards) {
+      if(c instanceof ChanceCard) {
+        if(((ChanceCard)c).getType().equals("jailPass")){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
 }

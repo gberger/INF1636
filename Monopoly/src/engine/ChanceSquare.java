@@ -11,7 +11,14 @@ public class ChanceSquare extends Square {
 
   @Override
   public void affectLandingPlayer(Game game, Player player, UI ui) {
-    // TODO
+    ChanceDeck deck = game.getChanceDeck();
+    ChanceCard card = deck.draw();
+    
+    ui.showMessage(card.getText(), card.getTitle());
+    
+    if(card.affectPlayer(game, player, ui)){
+      deck.addToBottom(card);
+    }
   }
 
   @Override
