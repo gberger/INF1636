@@ -5,10 +5,6 @@ import java.awt.Window;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-import engine.PropertyCard;
-import engine.Player;
-import engine.TerrainCard;
-
 public class QuestionDialog {
   
   private int answer = JOptionPane.NO_OPTION;

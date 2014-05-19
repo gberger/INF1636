@@ -15,6 +15,7 @@ import engine.Player;
 
 
 public class PlayerListPanel extends JPanel {
+  private static final long serialVersionUID = -752755826147793469L;
   private Game game;
 
   public PlayerListPanel(Game game) {

@@ -13,6 +13,7 @@ import engine.*;
 
 
 public class UI extends JFrame implements ActionListener {
+  private static final long serialVersionUID = -3537670252267017863L;
   private Game game;
   private BoardPanel board;
   private PlayerListPanel playerList;
