@@ -9,6 +9,20 @@ public abstract class Square {
   protected int id;
   protected Card associatedCard = null;
 
+  public static Square fromType(String type, JSONObject jobj, CompanyDeck companies, TerrainDeck terrains) {
+    if(type.equals("chance"))        { return new ChanceSquare(jobj); }
+    else if(type.equals("company"))  { return new CompanySquare(jobj, companies); }
+    else if(type.equals("free"))     { return new FreeSquare(jobj); }
+    else if(type.equals("goToJail")) { return new GoToJailSquare(jobj); }
+    else if(type.equals("irs"))      { return new IrsSquare(jobj); }
+    else if(type.equals("jail"))     { return new JailSquare(jobj); }
+    else if(type.equals("profits"))  { return new ProfitsSquare(jobj); }
+    else if(type.equals("start"))    { return new StartSquare(jobj); }
+    else if(type.equals("terrain"))  { return new TerrainSquare(jobj, terrains); }
+
+    return null;
+  }
+
   public int getId() {
     return this.id;
   }
@@ -28,29 +42,5 @@ public abstract class Square {
   public abstract void affectLandingPlayer(Game game, Player player, UI ui);
 
   public abstract void affectPassingPlayer(Game game, Player player, UI ui);
-
-  public static Square fromType(String type, JSONObject jobj, CompanyDeck companies, TerrainDeck terrains) {
-    if("chance".equals(type)) {
-      return new ChanceSquare(jobj);
-    } else if("company".equals(type)) {
-      return new CompanySquare(jobj, companies);
-    } else if("free".equals(type)) {
-      return new FreeSquare(jobj);
-    } else if("goToJail".equals(type)) {
-      return new GoToJailSquare(jobj);
-    } else if("irs".equals(type)) {
-      return new IrsSquare(jobj);
-    } else if("jail".equals(type)) {
-      return new JailSquare(jobj);
-    } else if("profits".equals(type)) {
-      return new ProfitsSquare(jobj);
-    } else if("start".equals(type)) {
-      return new StartSquare(jobj);
-    } else if("terrain".equals(type)) {
-      return new TerrainSquare(jobj, terrains);
-    }
-
-    return null;
-  }
 
 }
