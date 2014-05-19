@@ -17,7 +17,7 @@ public class UI extends JFrame implements ActionListener {
   private Game game;
   private BoardPanel board;
   private PlayerListPanel playerList;
-  private JButton dicesButton, movePinButton;
+  private JButton dicesButton;
   
   public UI(Game game) {
     this.game = game;
@@ -40,21 +40,11 @@ public class UI extends JFrame implements ActionListener {
     
     //
     
-    // Move pin button 
-    this.movePinButton = new JButton("Mover pinos", null);
-    this.movePinButton.setActionCommand("movePin");
-    this.movePinButton.setBounds(10,40,120,40);
-    this.movePinButton.addActionListener(this);
-    
-    this.movePinButton.setVisible(false);
-    //
-    
     this.board = new BoardPanel(game.getPlayers());
     
     this.playerList = new PlayerListPanel(game);
     
     this.getContentPane().add(this.dicesButton,FlowLayout.LEFT);
-    this.getContentPane().add(this.movePinButton,FlowLayout.LEFT);
     this.getContentPane().add(this.board,BorderLayout.CENTER);
     this.getContentPane().add(this.playerList,BorderLayout.LINE_START);
     
@@ -77,25 +67,14 @@ public class UI extends JFrame implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     if ("rollDices".equals(e.getActionCommand())) {
       this.rollDices();
-    } else if ("movePin".equals(e.getActionCommand())) {
-      this.movePin();
     }
     this.repaint();
   } 
   
   private void rollDices() {
-    this.dicesButton.setVisible(false);
-    this.movePinButton.setVisible(true);
-
     int[] dicesValues = game.getDices().roll();
     // TODO mostrar imagem de dados
     this.showMessage("Seus dados foram " + dicesValues[0] + " e " + dicesValues[1]);
-  }
-  
-  private void movePin() {
-    this.movePinButton.setVisible(false);
-    this.dicesButton.setVisible(true);
-
     game.movePin(this);
     game.nextTurn();
   }
