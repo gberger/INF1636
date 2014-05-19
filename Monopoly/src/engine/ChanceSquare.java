@@ -15,8 +15,9 @@ public class ChanceSquare extends Square {
     ChanceCard card = deck.draw();
 
     ui.showMessage(card.getText(), card.getTitle());
+    card.affectPlayer(game, player, ui);
 
-    if(card.affectPlayer(game, player, ui)){
+    if(card.isReaddedToDeckAfterReading()){
       deck.addToBottom(card);
     }
   }

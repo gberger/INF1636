@@ -4,17 +4,19 @@ import org.json.simple.JSONObject;
 
 import ui.UI;
 
-public class ChanceCard extends Card {
-  private String title;
-  private String text;
-  private String type;
-  private int amount;
-
-  public ChanceCard(JSONObject jobj) {
-    this.title = (String) jobj.get("title");
-    this.text = (String) jobj.get("text");
-    this.type = (String) jobj.get("type");
-    this.amount = new Long((long)jobj.get("amount")).intValue();
+public abstract class ChanceCard extends Card {
+  protected String title;
+  protected String text;
+  protected int amount;
+  
+  public static ChanceCard fromType(String type, JSONObject jobj) {
+    if(type.equals("receive"))        { return new ReceiveChanceCard(jobj); } 
+    else if(type.equals("charge"))    { return new ChargeChanceCard(jobj); } 
+    else if(type.equals("bet"))       { return new BetChanceCard(jobj); } 
+    else if(type.equals("goToJail"))  { return new GoToJailChanceCard(jobj); } 
+    else if(type.equals("goToStart")) { return new GoToStartChanceCard(jobj); } 
+    else if(type.equals("jailPass"))  { return new JailPassChanceCard(jobj); }
+    return null;
   }
 
   public String getTitle() {
@@ -25,54 +27,13 @@ public class ChanceCard extends Card {
     return text;
   }
 
-  public String getType() {
-    return type;
-  }
-
   public int getAmount() {
     return amount;
   }
 
+  public abstract void affectPlayer(Game game, Player player, UI ui);
+  
   // Returns whether the card should be re-added to the deck or not
-  public boolean affectPlayer(Game game, Player player, UI ui) {
-    // TODO separate into sub-classes by type
-
-    if("receive".equals(this.type)) {
-      player.give(this.amount);
-      return true;
-    }
-
-    if("charge".equals(this.type)) {
-      player.charge(this.amount);
-      return true;
-    }
-
-    if("bet".equals(this.type)) {
-      player.give(this.amount);
-      for(Player p : game.getPlayers()) {
-        if(player != p){
-          p.charge(this.amount);
-        }
-      }
-      return true;
-    }
-
-    if("goToJail".equals(this.type)) {
-      player.goToJail(game.getBoard());
-      return true;
-    }
-
-    if("goToStart".equals(this.type)) {
-      player.goToStart(game.getBoard());
-      return true;
-    }
-
-    if("jailPass".equals(this.type)) {
-      player.giveJailPass(this);
-      return false;
-    }
-
-    return true;
-  }
+  public abstract boolean isReaddedToDeckAfterReading();
 
 }

@@ -90,10 +90,8 @@ public class Player {
 
   public boolean hasJailPass() {
     for(Card c : this.cards) {
-      if(c instanceof ChanceCard) {
-        if(((ChanceCard)c).getType().equals("jailPass")){
-          return true;
-        }
+      if(c instanceof JailPassChanceCard) {
+        return true;
       }
     }
     return false;

@@ -13,7 +13,7 @@ public class ChanceDeck extends Deck<ChanceCard> {
     
     for(Object obj : arr){
       JSONObject jobj = (JSONObject) obj;
-      ChanceCard card = new ChanceCard(jobj);
+      ChanceCard card = ChanceCard.fromType((String)jobj.get("type"), jobj);
       cards.add(card);
     }
 
