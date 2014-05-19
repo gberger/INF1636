@@ -4,14 +4,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import ui.UserInterface;
+import ui.UserInterfaceEvents;
 
-public class Game {
+public class Game implements Observer {
   
   private Board board;
   private ChanceDeck chanceDeck;
@@ -20,6 +23,7 @@ public class Game {
   private List<Player> players;
   private int currentPlayerIndex;
   private DoubleDice doubleDice = new DoubleDice();
+  private UserInterface ui;
   
   private void initializeChanceDeck() throws IOException, ParseException {
     JSONParser parser = new JSONParser();
@@ -87,6 +91,10 @@ public class Game {
     System.out.println("Initialized everything succesfully!");
   }
 
+  public void addUI(UserInterface ui) {
+    this.ui = ui;
+  }
+
   public Board getBoard() {
     return this.board;
   }
@@ -136,7 +144,20 @@ public class Game {
     }
   }
 
-  public void movePin(UserInterface ui) {
+  @Override
+  public void update(Observable o, Object arg) {
+    if(arg == UserInterfaceEvents.GUI_ROLL_DICES){
+      this.rollDices();
+    }
+  }
+
+  private void rollDices() {
+    ui.diceWasRolled(this.getDices().roll());
+    this.movePin();
+    this.nextTurn();
+  }
+
+  public void movePin() {
     //TODO check for 3 doubles and go to jail
 
     int steps = doubleDice.getLastRollTotal();
@@ -148,11 +169,10 @@ public class Game {
       currPlayer.step();
       currSquare = this.board.getSquare(currPlayer.getPosition());
       currSquare.affectPassingPlayer(this, currPlayer, ui);
-      // ui.repaint();
+      this.ui.repaint();
       // TODO timer com repaint. Thread.sleep não funciona.
     }
 
     currSquare.affectLandingPlayer(this, currPlayer, ui);
   }
-
 }

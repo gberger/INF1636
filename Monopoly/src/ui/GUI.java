@@ -1,53 +1,25 @@
 package ui;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.*;
+import java.util.Observable;
 
 import engine.*;
 
 
-public class GUI extends JFrame implements ActionListener, UserInterface {
-  private static final long serialVersionUID = -3537670252267017863L;
-  private Game game;
-  private BoardPanel board;
-  private PlayerListPanel playerList;
-  private JButton dicesButton;
+public class GUI extends Observable implements ActionListener, UserInterface {
+  private GameFrame gameFrame;
   
   public GUI(Game game) {
-    this.game = game;
+    DiceButton diceButton = new DiceButton();
+    diceButton.setup(this);
 
-    this.setTitle("Monopoly");
-    this.setSize(1000, 700);
-    this.setVisible(true);
-    this.setDefaultCloseOperation( EXIT_ON_CLOSE );
-    
-    // Roll dices button
-    ImageIcon diceIcon = new ImageIcon("img/dice_icon.png");
-    Image img = diceIcon.getImage();
-    Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH );  
-    diceIcon = new ImageIcon( newimg );
-    
-    this.dicesButton = new JButton("Rolar dados", diceIcon);
-    this.dicesButton.setActionCommand("rollDices");
-    this.dicesButton.setBounds(10,40,120,40);
-    this.dicesButton.addActionListener(this);
+    this.gameFrame = new GameFrame(
+        new BoardPanel(game.getPlayers()), 
+        new PlayerListPanel(game),
+        diceButton);
 
-    //
-
-    this.board = new BoardPanel(game.getPlayers());
-
-    this.playerList = new PlayerListPanel(game);
-
-    this.getContentPane().add(this.dicesButton,FlowLayout.LEFT);
-    this.getContentPane().add(this.board,BorderLayout.CENTER);
-    this.getContentPane().add(this.playerList,BorderLayout.LINE_START);
-
-    this.repaint();
+    this.addObserver(game);
   }
 
   public boolean askMessage (String message) {
@@ -55,11 +27,7 @@ public class GUI extends JFrame implements ActionListener, UserInterface {
   }
 
   public boolean askMessage (String message, String title) {
-    QuestionDialog dialog = new QuestionDialog(this, message, title);
-    System.out.println("[Pergunta] " + title + " - " + message);
-    boolean answer = dialog.getAnswer();
-    System.out.println("[Resposta] " + answer);
-    return answer;
+    return gameFrame.askMessage(message, title);
   }
 
   public void showMessage (String message) {
@@ -67,22 +35,24 @@ public class GUI extends JFrame implements ActionListener, UserInterface {
   }
 
   public void showMessage (String message, String title) {
-    System.out.println("[Mensagem] " + title + " - " + message);
-    JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
+    this.gameFrame.showMessage(message, title);
+  }
+  
+  public void actionPerformed(ActionEvent e) {
+    String cmd = e.getActionCommand();
+    if ("diceButton".equals(cmd)) {
+      this.setChanged();
+      this.notifyObservers(UserInterfaceEvents.GUI_ROLL_DICES);
+    }
+    this.gameFrame.repaint();
+  }
+  
+  public void diceWasRolled(int[] values){
+    this.showMessage("Seus dados foram " + values[0] + " e " + values[1]);
   }
 
-  public void actionPerformed(ActionEvent e) {
-    if ("rollDices".equals(e.getActionCommand())) {
-      this.rollDices();
-    }
-    this.repaint();
-  } 
-  
-  private void rollDices() {
-    int[] dicesValues = game.getDices().roll();
-    // TODO mostrar imagem de dados
-    this.showMessage("Seus dados foram " + dicesValues[0] + " e " + dicesValues[1]);
-    game.movePin(this);
-    game.nextTurn();
+  @Override
+  public void repaint() {
+    gameFrame.repaint();
   }
 }
