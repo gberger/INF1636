@@ -11,15 +11,14 @@ import javax.swing.*;
 import engine.*;
 
 
-
-public class UI extends JFrame implements ActionListener {
+public class GUI extends JFrame implements ActionListener, UserInterface {
   private static final long serialVersionUID = -3537670252267017863L;
   private Game game;
   private BoardPanel board;
   private PlayerListPanel playerList;
   private JButton dicesButton;
   
-  public UI(Game game) {
+  public GUI(Game game) {
     this.game = game;
     
     this.setTitle("Monopoly");
@@ -50,9 +49,13 @@ public class UI extends JFrame implements ActionListener {
     
     this.repaint();
   }
-  
+
   public boolean askMessage (String message) {
-    QuestionDialog dialog = new QuestionDialog(this, message);
+    return this.askMessage(message, "Pergunta");
+  }
+
+  public boolean askMessage (String message, String title) {
+    QuestionDialog dialog = new QuestionDialog(this, message, title);
     return dialog.getAnswer();
   }
 

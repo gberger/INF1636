@@ -2,7 +2,7 @@ package engine;
 
 import org.json.simple.JSONObject;
 
-import ui.UI;
+import ui.GUI;
 
 public class ReceiveChanceCard extends ChanceCard {
 
@@ -13,7 +13,7 @@ public class ReceiveChanceCard extends ChanceCard {
   }
   
   @Override
-  public void affectPlayer(Game game, Player player, UI ui) {
+  public void affectPlayer(Game game, Player player, GUI ui) {
     player.give(this.amount);
   }
 

@@ -2,7 +2,7 @@ package engine;
 
 import org.json.simple.JSONObject;
 
-import ui.UI;
+import ui.GUI;
 
 public class ProfitsSquare extends Square {
   public ProfitsSquare(JSONObject jobj) {
@@ -10,12 +10,12 @@ public class ProfitsSquare extends Square {
   }
   
   @Override
-  public void affectLandingPlayer(Game game, Player player, UI ui) {
+  public void affectLandingPlayer(Game game, Player player, GUI ui) {
     player.give(200);
   }
 
   @Override
-  public void affectPassingPlayer(Game game, Player player, UI ui) {
+  public void affectPassingPlayer(Game game, Player player, GUI ui) {
     // do nothing
   }
 }

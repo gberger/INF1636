@@ -9,11 +9,11 @@ public class QuestionDialog {
   
   private int answer = JOptionPane.NO_OPTION;
 
-  public QuestionDialog(Window window, String message) {
+  public QuestionDialog(Window window, String message, String title) {
     UIManager.put("OptionPane.yesButtonText", "Sim");
     UIManager.put("OptionPane.noButtonText", "Não");
     
-    this.answer = JOptionPane.showConfirmDialog(window, message, "Oferta",
+    this.answer = JOptionPane.showConfirmDialog(window, message, title,
         JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
   }
   

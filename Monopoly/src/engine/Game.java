@@ -9,7 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import ui.UI;
+import ui.GUI;
 
 public class Game {
   
@@ -136,7 +136,7 @@ public class Game {
     }
   }
 
-  public void movePin(UI ui) {
+  public void movePin(GUI ui) {
     //TODO check for 3 doubles and go to jail
 
     int steps = doubleDice.getLastRollTotal();
