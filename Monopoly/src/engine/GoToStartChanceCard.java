@@ -2,7 +2,7 @@ package engine;
 
 import org.json.simple.JSONObject;
 
-import ui.GUI;
+import ui.UserInterface;
 
 public class GoToStartChanceCard extends ChanceCard {
 
@@ -13,7 +13,7 @@ public class GoToStartChanceCard extends ChanceCard {
   }
   
   @Override
-  public void affectPlayer(Game game, Player player, GUI ui) {
+  public void affectPlayer(Game game, Player player, UserInterface ui) {
     player.goToStart(game.getBoard());
   }
 

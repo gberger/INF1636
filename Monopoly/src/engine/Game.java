@@ -9,7 +9,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import ui.GUI;
+import ui.UserInterface;
 
 public class Game {
   
@@ -136,7 +136,7 @@ public class Game {
     }
   }
 
-  public void movePin(GUI ui) {
+  public void movePin(UserInterface ui) {
     //TODO check for 3 doubles and go to jail
 
     int steps = doubleDice.getLastRollTotal();
@@ -148,7 +148,7 @@ public class Game {
       currPlayer.step();
       currSquare = this.board.getSquare(currPlayer.getPosition());
       currSquare.affectPassingPlayer(this, currPlayer, ui);
-      ui.repaint();
+      // ui.repaint();
       // TODO timer com repaint. Thread.sleep não funciona.
     }
 

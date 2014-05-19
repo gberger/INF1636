@@ -2,7 +2,7 @@ package engine;
 
 import org.json.simple.JSONObject;
 
-import ui.GUI;
+import ui.UserInterface;
 
 public class GoToJailSquare extends Square {
   public GoToJailSquare(JSONObject jobj) {
@@ -10,12 +10,12 @@ public class GoToJailSquare extends Square {
   }
 
   @Override
-  public void affectLandingPlayer(Game game, Player player, GUI ui) {
+  public void affectLandingPlayer(Game game, Player player, UserInterface ui) {
     player.goToJail(game.getBoard());
   }
 
   @Override
-  public void affectPassingPlayer(Game game, Player player, GUI ui) {
+  public void affectPassingPlayer(Game game, Player player, UserInterface ui) {
     // do nothing
   }
 

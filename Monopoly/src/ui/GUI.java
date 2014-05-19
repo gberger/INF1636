@@ -20,7 +20,7 @@ public class GUI extends JFrame implements ActionListener, UserInterface {
   
   public GUI(Game game) {
     this.game = game;
-    
+
     this.setTitle("Monopoly");
     this.setSize(1000, 700);
     this.setVisible(true);
@@ -28,25 +28,25 @@ public class GUI extends JFrame implements ActionListener, UserInterface {
     
     // Roll dices button
     ImageIcon diceIcon = new ImageIcon("img/dice_icon.png");
-    Image img = diceIcon.getImage() ;  
-    Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH ) ;  
+    Image img = diceIcon.getImage();
+    Image newimg = img.getScaledInstance( 20, 20,  java.awt.Image.SCALE_SMOOTH );  
     diceIcon = new ImageIcon( newimg );
     
     this.dicesButton = new JButton("Rolar dados", diceIcon);
     this.dicesButton.setActionCommand("rollDices");
     this.dicesButton.setBounds(10,40,120,40);
     this.dicesButton.addActionListener(this);
-    
+
     //
-    
+
     this.board = new BoardPanel(game.getPlayers());
-    
+
     this.playerList = new PlayerListPanel(game);
-    
+
     this.getContentPane().add(this.dicesButton,FlowLayout.LEFT);
     this.getContentPane().add(this.board,BorderLayout.CENTER);
     this.getContentPane().add(this.playerList,BorderLayout.LINE_START);
-    
+
     this.repaint();
   }
 
@@ -56,7 +56,10 @@ public class GUI extends JFrame implements ActionListener, UserInterface {
 
   public boolean askMessage (String message, String title) {
     QuestionDialog dialog = new QuestionDialog(this, message, title);
-    return dialog.getAnswer();
+    System.out.println("[Pergunta] " + title + " - " + message);
+    boolean answer = dialog.getAnswer();
+    System.out.println("[Resposta] " + answer);
+    return answer;
   }
 
   public void showMessage (String message) {
@@ -64,6 +67,7 @@ public class GUI extends JFrame implements ActionListener, UserInterface {
   }
 
   public void showMessage (String message, String title) {
+    System.out.println("[Mensagem] " + title + " - " + message);
     JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
   }
 

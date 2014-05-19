@@ -2,7 +2,7 @@ package engine;
 
 import org.json.simple.JSONObject;
 
-import ui.GUI;
+import ui.UserInterface;
 
 public abstract class ChanceCard extends Card {
   protected String title;
@@ -31,7 +31,7 @@ public abstract class ChanceCard extends Card {
     return amount;
   }
 
-  public abstract void affectPlayer(Game game, Player player, GUI ui);
+  public abstract void affectPlayer(Game game, Player player, UserInterface ui);
   
   // Returns whether the card should be re-added to the deck or not
   public abstract boolean isReaddedToDeckAfterReading();

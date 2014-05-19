@@ -2,7 +2,7 @@ package engine;
 
 import org.json.simple.JSONObject;
 
-import ui.GUI;
+import ui.UserInterface;
 
 
 public abstract class Square {
@@ -39,8 +39,8 @@ public abstract class Square {
     return (associatedCard instanceof PropertyCard);
   }
 
-  public abstract void affectLandingPlayer(Game game, Player player, GUI ui);
+  public abstract void affectLandingPlayer(Game game, Player player, UserInterface ui);
 
-  public abstract void affectPassingPlayer(Game game, Player player, GUI ui);
+  public abstract void affectPassingPlayer(Game game, Player player, UserInterface ui);
 
 }

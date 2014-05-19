@@ -2,7 +2,7 @@ package engine;
 
 import org.json.simple.JSONObject;
 
-import ui.GUI;
+import ui.UserInterface;
 
 public class JailSquare extends Square {
   public JailSquare(JSONObject jobj) {
@@ -10,12 +10,12 @@ public class JailSquare extends Square {
   }
 
   @Override
-  public void affectLandingPlayer(Game game, Player player, GUI ui) {
+  public void affectLandingPlayer(Game game, Player player, UserInterface ui) {
     // do nothing (visitor)
   }
 
   @Override
-  public void affectPassingPlayer(Game game, Player player, GUI ui) {
+  public void affectPassingPlayer(Game game, Player player, UserInterface ui) {
     // do nothing
   }
 }

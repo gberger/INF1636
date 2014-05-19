@@ -2,7 +2,7 @@ package engine;
 
 import org.json.simple.JSONObject;
 
-import ui.GUI;
+import ui.UserInterface;
 
 public class TerrainSquare extends Square {
   public TerrainSquare(JSONObject jobj, TerrainDeck terrains) {
@@ -11,7 +11,7 @@ public class TerrainSquare extends Square {
   }
 
   @Override
-  public void affectLandingPlayer(Game game, Player player, GUI ui) {
+  public void affectLandingPlayer(Game game, Player player, UserInterface ui) {
     Player owner = game.getCardOwner(this.associatedCard);
     TerrainCard card = (TerrainCard)associatedCard;
 
@@ -33,7 +33,7 @@ public class TerrainSquare extends Square {
   }
 
   @Override
-  public void affectPassingPlayer(Game game, Player player, GUI ui) {
+  public void affectPassingPlayer(Game game, Player player, UserInterface ui) {
     // do nothing
   }
 
