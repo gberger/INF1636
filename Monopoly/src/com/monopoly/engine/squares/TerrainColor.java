@@ -1,0 +1,13 @@
+package com.monopoly.engine.squares;
+
+
+public enum TerrainColor {
+  PINK,
+  LIGHT_BLUE,
+  PURPLE,
+  ORANGE,
+  RED,
+  YELLOW,
+  GREEN,
+  DARK_BLUE
+}

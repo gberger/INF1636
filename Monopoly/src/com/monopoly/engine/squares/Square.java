@@ -1,0 +1,52 @@
+package com.monopoly.engine.squares;
+
+import org.json.simple.JSONObject;
+
+import com.monopoly.engine.cards.Card;
+import com.monopoly.engine.cards.CompanyDeck;
+import com.monopoly.engine.cards.PropertyCard;
+import com.monopoly.engine.cards.TerrainDeck;
+import com.monopoly.engine.core.Game;
+import com.monopoly.engine.core.Player;
+import com.monopoly.ui.UserInterface;
+
+
+public abstract class Square {
+  protected int id;
+  protected Card associatedCard = null;
+
+  public static Square fromType(String type, JSONObject jobj, CompanyDeck companies, TerrainDeck terrains) {
+    if(type.equals("chance"))        { return new ChanceSquare(jobj); }
+    else if(type.equals("company"))  { return new CompanySquare(jobj, companies); }
+    else if(type.equals("free"))     { return new FreeSquare(jobj); }
+    else if(type.equals("goToJail")) { return new GoToJailSquare(jobj); }
+    else if(type.equals("irs"))      { return new IrsSquare(jobj); }
+    else if(type.equals("jail"))     { return new JailSquare(jobj); }
+    else if(type.equals("profits"))  { return new ProfitsSquare(jobj); }
+    else if(type.equals("start"))    { return new StartSquare(jobj); }
+    else if(type.equals("terrain"))  { return new TerrainSquare(jobj, terrains); }
+
+    return null;
+  }
+
+  public int getId() {
+    return this.id;
+  }
+
+  public int getPosition() {
+    return this.id;
+  }
+
+  public Card getAssociatedCard() {
+    return this.associatedCard;
+  }
+
+  public boolean isProperty() {
+    return (associatedCard instanceof PropertyCard);
+  }
+
+  public abstract void affectLandingPlayer(Game game, Player player, UserInterface ui);
+
+  public abstract void affectPassingPlayer(Game game, Player player, UserInterface ui);
+
+}
