@@ -46,10 +46,6 @@ public class GUI extends Observable implements ActionListener, UserInterface {
     }
     this.gameFrame.repaint();
   }
-  
-  public void diceWasRolled(int[] values){
-    this.showMessage("Seus dados foram " + values[0] + " e " + values[1]);
-  }
 
   @Override
   public void repaint() {

@@ -7,17 +7,20 @@ import com.monopoly.engine.core.Player;
 import com.monopoly.ui.UserInterface;
 
 public class ProfitsSquare extends Square {
-  public ProfitsSquare(JSONObject jobj) {
+  public ProfitsSquare(JSONObject jobj, Game game) {
+    this.game = game;
     this.id = new Long((long) jobj.get("id")).intValue();
   }
   
   @Override
-  public void affectLandingPlayer(Game game, Player player, UserInterface ui) {
+  public void affectLandingPlayer(Player player) {
+    UserInterface ui = this.game.getUI();
     player.give(200);
+    ui.showMessage(player.getName() + " ganhou $200 de lucros e dividendos!");
   }
 
   @Override
-  public void affectPassingPlayer(Game game, Player player, UserInterface ui) {
+  public void affectPassingPlayer(Player player) {
     // do nothing
   }
 }

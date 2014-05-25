@@ -6,23 +6,23 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import com.monopoly.engine.cards.CompanyDeck;
-import com.monopoly.engine.cards.TerrainDeck;
 import com.monopoly.engine.squares.JailSquare;
 import com.monopoly.engine.squares.Square;
 import com.monopoly.engine.squares.StartSquare;
 
 public class Board {
   private List<Square> squares;
-
-  public Board(JSONArray arr, TerrainDeck terrains, CompanyDeck companies) {
+  private Game game;
+  
+  public Board(JSONArray arr, Game game) {
+    this.game = game;
     this.squares = new ArrayList<Square>();
 
     for(Object obj : arr){
       JSONObject jobj = (JSONObject) obj;
 
       String type = (String)jobj.get("type");
-      Square square = Square.fromType(type, jobj, companies, terrains);
+      Square square = Square.fromType(type, jobj, game);
 
       squares.add(square.getId(),square);
     }

@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.monopoly.engine.core.Game;
+
 
 public class TerrainDeck extends Deck<TerrainCard> {
 
-  public TerrainDeck(JSONArray arr) {
+  public TerrainDeck(JSONArray arr, Game game) {
     this.cards = new ArrayList<TerrainCard>();
 
     for(Object obj : arr){
       JSONObject jobj = (JSONObject) obj;
-      TerrainCard card = new TerrainCard(jobj);
+      TerrainCard card = new TerrainCard(jobj, game);
       cards.add(card);
     }
   }

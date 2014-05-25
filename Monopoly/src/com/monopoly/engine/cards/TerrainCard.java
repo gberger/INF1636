@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.monopoly.engine.core.Game;
 import com.monopoly.engine.squares.TerrainColor;
 
 public class TerrainCard extends PropertyCard {
@@ -14,7 +15,8 @@ public class TerrainCard extends PropertyCard {
   private int houseCost;
   private int hotelCost;
 
-  public TerrainCard(JSONObject jobj) {
+  public TerrainCard(JSONObject jobj, Game game) {
+    this.game = game;
     this.name = (String) jobj.get("name");
     this.color = TerrainColor.valueOf((String) jobj.get("color"));
     this.buildings = 0;

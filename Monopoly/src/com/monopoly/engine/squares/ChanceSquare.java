@@ -6,20 +6,20 @@ import com.monopoly.engine.cards.chancecards.ChanceCard;
 import com.monopoly.engine.cards.chancecards.ChanceDeck;
 import com.monopoly.engine.core.Game;
 import com.monopoly.engine.core.Player;
-import com.monopoly.ui.UserInterface;
 
 public class ChanceSquare extends Square {
-  public ChanceSquare(JSONObject jobj) {
+  public ChanceSquare(JSONObject jobj, Game game) {
+    this.game = game;
     this.id = new Long((long) jobj.get("id")).intValue();
   }
 
   @Override
-  public void affectLandingPlayer(Game game, Player player, UserInterface ui) {
+  public void affectLandingPlayer(Player player) {
     ChanceDeck deck = game.getChanceDeck();
     ChanceCard card = deck.draw();
 
-    ui.showMessage(card.getText(), card.getTitle());
-    card.affectPlayer(game, player, ui);
+    this.game.getUI().showMessage(card.getText(), card.getTitle());
+    card.affectPlayer(player);
 
     if(card.isReaddedToDeckAfterReading()){
       deck.addToBottom(card);
@@ -27,7 +27,7 @@ public class ChanceSquare extends Square {
   }
 
   @Override
-  public void affectPassingPlayer(Game game, Player player, UserInterface ui) {
+  public void affectPassingPlayer(Player player) {
     // do nothing
   }
 

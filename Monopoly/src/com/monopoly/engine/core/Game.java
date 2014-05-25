@@ -15,7 +15,6 @@ import com.monopoly.engine.cards.Card;
 import com.monopoly.engine.cards.CompanyDeck;
 import com.monopoly.engine.cards.TerrainDeck;
 import com.monopoly.engine.cards.chancecards.ChanceDeck;
-import com.monopoly.engine.squares.Square;
 import com.monopoly.ui.UserInterface;
 import com.monopoly.ui.UserInterfaceEvents;
 
@@ -27,14 +26,13 @@ public class Game implements Observer {
   private TerrainDeck terrainDeck;
   private List<Player> players;
   private int currentPlayerIndex;
-  private DoubleDice doubleDice = new DoubleDice();
   private UserInterface ui;
   
   private void initializeChanceDeck() throws IOException, ParseException {
     JSONParser parser = new JSONParser();
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/chance.json"));
     
-    this.chanceDeck = new ChanceDeck(arr);
+    this.chanceDeck = new ChanceDeck(arr, this);
     System.out.println("Initialized Chance Deck succesfully!");
   }
   
@@ -42,7 +40,7 @@ public class Game implements Observer {
     JSONParser parser = new JSONParser();
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/company.json"));
     
-    this.companyDeck = new CompanyDeck(arr);
+    this.companyDeck = new CompanyDeck(arr, this);
     System.out.println("Initialized Company Deck succesfully!");
   }
   
@@ -50,7 +48,7 @@ public class Game implements Observer {
     JSONParser parser = new JSONParser();
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/terrain.json"));
     
-    this.terrainDeck = new TerrainDeck(arr);
+    this.terrainDeck = new TerrainDeck(arr, this);
     System.out.println("Initialized Terrain Deck succesfully!");
   }
 
@@ -58,7 +56,7 @@ public class Game implements Observer {
     JSONParser parser = new JSONParser();
     JSONArray arr = (JSONArray) parser.parse(new FileReader("data/board.json"));
 
-    this.board = new Board(arr, this.terrainDeck, this.companyDeck);
+    this.board = new Board(arr, this);
     System.out.println("Initialized Board succesfully!");
   }
 
@@ -72,7 +70,7 @@ public class Game implements Observer {
     for(int i = 0; i < playerNames.length; i++){
       String name = playerNames[i];
       PlayerColor color = PlayerColor.values()[i];
-      this.players.add(new Player(name, color));
+      this.players.add(new Player(name, color, this));
     }
     this.currentPlayerIndex = 0;
 
@@ -96,8 +94,12 @@ public class Game implements Observer {
     System.out.println("Initialized everything succesfully!");
   }
 
-  public void addUI(UserInterface ui) {
+  public void setUI(UserInterface ui) {
     this.ui = ui;
+  }
+
+  public UserInterface getUI() {
+    return this.ui;
   }
 
   public Board getBoard() {
@@ -124,10 +126,6 @@ public class Game implements Observer {
     return this.currentPlayerIndex;
   }
 
-  public DoubleDice getDices() {
-    return this.doubleDice;
-  }
-
   public Player getCurrentPlayer() {
     return this.players.get(this.currentPlayerIndex);
   }
@@ -141,12 +139,8 @@ public class Game implements Observer {
   }
 
   public void nextTurn() {
-    if(!doubleDice.wasLastRollDouble()) {
-      this.currentPlayerIndex += 1;
-      this.currentPlayerIndex %= this.players.size();
-    
-      doubleDice = new DoubleDice();
-    }
+    this.currentPlayerIndex += 1;
+    this.currentPlayerIndex %= this.players.size();
   }
 
   @Override
@@ -157,27 +151,8 @@ public class Game implements Observer {
   }
 
   private void rollDices() {
-    ui.diceWasRolled(this.getDices().roll());
-    this.movePin();
-    this.nextTurn();
-  }
-
-  public void movePin() {
-    //TODO check for 3 doubles and go to jail
-
-    int steps = doubleDice.getLastRollTotal();
-
     Player currPlayer = this.getCurrentPlayer();
-    Square currSquare = this.board.getSquare(currPlayer.getPosition());
-
-    for(int i = 0; i < steps; i++){
-      currPlayer.step();
-      currSquare = this.board.getSquare(currPlayer.getPosition());
-      currSquare.affectPassingPlayer(this, currPlayer, ui);
-      this.ui.repaint();
-      // TODO timer com repaint. Thread.sleep não funciona.
-    }
-
-    currSquare.affectLandingPlayer(this, currPlayer, ui);
+    currPlayer.roll();
+    this.nextTurn();
   }
 }

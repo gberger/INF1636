@@ -1,8 +1,10 @@
 package com.monopoly.engine.cards;
 
+import com.monopoly.engine.core.Game;
 import com.monopoly.engine.core.Player;
 
 public abstract class Card {
+  protected Game game;
   private int id;
   private boolean ownable;
   private boolean owned;

@@ -4,20 +4,20 @@ import org.json.simple.JSONObject;
 
 import com.monopoly.engine.core.Game;
 import com.monopoly.engine.core.Player;
-import com.monopoly.ui.UserInterface;
 
 public class JailSquare extends Square {
-  public JailSquare(JSONObject jobj) {
+  public JailSquare(JSONObject jobj, Game game) {
+    this.game = game;
     this.id = new Long((long) jobj.get("id")).intValue();
   }
 
   @Override
-  public void affectLandingPlayer(Game game, Player player, UserInterface ui) {
+  public void affectLandingPlayer(Player player) {
     // do nothing (visitor)
   }
 
   @Override
-  public void affectPassingPlayer(Game game, Player player, UserInterface ui) {
+  public void affectPassingPlayer(Player player) {
     // do nothing
   }
 }

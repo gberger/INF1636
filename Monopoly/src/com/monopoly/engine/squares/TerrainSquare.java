@@ -3,19 +3,20 @@ package com.monopoly.engine.squares;
 import org.json.simple.JSONObject;
 
 import com.monopoly.engine.cards.TerrainCard;
-import com.monopoly.engine.cards.TerrainDeck;
 import com.monopoly.engine.core.Game;
 import com.monopoly.engine.core.Player;
 import com.monopoly.ui.UserInterface;
 
 public class TerrainSquare extends Square {
-  public TerrainSquare(JSONObject jobj, TerrainDeck terrains) {
+  public TerrainSquare(JSONObject jobj, Game game) {
+    this.game = game;
     this.id = new Long((long) jobj.get("id")).intValue();
-    this.associatedCard = terrains.findByName((String)jobj.get("name"));
+    this.associatedCard = game.getTerrainDeck().findByName((String)jobj.get("name"));
   }
 
   @Override
-  public void affectLandingPlayer(Game game, Player player, UserInterface ui) {
+  public void affectLandingPlayer(Player player) {
+    UserInterface ui = this.game.getUI();
     Player owner = game.getCardOwner(this.associatedCard);
     TerrainCard card = (TerrainCard)associatedCard;
 
@@ -37,7 +38,7 @@ public class TerrainSquare extends Square {
   }
 
   @Override
-  public void affectPassingPlayer(Game game, Player player, UserInterface ui) {
+  public void affectPassingPlayer(Player player) {
     // do nothing
   }
 

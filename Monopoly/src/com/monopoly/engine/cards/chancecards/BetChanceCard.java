@@ -4,20 +4,20 @@ import org.json.simple.JSONObject;
 
 import com.monopoly.engine.core.Game;
 import com.monopoly.engine.core.Player;
-import com.monopoly.ui.UserInterface;
 
 public class BetChanceCard extends ChanceCard {
 
-  public BetChanceCard(JSONObject jobj) {
+  public BetChanceCard(JSONObject jobj, Game game) {
+    this.game = game;
     this.title = (String) jobj.get("title");
     this.text = (String) jobj.get("text");
     this.amount = new Long((long)jobj.get("amount")).intValue();
   }
   
   @Override
-  public void affectPlayer(Game game, Player player, UserInterface ui) {
+  public void affectPlayer(Player player) {
     player.give(this.amount);
-    for(Player p : game.getPlayers()) {
+    for(Player p : this.game.getPlayers()) {
       if(player != p){
         p.charge(this.amount);
       }

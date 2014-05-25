@@ -7,22 +7,29 @@ import com.monopoly.engine.cards.Card;
 import com.monopoly.engine.cards.PropertyCard;
 import com.monopoly.engine.cards.chancecards.ChanceCard;
 import com.monopoly.engine.cards.chancecards.JailPassChanceCard;
+import com.monopoly.engine.squares.Square;
+import com.monopoly.ui.UserInterface;
 
 public class Player {
+  private Game game;
   private String name;
   private PlayerColor color;
   private int position;
   private int money;
   private List<Card> cards;
   private boolean inJail;
+  private int turnsInJail;
+  private DoubleDice doubleDice;
 
-  public Player(String name, PlayerColor color) {
+  public Player(String name, PlayerColor color, Game game) {
+    this.game = game;
     this.name = name;
     this.color = color;
     this.position = 0;
     this.money = (8*1) + (10*5) + (10*10) + (10*50) + (8*100) + (2*500);
     this.cards = new ArrayList<Card>();
     this.inJail = false;
+    this.turnsInJail = 0;
   }
 
   public String getName() {
@@ -75,11 +82,15 @@ public class Player {
     this.cards.add(card);
   }
 
-  public void goToJail(Board board) {
+  public void goToJail() {
+    Board board = this.game.getBoard();
     this.position = board.getJail().getPosition();
+    this.inJail = true;
+    this.turnsInJail = 0;
   }
 
-  public void goToStart(Board board) {
+  public void goToStart() {
+    Board board = this.game.getBoard();
     this.position = board.getStart().getPosition();
     this.give(200);
   }
@@ -100,6 +111,81 @@ public class Player {
       }
     }
     return false;
+  }
+  
+  public void roll(){
+    if(this.isInJail()){
+      this.rollInJail();
+    } else {
+      this.rollNotInJail();
+    }
+  }
+  
+  private void rollNotInJail() {
+    UserInterface ui = this.game.getUI();
+    this.doubleDice = new DoubleDice();
+    
+    while(true){
+      int[] values = doubleDice.roll();
+      int steps = doubleDice.getLastRollTotal();
+      ui.showMessage(this.name + ", seus dados foram " + values[0] + " e " + values[1]);
+      
+      if(doubleDice.getDoubleCounter() == 3){
+        //jail
+        this.goToJail();
+        break;
+      }
+
+      this.move(steps);
+      
+      if(!doubleDice.wasLastRollDouble()){
+        break;
+      }
+    }
+  }
+  
+  private void rollInJail() {
+    UserInterface ui = this.game.getUI();
+    this.doubleDice = new DoubleDice();
+    
+    int[] values = doubleDice.roll();
+    int steps = doubleDice.getLastRollTotal();
+    boolean wasDouble = doubleDice.wasLastRollDouble();
+    
+    ui.showMessage(this.name + " está na cadeia. Seus dados foram " + values[0] + " e " + values[1]);
+    
+    if(wasDouble){
+      ui.showMessage(this.name + " saiu da cadeia!");
+      this.inJail = false;
+      this.move(steps);
+    } else {
+      this.turnsInJail += 1;
+      if(turnsInJail == 4){
+        ui.showMessage(this.name + ", como se passaram 4 turnos, você pagará a fiança de $50 e sairá da cadeia.");
+        this.charge(50);
+        this.move(steps);
+      } else {
+        ui.showMessage(this.name + " continua na cadeia.");
+      }
+    }
+  }
+  
+  private void move(int steps){
+    for(int i = 0; i < steps; i++){
+      this.step();
+      this.getSquare().affectPassingPlayer(this);
+    }
+
+    this.getSquare().affectLandingPlayer(this);
+  }
+  
+  private Square getSquare() {
+    Board board = this.game.getBoard();
+    return board.getSquare(this.getPosition());
+  }
+
+  public int getLastRollTotal() {
+    return this.doubleDice.getLastRollTotal();
   }
 
 }
