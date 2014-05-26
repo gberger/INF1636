@@ -1,7 +1,6 @@
 package com.monopoly.ui;
 
 import java.awt.Image;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,9 +19,9 @@ public class DiceButton extends JButton {
     return new ImageIcon(newimg);
   }
   
-  public void setup(ActionListener gui){
+  public DiceButton setup(){
     this.setActionCommand("diceButton");
-    this.setBounds(10,40,120,40);
-    this.addActionListener(gui);
+    this.setBounds(10,40,240,40);
+    return this;
   }
 }

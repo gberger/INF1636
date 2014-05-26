@@ -154,9 +154,16 @@ public class Game implements Observer {
       } else {
         this.ui.showMessage("Ação proibida!");
       }
+      
+    } else if(arg == UserInterfaceEvents.JAIL_PASS) {
+      if(this.validateUseJailPass()) {
+        this.useJailPass(); 
+      } else {
+        this.ui.showMessage("Ação proibida!");
+      }
     }
   }
-  
+
   private boolean validateRollDices() {
     if(this.hasCurrPlayerPlayed) {
       Player currPlayer = this.getCurrentPlayer();
@@ -187,5 +194,15 @@ public class Game implements Observer {
     this.currentPlayerIndex += 1;
     this.currentPlayerIndex %= this.players.size();
     this.hasCurrPlayerPlayed = false;
+  }
+
+  private boolean validateUseJailPass() {
+    Player currPlayer = this.getCurrentPlayer();
+    return currPlayer.isInJail() && currPlayer.hasJailPass();
+  }
+
+  private void useJailPass() {
+    Player currPlayer = this.getCurrentPlayer();
+    currPlayer.useJailPass();
   }
 }

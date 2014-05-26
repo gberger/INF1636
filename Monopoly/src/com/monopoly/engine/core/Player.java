@@ -105,6 +105,15 @@ public class Player {
     this.cards.add(jailPass);
   }
 
+  public void returnJailPass() {
+    for(Card c : this.cards) {
+      if(c instanceof JailPassChanceCard) {
+        this.game.getChanceDeck().addToBottom((ChanceCard)c);
+        return;
+      }
+    }
+  }
+
   public boolean hasJailPass() {
     for(Card c : this.cards) {
       if(c instanceof JailPassChanceCard) {
@@ -116,6 +125,11 @@ public class Player {
   
   public void resetDoubleCounter(){
     this.doubleDice = new DoubleDice();
+  }
+  
+  private void removeFromJail() {
+    this.inJail = false;
+    this.turnsInJail = 0;
   }
   
   public void roll(){
@@ -151,7 +165,7 @@ public class Player {
     
     if(wasDouble){
       ui.showMessage(this.name + " saiu da cadeia!");
-      this.inJail = false;
+      this.removeFromJail();
       this.move(steps);
     } else {
       this.turnsInJail += 1;
@@ -185,6 +199,13 @@ public class Player {
   
   public boolean goesAgain() {
     return this.doubleDice.wasLastRollDouble() && !this.inJail;
+  }
+
+  public void useJailPass() {
+    if(this.hasJailPass()) {
+      this.returnJailPass();
+      this.removeFromJail();
+    }
   }
 
 }
