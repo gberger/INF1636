@@ -1,5 +1,6 @@
 package com.monopoly.ui;
 
 public enum UserInterfaceEvents {
-  GUI_ROLL_DICES;
+  ROLL_DICES,
+  PASS_TURN;
 }

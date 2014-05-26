@@ -27,6 +27,7 @@ public class Game implements Observer {
   private List<Player> players;
   private int currentPlayerIndex;
   private UserInterface ui;
+  private boolean hasCurrPlayerPlayed = false;
   
   private void initializeChanceDeck() throws IOException, ParseException {
     JSONParser parser = new JSONParser();
@@ -138,25 +139,53 @@ public class Game implements Observer {
     return (Player) null;
   }
 
-  public void nextTurn() {
-    Player currPlayer = this.getCurrentPlayer();
-    if(!currPlayer.goesAgain()){
-      currPlayer.resetDoubleCounter();
-      this.currentPlayerIndex += 1;
-      this.currentPlayerIndex %= this.players.size();
+  @Override
+  public void update(Observable o, Object arg) {    
+    if(arg == UserInterfaceEvents.ROLL_DICES) {
+      if(this.validateRollDices()) {
+        this.rollDices(); 
+      } else {
+        this.ui.showMessage("Ação proibida!");
+      }
+      
+    } else if(arg == UserInterfaceEvents.PASS_TURN) {
+      if(this.validatePassTurn()) {
+        this.passTurn(); 
+      } else {
+        this.ui.showMessage("Ação proibida!");
+      }
     }
   }
-
-  @Override
-  public void update(Observable o, Object arg) {
-    if(arg == UserInterfaceEvents.GUI_ROLL_DICES){
-      this.rollDices();
+  
+  private boolean validateRollDices() {
+    if(this.hasCurrPlayerPlayed) {
+      Player currPlayer = this.getCurrentPlayer();
+      return currPlayer.goesAgain();
+    } else {
+      return true;
     }
   }
 
   private void rollDices() {
     Player currPlayer = this.getCurrentPlayer();
     currPlayer.roll();
-    this.nextTurn();
+    this.hasCurrPlayerPlayed = true;
+  }
+  
+  private boolean validatePassTurn() {
+    if(this.hasCurrPlayerPlayed) {
+      Player currPlayer = this.getCurrentPlayer();
+      return !currPlayer.goesAgain();
+    } else {
+      return false;
+    }
+  }
+
+  public void passTurn() {
+    Player currPlayer = this.getCurrentPlayer();
+    currPlayer.resetDoubleCounter();
+    this.currentPlayerIndex += 1;
+    this.currentPlayerIndex %= this.players.size();
+    this.hasCurrPlayerPlayed = false;
   }
 }

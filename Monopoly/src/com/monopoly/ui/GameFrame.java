@@ -1,24 +1,29 @@
 package com.monopoly.ui;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class GameFrame extends JFrame {
   private static final long serialVersionUID = 2541117588135371641L;
   
-  public GameFrame(BoardPanel board, PlayerListPanel playerList, DiceButton dicesButton) {
+  public GameFrame(BoardPanel board, PlayerListPanel playerList, List<JButton> buttons) {
     this.setTitle("Monopoly");
     this.setSize(1000, 700);
     this.setVisible(true);
     this.setDefaultCloseOperation( EXIT_ON_CLOSE );
     
-    this.getContentPane().add(dicesButton, FlowLayout.LEFT);
+    this.getContentPane().setLayout(null);
     this.getContentPane().add(board, BorderLayout.CENTER);
     this.getContentPane().add(playerList, BorderLayout.LINE_START);
-
+    
+    for(JButton button : buttons){
+      this.getContentPane().add(button, -1);  
+    }
+    
     this.repaint();
   }
   
