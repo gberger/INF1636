@@ -139,8 +139,12 @@ public class Game implements Observer {
   }
 
   public void nextTurn() {
-    this.currentPlayerIndex += 1;
-    this.currentPlayerIndex %= this.players.size();
+    Player currPlayer = this.getCurrentPlayer();
+    if(!currPlayer.goesAgain()){
+      currPlayer.resetDoubleCounter();
+      this.currentPlayerIndex += 1;
+      this.currentPlayerIndex %= this.players.size();
+    }
   }
 
   @Override

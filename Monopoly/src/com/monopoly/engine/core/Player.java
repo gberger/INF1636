@@ -22,6 +22,7 @@ public class Player {
   private DoubleDice doubleDice;
 
   public Player(String name, PlayerColor color, Game game) {
+    this.doubleDice = new DoubleDice();
     this.game = game;
     this.name = name;
     this.color = color;
@@ -113,6 +114,10 @@ public class Player {
     return false;
   }
   
+  public void resetDoubleCounter(){
+    this.doubleDice = new DoubleDice();
+  }
+  
   public void roll(){
     if(this.isInJail()){
       this.rollInJail();
@@ -123,30 +128,20 @@ public class Player {
   
   private void rollNotInJail() {
     UserInterface ui = this.game.getUI();
-    this.doubleDice = new DoubleDice();
     
-    while(true){
-      int[] values = doubleDice.roll();
-      int steps = doubleDice.getLastRollTotal();
-      ui.showMessage(this.name + ", seus dados foram " + values[0] + " e " + values[1]);
-      
-      if(doubleDice.getDoubleCounter() == 3){
-        //jail
-        this.goToJail();
-        break;
-      }
-
-      this.move(steps);
-      
-      if(!doubleDice.wasLastRollDouble()){
-        break;
-      }
+    int[] values = doubleDice.roll();
+    int steps = doubleDice.getLastRollTotal();
+    ui.showMessage(this.name + ", seus dados foram " + values[0] + " e " + values[1]);
+    
+    if(doubleDice.getDoubleCounter() == 3){
+      this.goToJail();
     }
+
+    this.move(steps);
   }
   
   private void rollInJail() {
     UserInterface ui = this.game.getUI();
-    this.doubleDice = new DoubleDice();
     
     int[] values = doubleDice.roll();
     int steps = doubleDice.getLastRollTotal();
@@ -186,6 +181,10 @@ public class Player {
 
   public int getLastRollTotal() {
     return this.doubleDice.getLastRollTotal();
+  }
+  
+  public boolean goesAgain() {
+    return this.doubleDice.wasLastRollDouble() && !this.inJail;
   }
 
 }
