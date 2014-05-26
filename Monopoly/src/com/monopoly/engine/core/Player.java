@@ -108,6 +108,7 @@ public class Player {
   public void returnJailPass() {
     for(Card c : this.cards) {
       if(c instanceof JailPassChanceCard) {
+        this.cards.remove(c);
         this.game.getChanceDeck().addToBottom((ChanceCard)c);
         return;
       }
@@ -148,10 +149,12 @@ public class Player {
     ui.showMessage(this.name + ", seus dados foram " + values[0] + " e " + values[1]);
     
     if(doubleDice.getDoubleCounter() == 3){
+      ui.showMessage(this.name + ", você tirou duplas três vezes seguidas e vai para a cadeia...");
       this.goToJail();
+    } else {
+      this.move(steps);
     }
 
-    this.move(steps);
   }
   
   private void rollInJail() {
@@ -202,7 +205,10 @@ public class Player {
   }
 
   public void useJailPass() {
+    UserInterface ui = this.game.getUI();
+
     if(this.hasJailPass()) {
+      ui.showMessage(this.name + " usou o passe livre da prisão e saiu da cadeia!");
       this.returnJailPass();
       this.removeFromJail();
     }
