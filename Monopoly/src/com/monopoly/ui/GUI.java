@@ -52,8 +52,4 @@ public class GUI extends Observable implements ActionListener, UserInterface {
     this.gameFrame.repaint();
   }
 
-  @Override
-  public void repaint() {
-    gameFrame.repaint();
-  }
 }
