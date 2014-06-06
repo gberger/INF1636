@@ -145,6 +145,7 @@ public class Game implements Observer {
       if(this.validateRollDices()) {
         this.rollDices(); 
       } else {
+        this.ui.askInt("Hey", 10);
         this.ui.showMessage("Ação proibida!");
       }
       

@@ -1,5 +1,6 @@
 package com.monopoly.main;
 import com.monopoly.engine.core.Game;
+import com.monopoly.ui.AskIntDialog;
 import com.monopoly.ui.GUI;
 import com.monopoly.ui.UserInterface;
 
