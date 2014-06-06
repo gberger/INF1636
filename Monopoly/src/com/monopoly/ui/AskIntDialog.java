@@ -11,12 +11,12 @@ public class AskIntDialog {
   
   private int answer = 0;
 
-  public AskIntDialog(Window window, String message, String title, int max) {
+  public AskIntDialog(Window window, String message, String title, int min, int max) {
     UIManager.put("OptionPane.yesButtonText", "Sim");
     UIManager.put("OptionPane.noButtonText", "Não");
    
     List<String> optionList = new ArrayList<String>();
-    for(int i = 0; i < max; i++) {
+    for(int i = min; i <= max; i++) {
       optionList.add(Integer.toString(i));
     }
     Object[] options = optionList.toArray();

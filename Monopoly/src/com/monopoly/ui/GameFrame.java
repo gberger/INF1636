@@ -43,8 +43,8 @@ public class GameFrame extends JFrame {
     return answer;
   }
 
-  public int askInt(String message, String title, int max) {
-    AskIntDialog dialog = new AskIntDialog(this, message, title, max);
+  public int askInt(String message, String title, int min, int max) {
+    AskIntDialog dialog = new AskIntDialog(this, message, title, min, max);
     System.out.println("[Pergunta INT] " + title + " - " + message);
     int answer = dialog.getAnswer();
     System.out.println("[Resposta] " + answer);

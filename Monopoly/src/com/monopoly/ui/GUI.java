@@ -38,11 +38,19 @@ public class GUI extends Observable implements ActionListener, UserInterface {
   }
   
   public int askInt (String message, int max) {
-    return this.askInt(message, "Pergunta", max);
+    return this.askInt(message, "Pergunta", 1, max);
   }
 
   public int askInt (String message, String title, int max) {
-    return gameFrame.askInt(message, title, max);
+    return this.askInt(message, title, 1, max);
+  }
+  
+  public int askInt (String message, int min, int max) {
+    return this.askInt(message, "Pergunta", min, max);
+  }
+
+  public int askInt (String message, String title, int min, int max) {
+    return gameFrame.askInt(message, title, min, max);
   }
 
   public void showMessage (String message) {
