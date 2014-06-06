@@ -12,7 +12,6 @@ import com.monopoly.ui.UserInterface;
 
 public class Player {
   private Game game;
-  private String name;
   private PlayerColor color;
   private int position;
   private int money;
@@ -21,10 +20,9 @@ public class Player {
   private int turnsInJail;
   private DoubleDice doubleDice;
 
-  public Player(String name, PlayerColor color, Game game) {
+  public Player(PlayerColor color, Game game) {
     this.doubleDice = new DoubleDice();
     this.game = game;
-    this.name = name;
     this.color = color;
     this.position = 0;
     this.money = (8*1) + (10*5) + (10*10) + (10*50) + (8*100) + (2*500);
@@ -34,7 +32,7 @@ public class Player {
   }
 
   public String getName() {
-    return name;
+    return this.color.name();
   }
 
   public PlayerColor getColor() {
@@ -146,10 +144,10 @@ public class Player {
     
     int[] values = doubleDice.roll();
     int steps = doubleDice.getLastRollTotal();
-    ui.showMessage(this.name + ", seus dados foram " + values[0] + " e " + values[1]);
+    ui.showMessage(this.getName() + ", seus dados foram " + values[0] + " e " + values[1]);
     
     if(doubleDice.getDoubleCounter() == 3){
-      ui.showMessage(this.name + ", você tirou duplas três vezes seguidas e vai para a cadeia...");
+      ui.showMessage(this.getName() + ", você tirou duplas três vezes seguidas e vai para a cadeia...");
       this.goToJail();
     } else {
       this.move(steps);
@@ -164,20 +162,20 @@ public class Player {
     int steps = doubleDice.getLastRollTotal();
     boolean wasDouble = doubleDice.wasLastRollDouble();
     
-    ui.showMessage(this.name + " está na cadeia. Seus dados foram " + values[0] + " e " + values[1]);
+    ui.showMessage(this.getName() + " está na cadeia. Seus dados foram " + values[0] + " e " + values[1]);
     
     if(wasDouble){
-      ui.showMessage(this.name + " saiu da cadeia!");
+      ui.showMessage(this.getName() + " saiu da cadeia!");
       this.removeFromJail();
       this.move(steps);
     } else {
       this.turnsInJail += 1;
       if(turnsInJail == 4){
-        ui.showMessage(this.name + ", como se passaram 4 turnos, você pagará a fiança de $50 e sairá da cadeia.");
+        ui.showMessage(this.getName() + ", como se passaram 4 turnos, você pagará a fiança de $50 e sairá da cadeia.");
         this.charge(50);
         this.move(steps);
       } else {
-        ui.showMessage(this.name + " continua na cadeia.");
+        ui.showMessage(this.getName() + " continua na cadeia.");
       }
     }
   }
@@ -208,7 +206,7 @@ public class Player {
     UserInterface ui = this.game.getUI();
 
     if(this.hasJailPass()) {
-      ui.showMessage(this.name + " usou o passe livre da prisão e saiu da cadeia!");
+      ui.showMessage(this.getName() + " usou o passe livre da prisão e saiu da cadeia!");
       this.returnJailPass();
       this.removeFromJail();
     }

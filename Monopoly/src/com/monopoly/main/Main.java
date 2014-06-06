@@ -11,12 +11,7 @@ public class Main {
     UserInterface ui = new GUI();
     
     int numPlayers = ui.askInt("Quantos jogadores?", 2, 6);
-    List<String> playerNames = new ArrayList<String>();
-    for(int i = 0; i < numPlayers; i++) {
-      String name = ui.askString("Nome do jogador " + (i+1) + "?");
-      playerNames.add(name);
-    }   
-    Game game = new Game(playerNames);
+    Game game = new Game(numPlayers);
     ui.bindGame(game);
     game.bindUI(ui);
   }
