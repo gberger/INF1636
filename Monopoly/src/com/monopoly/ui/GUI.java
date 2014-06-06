@@ -10,16 +10,14 @@ import com.monopoly.engine.core.*;
 public class GUI extends Observable implements ActionListener, UserInterface {
   private GameFrame gameFrame;
   
-  public GUI(Game game) {
-    
-    this.gameFrame = new GameFrame(
-        new BoardPanel(game.getPlayers()), 
-        new PlayerListPanel(game));
-    
+  public GUI() {
+    this.gameFrame = new GameFrame();
     gameFrame.addListenerToButtons(this);
-
-    this.addObserver(game);
   }
+  
+  public void bindGame(Game game){
+    this.gameFrame.bindGame(game);
+  };
 
   public boolean askBoolean (String message) {
     return this.askBoolean(message, "Pergunta");

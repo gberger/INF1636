@@ -1,5 +1,7 @@
 package com.monopoly.ui;
 
+import com.monopoly.engine.core.Game;
+
 public interface UserInterface {
   public boolean askBoolean (String message);
   public boolean askBoolean (String message, String title);
@@ -11,4 +13,5 @@ public interface UserInterface {
   public String askString (String message, String title);
   public void showMessage (String message);
   public void showMessage (String message, String title);
+  public void bindGame(Game game);
 }

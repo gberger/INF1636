@@ -9,19 +9,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.monopoly.engine.core.Game;
+
 public class GameFrame extends JFrame {
   private static final long serialVersionUID = 2541117588135371641L;
   private List<JButton> buttons;
   
-  public GameFrame(BoardPanel board, PlayerListPanel playerList) {
+  public GameFrame() {
     this.setTitle("Monopoly");
     this.setSize(1000, 700);
     this.setVisible(true);
     this.setDefaultCloseOperation( EXIT_ON_CLOSE );
 
     this.getContentPane().setLayout(null);
-    this.getContentPane().add(board, BorderLayout.CENTER);
-    this.getContentPane().add(playerList, BorderLayout.LINE_START);
 
     this.buttons = new ArrayList<JButton>();
     this.buttons.add(new DiceButton().setup());
@@ -32,6 +32,16 @@ public class GameFrame extends JFrame {
       this.getContentPane().add(button, -1);  
     }
 
+    this.repaint();
+  }
+  
+  public void bindGame(Game game){
+    BoardPanel board = new BoardPanel(game.getPlayers());
+    this.getContentPane().add(board, BorderLayout.CENTER);
+    
+    PlayerListPanel playerList = new PlayerListPanel(game);
+    this.getContentPane().add(playerList, BorderLayout.LINE_START);
+    
     this.repaint();
   }
   

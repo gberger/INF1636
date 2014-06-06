@@ -61,15 +61,15 @@ public class Game implements Observer {
     System.out.println("Initialized Board succesfully!");
   }
 
-  private void initializePlayers(String[] playerNames) throws IllegalArgumentException {
-    if(playerNames.length < 2 || playerNames.length > 6){
+  private void initializePlayers(List<String> playerNames) throws IllegalArgumentException {
+    if(playerNames.size() < 2 || playerNames.size() > 6){
       throw new IllegalArgumentException("Number of players must be between 2 and 6 (inclusive).");
     }
 
     this.players = new ArrayList<Player>();
 
-    for(int i = 0; i < playerNames.length; i++){
-      String name = playerNames[i];
+    for(int i = 0; i < playerNames.size(); i++){
+      String name = playerNames.get(i);
       PlayerColor color = PlayerColor.values()[i];
       this.players.add(new Player(name, color, this));
     }
@@ -78,15 +78,13 @@ public class Game implements Observer {
     System.out.println("Initialized Players succesfully!");
   }
 
-  public Game(){
-    String[] hardcodedPlayers = new String[]{"Felipe", "Guilherme", "Ivan", "Alice", "Bob", "Coby"};
-
+  public Game(List<String> playerNames){
     try {
       this.initializeChanceDeck();
       this.initializeCompanyDeck();
       this.initializeTerrainDeck();
       this.initializeBoard();
-      this.initializePlayers(hardcodedPlayers);
+      this.initializePlayers(playerNames);
     } catch (IOException | ParseException | IllegalArgumentException e) {
       e.printStackTrace();
       System.exit(1);
@@ -95,7 +93,7 @@ public class Game implements Observer {
     System.out.println("Initialized everything succesfully!");
   }
 
-  public void setUI(UserInterface ui) {
+  public void bindUI(UserInterface ui) {
     this.ui = ui;
   }
 
