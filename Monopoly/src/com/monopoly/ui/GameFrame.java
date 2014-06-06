@@ -42,6 +42,14 @@ public class GameFrame extends JFrame {
     System.out.println("[Resposta] " + answer);
     return answer;
   }
+  
+  public String inputMessage(String message, String title) {
+    InputDialog dialog = new InputDialog(this, message, title);
+    System.out.println("[Pergunta] " + title + " - " + message);
+    String answer = dialog.getAnswer();
+    System.out.println("[Resposta] " + answer);
+    return answer;
+  }
 
   public void showMessage (String message, String title) {
     System.out.println("[Mensagem] " + title + " - " + message);

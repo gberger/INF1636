@@ -28,6 +28,14 @@ public class GUI extends Observable implements ActionListener, UserInterface {
   public boolean askMessage (String message, String title) {
     return gameFrame.askMessage(message, title);
   }
+  
+  public String inputMessage (String message) {
+    return this.inputMessage(message, "Pergunta");
+  }
+
+  public String inputMessage (String message, String title) {
+    return gameFrame.inputMessage(message, title);
+  }
 
   public void showMessage (String message) {
     this.showMessage(message, "Mensagem");
