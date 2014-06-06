@@ -13,7 +13,7 @@ public class AskStringDialog {
     UIManager.put("OptionPane.yesButtonText", "Sim");
     UIManager.put("OptionPane.noButtonText", "Não");
     
-    this.answer = (String)JOptionPane.showInputDialog(window, message, title);
+    this.answer = (String)JOptionPane.showInputDialog(window, message, title, JOptionPane.QUESTION_MESSAGE, null, null, null);
   }
   
   public String getAnswer() {
