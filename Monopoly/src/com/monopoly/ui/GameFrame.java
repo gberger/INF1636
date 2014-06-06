@@ -35,16 +35,16 @@ public class GameFrame extends JFrame {
     this.repaint();
   }
   
-  public boolean askMessage(String message, String title) {
-    QuestionDialog dialog = new QuestionDialog(this, message, title);
+  public boolean askBoolean(String message, String title) {
+    AskBooleanDialog dialog = new AskBooleanDialog(this, message, title);
     System.out.println("[Pergunta] " + title + " - " + message);
     boolean answer = dialog.getAnswer();
     System.out.println("[Resposta] " + answer);
     return answer;
   }
   
-  public String inputMessage(String message, String title) {
-    InputDialog dialog = new InputDialog(this, message, title);
+  public String askString(String message, String title) {
+    AskInputDialog dialog = new AskInputDialog(this, message, title);
     System.out.println("[Pergunta] " + title + " - " + message);
     String answer = dialog.getAnswer();
     System.out.println("[Resposta] " + answer);

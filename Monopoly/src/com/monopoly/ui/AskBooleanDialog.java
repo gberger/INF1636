@@ -5,11 +5,11 @@ import java.awt.Window;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-public class QuestionDialog {
+public class AskBooleanDialog {
   
   private int answer = JOptionPane.NO_OPTION;
 
-  public QuestionDialog(Window window, String message, String title) {
+  public AskBooleanDialog(Window window, String message, String title) {
     UIManager.put("OptionPane.yesButtonText", "Sim");
     UIManager.put("OptionPane.noButtonText", "Não");
     

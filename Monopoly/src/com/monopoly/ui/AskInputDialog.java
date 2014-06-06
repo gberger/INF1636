@@ -5,11 +5,11 @@ import java.awt.Window;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-public class InputDialog {
+public class AskInputDialog {
   
   private String answer = "";
 
-  public InputDialog(Window window, String message, String title) {
+  public AskInputDialog(Window window, String message, String title) {
     UIManager.put("OptionPane.yesButtonText", "Sim");
     UIManager.put("OptionPane.noButtonText", "Não");
     
