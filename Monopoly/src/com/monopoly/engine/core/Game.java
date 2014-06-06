@@ -79,7 +79,7 @@ public class Game implements Observer {
   }
 
   public Game(){
-    String[] hardcodedPlayers = new String[]{"Felipe", "Guilherme", "Ivan"};
+    String[] hardcodedPlayers = new String[]{"Felipe", "Guilherme", "Ivan", "Alice", "Bob", "Coby"};
 
     try {
       this.initializeChanceDeck();
