@@ -4,5 +4,6 @@ public enum UserInterfaceEvents {
   ROLL_DICES,
   PASS_TURN,
   JAIL_PASS,
-  GO_BANKRUPT;
+  GO_BANKRUPT,
+  BUILD_HOUSE;
 }

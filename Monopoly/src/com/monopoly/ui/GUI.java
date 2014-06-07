@@ -2,6 +2,7 @@ package com.monopoly.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.Observable;
 
 import com.monopoly.engine.core.*;
@@ -62,19 +63,24 @@ public class GUI extends Observable implements ActionListener, UserInterface {
   
   public void actionPerformed(ActionEvent e) {
     String cmd = e.getActionCommand();
+    UserInterfaceEvents event = null;
+    HashMap<String, Object> args = new HashMap<String, Object>();
+
     if ("diceButton".equals(cmd)) {
-      this.setChanged();
-      this.notifyObservers(UserInterfaceEvents.ROLL_DICES);
+      event = UserInterfaceEvents.ROLL_DICES; 
     } else if("passTurnButton".equals(cmd)) {
-      this.setChanged();
-      this.notifyObservers(UserInterfaceEvents.PASS_TURN);
+      event = UserInterfaceEvents.PASS_TURN;
     } else if("jailPassButton".equals(cmd)) {
-      this.setChanged();
-      this.notifyObservers(UserInterfaceEvents.JAIL_PASS);
+      event = UserInterfaceEvents.JAIL_PASS;
     } else if("goBankruptButton".equals(cmd)) {
-      this.setChanged();
-      this.notifyObservers(UserInterfaceEvents.GO_BANKRUPT);
+      event = UserInterfaceEvents.GO_BANKRUPT;
+    } else if("buildHouseButton".equals(cmd)) {
+      args.put("id", 5);
+      event = UserInterfaceEvents.BUILD_HOUSE;
     }
+    
+    this.setChanged();
+    this.notifyObservers(new UserInterfaceNotification(event, args));
     this.gameFrame.repaint();
   }
 
