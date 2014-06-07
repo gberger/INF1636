@@ -14,11 +14,11 @@ public class GUI extends Observable implements ActionListener, UserInterface {
   
   public GUI() {
     this.gameFrame = new GameFrame();
-    gameFrame.addListenerToButtons(this);
   }
   
   public void bindGame(Game game){
     this.gameFrame.bindGame(game);
+    this.gameFrame.addListenerToButtons(this);
     this.addObserver(game);
   };
 

@@ -14,7 +14,6 @@ public class CardListFrame extends JFrame {
     this.setTitle("Cartas de " + p.getName());
     this.setSize(620,600);
     this.setBackground(Color.CYAN);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     this.content = new CardListPane(p);
     
