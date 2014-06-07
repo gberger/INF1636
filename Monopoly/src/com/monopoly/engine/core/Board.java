@@ -31,6 +31,10 @@ public class Board {
   public Square getSquare(int id) {
     return this.squares.get(id);
   }
+  
+  public List<Square> getSquares() {
+    return this.squares;
+  }
 
   public Square getJail() {
     for(Square sq : this.squares) {

@@ -38,7 +38,7 @@ public class GameFrame extends JFrame {
   }
   
   public void bindGame(Game game){
-    BoardPanel board = new BoardPanel(game.getPlayers());
+    BoardPanel board = new BoardPanel(game);
     this.getContentPane().add(board, BorderLayout.CENTER);
     
     PlayerListPanel playerList = new PlayerListPanel(game);

@@ -13,12 +13,15 @@ import javax.swing.JPanel;
 
 import com.monopoly.engine.core.*;
 import com.monopoly.engine.cards.*;
+import com.monopoly.engine.squares.Square;
+import com.monopoly.engine.squares.TerrainSquare;
 
 public class BoardPanel extends JPanel {
   private static final long serialVersionUID = -6420464876258642413L;
   private final int width = 600;
   private final int height = 600;
 
+  private Game game;
   private List<Player> players;
   private BufferedImage boardImage;
   private Map<PlayerColor, BufferedImage> pinImages = new HashMap<PlayerColor, BufferedImage>();
@@ -39,10 +42,11 @@ public class BoardPanel extends JPanel {
     houseIcon = ImageIO.read(new File("img/house_icon.png"));
   }
 
-  public BoardPanel(List<Player> players) {
+  public BoardPanel(Game game) {
     this.setBounds(350,40,this.width,this.height);
 
-    this.players = players;
+    this.game = game;
+    this.players = game.getPlayers();
 
     try {
       this.initializeBoardImage();
@@ -113,19 +117,20 @@ public class BoardPanel extends JPanel {
       coords = this.getCoordinatesForPlayer(player);
       g.drawImage(pin, coords.get("x"), coords.get("y"), 15, 24, null);
       
-      g.setFont(g.getFont().deriveFont(Font.BOLD,14));
-      for(NegotiableCard card : player.getCards())
-      {
-        if(card instanceof TerrainCard && !((TerrainCard)card).isEmpty())
-        {
-          TerrainCard tcard = (TerrainCard) card;
-          coords = this.getCoordinatesForPosition(tcard.getId(), true);
+    }
+    
+    g.setFont(g.getFont().deriveFont(Font.BOLD,14));
+    for(Square square : game.getBoard().getSquares())
+    {
+      if(square instanceof TerrainSquare) {
+        Card card = ((TerrainSquare)square).getAssociatedCard();
+        if( !((TerrainCard)card).isEmpty() ) {
+          coords = this.getCoordinatesForPosition(((TerrainSquare)square).getPosition(), true);
           g.drawImage(this.houseIcon, coords.get("x"), coords.get("y"), 16, 16, null);
           if(((TerrainCard)card).getBuildings() > 1)
             g.drawString("2", coords.get("x")-9, coords.get("y")+16);
         }
       }
-      
     }
     
   }
