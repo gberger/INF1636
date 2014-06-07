@@ -28,6 +28,7 @@ public class Game implements Observer {
   private int currentPlayerIndex;
   private UserInterface ui;
   private boolean hasCurrPlayerPlayed = false;
+  private Bank bank;
   
   private void initializeChanceDeck() throws IOException, ParseException {
     JSONParser parser = new JSONParser();
@@ -76,7 +77,7 @@ public class Game implements Observer {
 
     System.out.println("Initialized Players succesfully!");
   }
-
+  
   public Game(int numPlayers){
     try {
       this.initializeChanceDeck();
@@ -84,6 +85,7 @@ public class Game implements Observer {
       this.initializeTerrainDeck();
       this.initializeBoard();
       this.initializePlayers(numPlayers);
+      this.bank = new Bank();
     } catch (IOException | ParseException | IllegalArgumentException e) {
       e.printStackTrace();
       System.exit(1);
@@ -118,6 +120,10 @@ public class Game implements Observer {
 
   public List<Player> getPlayers() {
     return this.players;
+  }
+
+  public Bank getBank() {
+    return this.bank;
   }
 
   public int getCurrentPlayerIndex() {

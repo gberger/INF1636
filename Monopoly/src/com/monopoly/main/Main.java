@@ -1,6 +1,4 @@
 package com.monopoly.main;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.monopoly.engine.core.Game;
 import com.monopoly.ui.GUI;

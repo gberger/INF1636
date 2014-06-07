@@ -10,7 +10,7 @@ import com.monopoly.engine.cards.chancecards.JailPassChanceCard;
 import com.monopoly.engine.squares.Square;
 import com.monopoly.ui.UserInterface;
 
-public class Player {
+public class Player implements Entity {
   private Game game;
   private PlayerColor color;
   private int position;
@@ -20,6 +20,7 @@ public class Player {
   private int turnsInJail;
   private DoubleDice doubleDice;
   private boolean inGame;
+  private List<Debt> debts;
 
   public Player(PlayerColor color, Game game) {
     this.doubleDice = new DoubleDice();
@@ -31,6 +32,7 @@ public class Player {
     this.inJail = false;
     this.turnsInJail = 0;
     this.inGame = true;
+    this.debts = new ArrayList<Debt>();
   }
 
   public String getName() {
@@ -47,6 +49,14 @@ public class Player {
 
   public int getMoney() {
     return money;
+  }
+  
+  public int getBalance() {
+    int debtSum = 0;
+    for(Debt d : this.debts){
+      debtSum += d.amount;
+    }
+    return this.money - debtSum;
   }
 
   public List<Card> getCards() {
@@ -71,11 +81,54 @@ public class Player {
   }
 
   public void charge(int x){
+    if(x > this.money){
+      throw new IllegalArgumentException("Not enough money! Tried to charge $" + x + " from " + 
+                                          this.getName() + ", who only has $" + this.money);
+    }
     this.money -= x;
   }
 
   public void give(int x){
     this.money += x;
+    this.payDebts();
+  }
+
+  public void payTo(Entity other, int amount) {
+    if(amount > this.money){
+      this.addDebt(other, amount - money);
+      amount = this.money;
+    }
+    this.charge(amount);
+    other.give(amount);
+  }
+  
+  public void addDebt(Entity other, Integer amount){
+    Debt debt = new Debt(other, amount);
+    this.debts.add(debt);
+    this.game.getUI().showMessage(this.getName() + " deve $" + amount + " a " + other.getName());
+  }
+  
+  public void payDebts(){
+    for(Debt d : this.debts){
+      if(this.money <= 0){
+        break; 
+      }
+      
+      this.debts.remove(d);
+      int amount = d.amount;
+      if(amount > this.money){
+        this.game.getUI().showMessage(this.getName() + " pagou $" + this.money + " a " + d.other.getName());
+        this.addDebt(d.other, amount - money);
+        this.money = 0;
+      } else {
+        this.game.getUI().showMessage(this.getName() + " pagou $" + amount + " a " + d.other.getName());
+        this.money -= amount;
+      }
+    }
+  }
+  
+  public boolean isInDebt(){
+    return this.getBalance() < 0;
   }
 
   public void buyProperty(PropertyCard card) {
@@ -94,11 +147,6 @@ public class Player {
     Board board = this.game.getBoard();
     this.position = board.getStart().getPosition();
     this.give(200);
-  }
-
-  public void payTo(Player owner, int rent) {
-    this.charge(rent);
-    owner.give(rent);
   }
 
   public void giveJailPass(ChanceCard jailPass) {
@@ -174,7 +222,7 @@ public class Player {
       this.turnsInJail += 1;
       if(turnsInJail == 4){
         ui.showMessage(this.getName() + ", como se passaram 4 turnos, você pagará a fiança de $50 e sairá da cadeia.");
-        this.charge(50);
+        this.payTo(this.game.getBank(), 50);
         this.move(steps);
       } else {
         ui.showMessage(this.getName() + " continua na cadeia.");
@@ -219,7 +267,13 @@ public class Player {
   }
 
   public boolean canGoBankrupt() {
-    return true;
+    if(this.money > 0){
+      return false;
+    }
+    if(this.cards.size() > 0){
+      return false;
+    }
+    return this.isInDebt();
   }
 
   public void removeFromGame() {

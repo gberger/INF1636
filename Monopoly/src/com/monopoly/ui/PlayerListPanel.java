@@ -56,7 +56,7 @@ public class PlayerListPanel extends JPanel {
       g.setFont(new Font("Arial",fontStyle,16));
       StyleSheet ssheet = new StyleSheet();
       g.setColor(ssheet.stringToColor(current.getColor().toString()));
-      g.drawString(current.getName()+" - $"+current.getMoney(),20, y);
+      g.drawString(current.getName()+" - $"+current.getBalance(), 20, y);
       g.setColor(Color.BLACK);
       y+=10;   
     }

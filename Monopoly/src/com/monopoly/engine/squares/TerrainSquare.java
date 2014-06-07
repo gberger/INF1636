@@ -32,7 +32,7 @@ public class TerrainSquare extends Square {
     } else if(owner != player) {
       int value = card.getRent();
       player.payTo(owner, value);
-      ui.showMessage(player.getName() + " pagou $" + value + " a " + owner.getName());
+      ui.showMessage(player.getName() + " deve pagar $" + value + " a " + owner.getName());
     }
     
   }

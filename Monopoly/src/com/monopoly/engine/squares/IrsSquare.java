@@ -15,8 +15,8 @@ public class IrsSquare extends Square {
   @Override
   public void affectLandingPlayer(Player player) {
     UserInterface ui = this.game.getUI();
-    player.charge(200);
-    ui.showMessage(player.getName() + " pagou $200 de imposto de renda.");
+    player.payTo(this.game.getBank(), 200);
+    ui.showMessage(player.getName() + " deve pagar $200 de imposto de renda.");
   }
 
   @Override

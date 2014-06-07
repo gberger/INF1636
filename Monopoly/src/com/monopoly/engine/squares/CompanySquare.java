@@ -32,7 +32,7 @@ public class CompanySquare extends Square {
     } else if(owner != player) {
       int value = card.getRent(player.getLastRollTotal());
       player.payTo(owner, value);
-      ui.showMessage(player.getName() + " pagou $" + value + " a " + owner.getName());
+      ui.showMessage(player.getName() + " deve pagar $" + value + " a " + owner.getName());
     }
     
   }
