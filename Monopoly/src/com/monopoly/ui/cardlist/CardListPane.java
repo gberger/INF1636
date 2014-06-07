@@ -38,7 +38,7 @@ public class CardListPane extends JPanel {
     
     for(Card card : cardList)
     {
-      if(card instanceof PropertyCard)
+      if(card instanceof NegotiableCard)
       {
         JPanel row = new JPanel();
         row.setLayout( new BorderLayout() );
@@ -49,13 +49,13 @@ public class CardListPane extends JPanel {
         ((FlowLayout)row1.getLayout()).setAlignment(FlowLayout.LEFT);
         ((FlowLayout)row1.getLayout()).setHgap(20);
         
-        PropertyCard property = (PropertyCard)card;
-        JLabel nameLabel = new JLabel(property.getName());
+        NegotiableCard cardN = (NegotiableCard)card;
+        JLabel nameLabel = new JLabel(cardN.getName());
         nameLabel.setSize(200,15);
         row1.add( nameLabel );
         
-        if(property instanceof TerrainCard) {
-          JLabel buildingsLabel = new JLabel( "(" + ((TerrainCard)property).getBuildings() + " imóveis)");
+        if(cardN instanceof TerrainCard) {
+          JLabel buildingsLabel = new JLabel( "(" + ((TerrainCard)cardN).getBuildings() + " imóveis)");
           buildingsLabel.setSize(40,15);
           row1.add(buildingsLabel);
         }
@@ -65,11 +65,11 @@ public class CardListPane extends JPanel {
         row2.setLayout( new FlowLayout());
         ((FlowLayout)row2.getLayout()).setHgap(2);
         
-        row2.add( new CardListButton(property, UserInterfaceEvents.CARD_VIEW));
-        row2.add( new CardListButton(property, UserInterfaceEvents.CARD_NEGOCIATE));
-        row2.add( new CardListButton(property, UserInterfaceEvents.CARD_MORTGAGE));
-        row2.add( new CardListButton(property, UserInterfaceEvents.CARD_NEW_BUILDING));
-        row2.add( new CardListButton(property, UserInterfaceEvents.CARD_PULVERIZE_BULDING));
+        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_VIEW));
+        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_NEGOCIATE));
+        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_MORTGAGE));
+        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_NEW_BUILDING));
+        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_PULVERIZE_BULDING));
         
         row2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
         
