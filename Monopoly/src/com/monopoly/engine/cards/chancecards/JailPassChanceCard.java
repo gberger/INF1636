@@ -2,10 +2,11 @@ package com.monopoly.engine.cards.chancecards;
 
 import org.json.simple.JSONObject;
 
+import com.monopoly.engine.cards.NegotiableCard;
 import com.monopoly.engine.core.Game;
 import com.monopoly.engine.core.Player;
 
-public class JailPassChanceCard extends ChanceCard {
+public class JailPassChanceCard extends ChanceCard implements NegotiableCard {
 
   public JailPassChanceCard(JSONObject jobj, Game game) {
     this.game = game;

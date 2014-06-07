@@ -16,13 +16,7 @@ public class CardListPane extends JPanel {
 
   public CardListPane(Player p) {
     this.player = p;
-    //this.setPreferredSize(new Dimension(300,300));
-    //this.setSize(300, 300);
-    
-    
     this.renderItems();
-    
-    
     this.setVisible(true);
     this.repaint();
   }
@@ -60,8 +54,7 @@ public class CardListPane extends JPanel {
         nameLabel.setSize(200,15);
         row1.add( nameLabel );
         
-        if(property instanceof TerrainCard)
-        {
+        if(property instanceof TerrainCard) {
           JLabel buildingsLabel = new JLabel( "(" + ((TerrainCard)property).getBuildings() + " imóveis)");
           buildingsLabel.setSize(40,15);
           row1.add(buildingsLabel);
@@ -82,18 +75,13 @@ public class CardListPane extends JPanel {
         
         row.add(row1, BorderLayout.NORTH);
         row.add(row2, BorderLayout.CENTER);
-        this.add(row);
-        
-        
+        this.add(row);        
       }
     }
-    
-    
   }
   
   @Override
   public void paintComponents(Graphics g) {
     this.renderItems();
   }
-  
 }

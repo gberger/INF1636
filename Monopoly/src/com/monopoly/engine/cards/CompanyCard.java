@@ -4,7 +4,7 @@ import org.json.simple.JSONObject;
 
 import com.monopoly.engine.core.Game;
 
-public class CompanyCard extends PropertyCard {
+public class CompanyCard extends PropertyCard implements NegotiableCard {
   private int multiplier;
 
   public CompanyCard(JSONObject jobj, Game game) {

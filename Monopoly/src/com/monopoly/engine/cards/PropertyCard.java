@@ -1,6 +1,6 @@
 package com.monopoly.engine.cards;
 
-public abstract class PropertyCard extends Card {
+public abstract class PropertyCard extends Card implements NegotiableCard {
   protected int price;
   protected int mortgage;
   protected String name;

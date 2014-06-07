@@ -9,12 +9,12 @@ import com.monopoly.ui.*;
 
 public class CardListButton extends JButton {
   private static final long serialVersionUID = 12373562376198L;
-  protected PropertyCard property;
+  protected NegotiableCard card;
   protected UserInterfaceEvents eType;
   
-  public CardListButton(PropertyCard propertyCard, UserInterfaceEvents eventType)
+  public CardListButton(NegotiableCard card, UserInterfaceEvents eventType)
   {
-    this.property = propertyCard;
+    this.card = card;
     this.eType = eventType;
     this.setSize(40, 15);
     this.setMargin(new Insets(0, 0, 0, 0));
@@ -32,14 +32,19 @@ public class CardListButton extends JButton {
       
     } else if(this.eType == UserInterfaceEvents.CARD_MORTGAGE) {
       this.setText("Hipotecar");
+      this.setEnabled(this.card instanceof TerrainCard || this.card instanceof CompanyCard);
       
     } else if(this.eType == UserInterfaceEvents.CARD_NEW_BUILDING) {
       this.setText("Construir imóvel");
-      this.setEnabled(this.property instanceof TerrainCard);
+      this.setEnabled(this.card instanceof TerrainCard);
       
     } else if(this.eType == UserInterfaceEvents.CARD_PULVERIZE_BULDING) {
       this.setText("Demolir imóvel");
-      this.setEnabled(this.property instanceof TerrainCard); 
+      this.setEnabled(this.card instanceof TerrainCard); 
     }
+  }
+  
+  public NegotiableCard getCard() {
+    return this.card;
   }
 }

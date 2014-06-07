@@ -5,7 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Observable;
 
+import com.monopoly.engine.cards.NegotiableCard;
+import com.monopoly.engine.cards.PropertyCard;
 import com.monopoly.engine.core.*;
+import com.monopoly.ui.cardlist.CardListButton;
 import com.monopoly.ui.cardlist.CardListFrame;
 
 
@@ -68,18 +71,39 @@ public class GUI extends Observable implements ActionListener, UserInterface {
     HashMap<String, Object> args = new HashMap<String, Object>();
 
     if ("diceButton".equals(cmd)) {
-      event = UserInterfaceEvents.ROLL_DICES; 
+      event = UserInterfaceEvents.ROLL_DICES;
+      
     } else if("passTurnButton".equals(cmd)) {
       event = UserInterfaceEvents.PASS_TURN;
+      
     } else if("jailPassButton".equals(cmd)) {
       event = UserInterfaceEvents.JAIL_PASS;
+      
     } else if("goBankruptButton".equals(cmd)) {
       event = UserInterfaceEvents.GO_BANKRUPT;
-    } else if("buildHouseButton".equals(cmd)) {
-      args.put("id", 5);
-      event = UserInterfaceEvents.CARD_NEW_BUILDING;
+      
     } else if("showCardsButton".equals(cmd)) {
       new CardListFrame( ((ShowCardsButton)e.getSource()).getPlayer() );
+      
+    } else if("cardNegotiateButton".equals(cmd)) {
+      NegotiableCard card = ((CardListButton)e.getSource()).getCard();
+      event = UserInterfaceEvents.CARD_NEGOCIATE;
+      args.put("card", card);
+      
+    } else if("cardMortgageButton".equals(cmd)) {
+      NegotiableCard card = ((CardListButton)e.getSource()).getCard();
+      event = UserInterfaceEvents.CARD_MORTGAGE;
+      args.put("card", card);
+      
+    } else if("cardNewBuildingButton".equals(cmd)) {
+      NegotiableCard card = ((CardListButton)e.getSource()).getCard();
+      event = UserInterfaceEvents.CARD_NEW_BUILDING;
+      args.put("card", card);
+      
+    } else if("cardPulverizeBuildingButton".equals(cmd)) {
+      NegotiableCard card = ((CardListButton)e.getSource()).getCard();
+      event = UserInterfaceEvents.CARD_PULVERIZE_BULDING;
+      args.put("card", card);
     }
     
     if(event != null)
