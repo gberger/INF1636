@@ -12,6 +12,7 @@ public class CardListFrame extends JFrame {
   private static final long serialVersionUID = 3295284813173053174L;
   private CardListPane content;
   protected ArrayList<CardListButton> buttons;
+  protected JScrollPane scrollPane;
 
   public CardListFrame( Player p ) {
     this.setTitle("Cartas de " + p.getName());
@@ -26,12 +27,11 @@ public class CardListFrame extends JFrame {
     
     topPanel.add( this.content );
 
-    JScrollPane scrollPane = new JScrollPane(topPanel);
-    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-    scrollPane.getViewport().setVisible(true);
-    getContentPane().add( scrollPane, BorderLayout.CENTER );
+    this.scrollPane = new JScrollPane(topPanel);
+    this.scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    this.scrollPane.getViewport().setVisible(true);
+    getContentPane().add( this.scrollPane, BorderLayout.CENTER );
     
-    this.repaint();
     this.setVisible(true);
     
   }
@@ -40,6 +40,11 @@ public class CardListFrame extends JFrame {
   {
     for(CardListButton button : this.buttons)
       button.addActionListener(al);
+  }
+  
+  public void update() {
+    this.content.renderItems();
+    this.scrollPane.updateUI();
   }
   
 }

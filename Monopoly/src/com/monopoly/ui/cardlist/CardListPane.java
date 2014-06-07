@@ -25,7 +25,7 @@ public class CardListPane extends JPanel {
     this.repaint();
   }
   
-  protected void renderItems() {
+  public void renderItems() {
     this.removeAll();
     this.buttons.clear();
     
@@ -96,10 +96,7 @@ public class CardListPane extends JPanel {
         
       }
     }
+    this.repaint();
   }
   
-  @Override
-  public void paintComponents(Graphics g) {
-    this.renderItems();
-  }
 }

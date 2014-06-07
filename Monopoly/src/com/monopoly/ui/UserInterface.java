@@ -16,4 +16,5 @@ public interface UserInterface {
   public void showMessage (String message);
   public void showMessage (String message, String title);
   public void bindGame(Game game);
+  public void repaint();
 }

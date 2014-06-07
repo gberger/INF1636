@@ -2,6 +2,8 @@ package com.monopoly.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.HashMap;
 import java.util.Observable;
 
@@ -12,8 +14,9 @@ import com.monopoly.ui.cardlist.CardListButton;
 import com.monopoly.ui.cardlist.CardListFrame;
 
 
-public class GUI extends Observable implements ActionListener, UserInterface {
+public class GUI extends Observable implements ActionListener, WindowListener, UserInterface {
   private GameFrame gameFrame;
+  private CardListFrame cardListFrame = null;
   
   public GUI() {
     this.gameFrame = new GameFrame();
@@ -71,6 +74,7 @@ public class GUI extends Observable implements ActionListener, UserInterface {
 
   public void showMessage (String message, String title) {
     this.gameFrame.showMessage(message, title);
+    this.repaint();
   }
   
   public void actionPerformed(ActionEvent e) {
@@ -92,7 +96,11 @@ public class GUI extends Observable implements ActionListener, UserInterface {
       event = UserInterfaceEvents.GO_BANKRUPT;
       
     } else if("showCardsButton".equals(cmd)) {
-      new CardListFrame( ((ShowCardsButton)e.getSource()).getPlayer() ).addListenerToButtons(this);
+      if(this.cardListFrame != null)
+        this.cardListFrame.dispose();
+      this.cardListFrame = new CardListFrame( ((ShowCardsButton)e.getSource()).getPlayer() );
+      this.cardListFrame.addListenerToButtons(this);
+      this.cardListFrame.addWindowListener(this);
       
     } else if("cardViewButton".equals(cmd)) {
       NegotiableCard card = ((CardListButton)e.getSource()).getCard();
@@ -127,5 +135,29 @@ public class GUI extends Observable implements ActionListener, UserInterface {
     }
     this.gameFrame.repaint();
   }
+  
+  public void repaint()
+  {
+    this.gameFrame.repaint();
+    if(this.cardListFrame != null)
+    {
+      this.cardListFrame.update();
+      this.cardListFrame.addListenerToButtons(this);
+    }
+  }
+  
+  public void windowClosing(WindowEvent e)
+  {
+    this.cardListFrame.dispose();
+    this.cardListFrame = null;
+  }
+  
+  public void windowOpened(WindowEvent e) {}
+  public void windowClosed(WindowEvent e) {}
+  public void windowIconified(WindowEvent e) {}
+  public void windowDeiconified(WindowEvent e) {}
+  public void windowActivated(WindowEvent e) {}
+  public void windowDeactivated(WindowEvent e) {}
+  
 
 }
