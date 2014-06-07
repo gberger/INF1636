@@ -13,9 +13,13 @@ public class CardListPane extends JPanel {
   private static final long serialVersionUID = 8840501986485230422L;
   protected Player player;
   protected ArrayList<JPanel> rows;
+  protected ArrayList<CardListButton> buttons;
 
-  public CardListPane(Player p) {
-    this.player = p;
+
+  public CardListPane(Player p, ArrayList<CardListButton> buttonsList) {
+    this.player = p;  
+    this.buttons = buttonsList;
+    
     this.renderItems();
     this.setVisible(true);
     this.repaint();
@@ -23,6 +27,7 @@ public class CardListPane extends JPanel {
   
   protected void renderItems() {
     this.removeAll();
+    this.buttons.clear();
     
     ArrayList<Card> cardList = (ArrayList<Card>) player.getCards();
     
@@ -65,17 +70,30 @@ public class CardListPane extends JPanel {
         row2.setLayout( new FlowLayout());
         ((FlowLayout)row2.getLayout()).setHgap(2);
         
-        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_VIEW));
-        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_NEGOCIATE));
-        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_MORTGAGE));
-        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_NEW_BUILDING));
-        row2.add( new CardListButton(cardN, UserInterfaceEvents.CARD_PULVERIZE_BULDING));
+
+        CardListButton button;
+        button = new CardListButton(cardN, UserInterfaceEvents.CARD_VIEW);
+        this.buttons.add(button);
+        row2.add( button );
+        button = new CardListButton(cardN, UserInterfaceEvents.CARD_NEGOTIATE);
+        this.buttons.add(button);
+        row2.add( button );
+        button = new CardListButton(cardN, UserInterfaceEvents.CARD_MORTGAGE);
+        this.buttons.add(button);
+        row2.add( button );
+        button = new CardListButton(cardN, UserInterfaceEvents.CARD_NEW_BUILDING);
+        this.buttons.add(button);
+        row2.add( button );
+        button = new CardListButton(cardN, UserInterfaceEvents.CARD_PULVERIZE_BULDING);
+        this.buttons.add(button);
+        row2.add( button );
         
         row2.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
         
         row.add(row1, BorderLayout.NORTH);
         row.add(row2, BorderLayout.CENTER);
         this.add(row);        
+        
       }
     }
   }

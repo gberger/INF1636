@@ -26,9 +26,11 @@ public class CardListButton extends JButton {
   {
     if(this.eType == UserInterfaceEvents.CARD_VIEW) {
       this.setText("Visualizar");
+      this.setActionCommand("cardView");
       
-    } else if(this.eType == UserInterfaceEvents.CARD_NEGOCIATE) {
+    } else if(this.eType == UserInterfaceEvents.CARD_NEGOTIATE) {
       this.setText("Negociar");
+      this.setActionCommand("cardNegotiate");
       
     } else if(this.eType == UserInterfaceEvents.CARD_MORTGAGE) {
       this.setText("Hipotecar");

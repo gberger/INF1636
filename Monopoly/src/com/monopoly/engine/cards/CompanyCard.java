@@ -22,5 +22,12 @@ public class CompanyCard extends PropertyCard implements NegotiableCard {
   public int getRent(int roll) {
     return this.multiplier * roll;
   }
+  
+  public String getInfoText()
+  {
+    String text = "Pontos dos dados multiplicados por $" + multiplier;
+    text += "\nHipoteca: $" + mortgage;
+    return text;
+  }
  
 }

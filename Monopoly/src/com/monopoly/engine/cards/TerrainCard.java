@@ -58,5 +58,20 @@ public class TerrainCard extends PropertyCard {
   public int getRent(){
     return this.rentByBuildings.get(this.buildings);
   }
+  
+  public String getInfoText()
+  {
+    String text = "Aluguel: $" + rentByBuildings.get(0);
+    for(int i = 1; i<5;i++)
+      text += "\nC/ " + i + " casa: $" + rentByBuildings.get(i);
+    text += "\nC/ hotel: " + rentByBuildings.get(5);
+    
+    text += "\n\nCada casa: $" + houseCost;
+    text += "\nHotel: $" + hotelCost;
+    
+    text += "\n\nHipoteca: $" + mortgage;
+    
+    return text;
+  }
 
 }

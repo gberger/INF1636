@@ -16,5 +16,7 @@ public abstract class PropertyCard extends Card implements NegotiableCard {
   public int getMortgage() {
     return mortgage;
   }
+  
+  public abstract String getInfoText();
 
 }

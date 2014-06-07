@@ -22,7 +22,8 @@ public class CompanySquare extends Square {
 
     if(owner == null) {
       if(player.affords(card.getPrice())) {
-        String message = card.getName() + "\n" + player.getName() + ", deseja adquirir esta carta por $" + card.getPrice() + "?\n";
+        String message = card.getName() + "\n" + player.getName() + ", deseja adquirir esta carta por $" + card.getPrice() + "?\n\n";
+        message += card.getInfoText();
         if(ui.askBoolean(message)) {
           player.buyProperty(card);
         }

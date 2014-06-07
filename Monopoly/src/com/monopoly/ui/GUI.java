@@ -83,11 +83,11 @@ public class GUI extends Observable implements ActionListener, UserInterface {
       event = UserInterfaceEvents.GO_BANKRUPT;
       
     } else if("showCardsButton".equals(cmd)) {
-      new CardListFrame( ((ShowCardsButton)e.getSource()).getPlayer() );
+      new CardListFrame( ((ShowCardsButton)e.getSource()).getPlayer() ).addListenerToButtons(this);
       
     } else if("cardNegotiateButton".equals(cmd)) {
       NegotiableCard card = ((CardListButton)e.getSource()).getCard();
-      event = UserInterfaceEvents.CARD_NEGOCIATE;
+      event = UserInterfaceEvents.CARD_NEGOTIATE;
       args.put("card", card);
       
     } else if("cardMortgageButton".equals(cmd)) {
