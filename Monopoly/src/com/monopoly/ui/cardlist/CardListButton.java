@@ -8,6 +8,7 @@ import com.monopoly.engine.cards.*;
 import com.monopoly.ui.*;
 
 public class CardListButton extends JButton {
+  private static final long serialVersionUID = 12373562376198L;
   protected PropertyCard property;
   protected UserInterfaceEvents eType;
   
@@ -38,10 +39,7 @@ public class CardListButton extends JButton {
       
     } else if(this.eType == UserInterfaceEvents.CARD_PULVERIZE_BULDING) {
       this.setText("Demolir imóvel");
-      this.setEnabled(this.property instanceof TerrainCard);
-      
+      this.setEnabled(this.property instanceof TerrainCard); 
     }
-    
   }
-
 }

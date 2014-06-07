@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,6 +18,7 @@ import com.monopoly.engine.cards.TerrainDeck;
 import com.monopoly.engine.cards.chancecards.ChanceDeck;
 import com.monopoly.ui.UserInterface;
 import com.monopoly.ui.UserInterfaceEvents;
+import com.monopoly.ui.UserInterfaceNotification;
 
 public class Game implements Observer {
   
@@ -143,30 +145,33 @@ public class Game implements Observer {
   }
 
   @Override
-  public void update(Observable o, Object arg) {
-    System.out.println("yo");
-    if(arg == UserInterfaceEvents.ROLL_DICES) {
+  public void update(Observable o, Object uin) {
+    UserInterfaceNotification notification = (UserInterfaceNotification)uin;
+    UserInterfaceEvents event = notification.event;
+    Map<String, Object> args = notification.args;
+    
+    if(event == UserInterfaceEvents.ROLL_DICES) {
       if(this.validateRollDices()) {
         this.rollDices(); 
       } else {
         this.ui.showMessage("Ação proibida!");
       }
       
-    } else if(arg == UserInterfaceEvents.PASS_TURN) {
+    } else if(event == UserInterfaceEvents.PASS_TURN) {
       if(this.validatePassTurn()) {
         this.passTurn(); 
       } else {
         this.ui.showMessage("Ação proibida!");
       }
       
-    } else if(arg == UserInterfaceEvents.JAIL_PASS) {
+    } else if(event == UserInterfaceEvents.JAIL_PASS) {
       if(this.validateUseJailPass()) {
         this.useJailPass(); 
       } else {
         this.ui.showMessage("Ação proibida!");
       }
       
-    } else if(arg == UserInterfaceEvents.GO_BANKRUPT) {
+    } else if(event == UserInterfaceEvents.GO_BANKRUPT) {
       if(this.validateGoBankrupt()) {
         this.goBankrupt(); 
       } else {

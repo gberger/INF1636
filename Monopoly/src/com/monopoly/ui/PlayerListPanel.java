@@ -33,9 +33,7 @@ public class PlayerListPanel extends JPanel {
       Player player = this.game.getPlayers().get(i);
       ShowCardsButton showCardsButton = new ShowCardsButton(player);
       showCardsButtonList.add(i,showCardsButton);
-      
     }
-    
   }
   
   public List<ShowCardsButton> getShowCardsButtonList() {
