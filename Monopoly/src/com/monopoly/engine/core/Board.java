@@ -12,6 +12,7 @@ import com.monopoly.engine.squares.StartSquare;
 
 public class Board {
   private List<Square> squares;
+  @SuppressWarnings("unused")
   private Game game;
   
   public Board(JSONArray arr, Game game) {

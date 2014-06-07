@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Observable;
 
 import com.monopoly.engine.cards.NegotiableCard;
-import com.monopoly.engine.cards.PropertyCard;
 import com.monopoly.engine.core.*;
 import com.monopoly.ui.cardlist.CardListButton;
 import com.monopoly.ui.cardlist.CardListFrame;

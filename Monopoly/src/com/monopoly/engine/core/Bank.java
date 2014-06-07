@@ -1,6 +1,5 @@
 package com.monopoly.engine.core;
 
-import com.monopoly.engine.cards.Card;
 import com.monopoly.engine.cards.NegotiableCard;
 
 public class Bank implements Entity {
