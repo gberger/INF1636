@@ -17,6 +17,7 @@ public class GUI extends Observable implements ActionListener, UserInterface {
   
   public void bindGame(Game game){
     this.gameFrame.bindGame(game);
+    this.addObserver(game);
   };
 
   public boolean askBoolean (String message) {
@@ -70,6 +71,9 @@ public class GUI extends Observable implements ActionListener, UserInterface {
     } else if("jailPassButton".equals(cmd)) {
       this.setChanged();
       this.notifyObservers(UserInterfaceEvents.JAIL_PASS);
+    } else if("goBankruptButton".equals(cmd)) {
+      this.setChanged();
+      this.notifyObservers(UserInterfaceEvents.GO_BANKRUPT);
     }
     this.gameFrame.repaint();
   }

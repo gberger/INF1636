@@ -19,6 +19,7 @@ public class Player {
   private boolean inJail;
   private int turnsInJail;
   private DoubleDice doubleDice;
+  private boolean inGame;
 
   public Player(PlayerColor color, Game game) {
     this.doubleDice = new DoubleDice();
@@ -29,6 +30,7 @@ public class Player {
     this.cards = new ArrayList<Card>();
     this.inJail = false;
     this.turnsInJail = 0;
+    this.inGame = true;
   }
 
   public String getName() {
@@ -210,6 +212,18 @@ public class Player {
       this.returnJailPass();
       this.removeFromJail();
     }
+  }
+
+  public boolean isOutOfGame() {
+    return !this.inGame;
+  }
+
+  public boolean canGoBankrupt() {
+    return true;
+  }
+
+  public void removeFromGame() {
+    this.inGame = false;
   }
 
 }

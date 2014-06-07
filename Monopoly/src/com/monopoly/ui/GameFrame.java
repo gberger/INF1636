@@ -27,6 +27,7 @@ public class GameFrame extends JFrame {
     this.buttons.add(new DiceButton().setup());
     this.buttons.add(new PassTurnButton().setup());
     this.buttons.add(new JailPassButton().setup());
+    this.buttons.add(new GoBankruptButton().setup());
 
     for(JButton button : buttons){
       this.getContentPane().add(button, -1);  

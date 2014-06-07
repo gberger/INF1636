@@ -137,12 +137,12 @@ public class Game implements Observer {
   }
 
   @Override
-  public void update(Observable o, Object arg) {    
+  public void update(Observable o, Object arg) {
+    System.out.println("yo");
     if(arg == UserInterfaceEvents.ROLL_DICES) {
       if(this.validateRollDices()) {
         this.rollDices(); 
       } else {
-        this.ui.askInt("Hey", 10);
         this.ui.showMessage("Ação proibida!");
       }
       
@@ -156,6 +156,13 @@ public class Game implements Observer {
     } else if(arg == UserInterfaceEvents.JAIL_PASS) {
       if(this.validateUseJailPass()) {
         this.useJailPass(); 
+      } else {
+        this.ui.showMessage("Ação proibida!");
+      }
+      
+    } else if(arg == UserInterfaceEvents.GO_BANKRUPT) {
+      if(this.validateGoBankrupt()) {
+        this.goBankrupt(); 
       } else {
         this.ui.showMessage("Ação proibida!");
       }
@@ -178,8 +185,10 @@ public class Game implements Observer {
   }
   
   private boolean validatePassTurn() {
-    if(this.hasCurrPlayerPlayed) {
-      Player currPlayer = this.getCurrentPlayer();
+    Player currPlayer = this.getCurrentPlayer();
+    if(currPlayer.canGoBankrupt()){
+      return false;
+    } else if(this.hasCurrPlayerPlayed) {
       return !currPlayer.goesAgain();
     } else {
       return false;
@@ -187,11 +196,15 @@ public class Game implements Observer {
   }
 
   public void passTurn() {
-    Player currPlayer = this.getCurrentPlayer();
-    currPlayer.resetDoubleCounter();
+    this.getCurrentPlayer().resetDoubleCounter();
+    this.hasCurrPlayerPlayed = false;
+    
     this.currentPlayerIndex += 1;
     this.currentPlayerIndex %= this.players.size();
-    this.hasCurrPlayerPlayed = false;
+    while(this.getCurrentPlayer().isOutOfGame()){
+      this.currentPlayerIndex += 1;
+      this.currentPlayerIndex %= this.players.size();
+    }
   }
 
   private boolean validateUseJailPass() {
@@ -203,4 +216,33 @@ public class Game implements Observer {
     Player currPlayer = this.getCurrentPlayer();
     currPlayer.useJailPass();
   }
+
+  private boolean validateGoBankrupt() {
+    Player currPlayer = this.getCurrentPlayer();
+    return currPlayer.canGoBankrupt();
+  }
+
+  private void goBankrupt() {
+    Player currPlayer = this.getCurrentPlayer();
+    currPlayer.removeFromGame();
+    this.passTurn();
+    this.checkWinner();
+  }  
+  
+  private void checkWinner(){
+    int playersStillInGame = 0;
+    Player winner = null;
+    for(Player player : this.players){
+      if(!player.isOutOfGame()){
+        winner = player;
+        playersStillInGame++;
+      }
+    }
+    
+    if(playersStillInGame == 1){
+      this.ui.showMessage("O GANHADOR EH " + winner.getName(), "FIM DE JOGO");
+      System.exit(0);
+    }
+  }
+  
 }

@@ -37,7 +37,7 @@ public class PlayerListPanel extends JPanel {
              RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
     g2.setRenderingHints(rh);
     
-    g.setFont(new Font("Comic Sans MS",Font.PLAIN,20));
+    g.setFont(new Font("Arial",Font.PLAIN,20));
     g.drawString("           JOGADORES",20, 20);
     
     int y = 35;
@@ -47,9 +47,13 @@ public class PlayerListPanel extends JPanel {
       y+=20;
       Player current = players.get(i);
       int fontStyle = Font.PLAIN;
-      if(current == game.getCurrentPlayer())
+      if(current == game.getCurrentPlayer()) {
         fontStyle = Font.BOLD;
-      g.setFont(new Font("Comic Sans MS",fontStyle,16));
+      }
+      if(current.isOutOfGame()) {
+        fontStyle = Font.ITALIC;
+      }
+      g.setFont(new Font("Arial",fontStyle,16));
       StyleSheet ssheet = new StyleSheet();
       g.setColor(ssheet.stringToColor(current.getColor().toString()));
       g.drawString(current.getName()+" - $"+current.getMoney(),20, y);
