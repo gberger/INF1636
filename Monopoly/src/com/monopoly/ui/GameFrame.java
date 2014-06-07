@@ -83,7 +83,7 @@ public class GameFrame extends JFrame {
 
   public void showMessage (String message, String title) {
     System.out.println("[Mensagem] " + title + " - " + message);
-    JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null, message, title, JOptionPane.PLAIN_MESSAGE);
   }
 
   public void addListenerToButtons(ActionListener al) {

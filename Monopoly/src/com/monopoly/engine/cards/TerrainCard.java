@@ -97,13 +97,35 @@ public class TerrainCard extends PropertyCard {
     }
   }
 
-  public int getRent(){
+  public int getRent() {
     return this.rentByBuildings.get(this.buildings);
+  }
+  
+  public String getColorName() {
+    if(this.color == TerrainColor.PINK) {
+      return "Rosa";
+    } else if(this.color == TerrainColor.LIGHT_BLUE) {
+      return "Azul Claro";
+    } else if(this.color == TerrainColor.PURPLE) {
+      return "Roxo";
+    } else if(this.color == TerrainColor.ORANGE) {
+      return "Laranja";
+    } else if(this.color == TerrainColor.RED) {
+      return "Vermelho";
+    } else if(this.color == TerrainColor.YELLOW) {
+      return "Amarelo";
+    } else if(this.color == TerrainColor.GREEN) {
+      return "Verde";
+    } else if(this.color == TerrainColor.DARK_BLUE) {
+      return "Azul Escuro";
+    }
+    return "";
   }
   
   public String getInfoText()
   {
-    String text = "Aluguel: $" + rentByBuildings.get(0);
+    String text = "Cor: " + this.getColorName();
+    text += "\n\nAluguel: $" + rentByBuildings.get(0);
     for(int i = 1; i<5;i++) {
       text += "\nC/ " + i + " casa: $" + rentByBuildings.get(i);
     }

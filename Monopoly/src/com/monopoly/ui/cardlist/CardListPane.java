@@ -34,12 +34,9 @@ public class CardListPane extends JPanel {
     this.setSize(600,20*cardList.size());
     
     GridLayout layout = new GridLayout(cardList.size(),1);
-    //layout.setHgap(0);
     this.setLayout( layout );
     
     this.rows = new ArrayList<JPanel>();
-    
-    //layout.
     
     for(Card card : cardList)
     {
@@ -60,6 +57,9 @@ public class CardListPane extends JPanel {
         row1.add( nameLabel );
         
         if(cardN instanceof TerrainCard) {
+          JLabel colorLabel = new JLabel( "Cor: " + ((TerrainCard)cardN).getColorName());
+          colorLabel.setSize(40,15);
+          row1.add(colorLabel);
           JLabel buildingsLabel = new JLabel( "(" + ((TerrainCard)cardN).getBuildings() + " imóveis)");
           buildingsLabel.setSize(40,15);
           row1.add(buildingsLabel);

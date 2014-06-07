@@ -180,6 +180,9 @@ public class Game implements Observer {
       } else {
         this.ui.showMessage("Ação proibida!");
       }
+    } else if(event == UserInterfaceEvents.CARD_VIEW) {
+      PropertyCard card = (PropertyCard)args.get("card");
+      this.ui.showMessage(card.getInfoText(), card.getName());
       
     } else if(event == UserInterfaceEvents.CARD_NEGOTIATE) {
       NegotiableCard card = (NegotiableCard)args.get("card");
