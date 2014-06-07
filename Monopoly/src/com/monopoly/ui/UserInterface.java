@@ -11,6 +11,8 @@ public interface UserInterface {
   public int askInt (String message, String title, int min, int max);
   public String askString (String message);
   public String askString (String message, String title);
+  public Object askOptions (String message, Object[] options);
+  public Object askOptions (String message, String title, Object[] options);
   public void showMessage (String message);
   public void showMessage (String message, String title);
   public void bindGame(Game game);

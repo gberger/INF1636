@@ -30,19 +30,22 @@ public class CardListButton extends JButton {
       
     } else if(this.eType == UserInterfaceEvents.CARD_NEGOTIATE) {
       this.setText("Negociar");
-      this.setActionCommand("cardNegotiate");
+      this.setActionCommand("cardNegotiateButton");
       
     } else if(this.eType == UserInterfaceEvents.CARD_MORTGAGE) {
       this.setText("Hipotecar");
       this.setEnabled(this.card instanceof TerrainCard || this.card instanceof CompanyCard);
+      this.setActionCommand("cardMortgageButton");
       
     } else if(this.eType == UserInterfaceEvents.CARD_NEW_BUILDING) {
       this.setText("Construir imóvel");
       this.setEnabled(this.card instanceof TerrainCard);
+      this.setActionCommand("cardNewBuildingButton");
       
-    } else if(this.eType == UserInterfaceEvents.CARD_PULVERIZE_BULDING) {
+    } else if(this.eType == UserInterfaceEvents.CARD_REMOVE_BULDING) {
       this.setText("Demolir imóvel");
-      this.setEnabled(this.card instanceof TerrainCard); 
+      this.setEnabled(this.card instanceof TerrainCard);
+      this.setActionCommand("cardPulverizeBuildingButton");
     }
   }
   

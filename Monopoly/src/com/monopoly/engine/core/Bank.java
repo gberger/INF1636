@@ -6,6 +6,11 @@ public class Bank implements Entity {
   public String getName() {
     return "Banco";
   }
+  
+  @Override
+  public String toString() {
+    return this.getName();
+  }
 
   @Override
   public boolean affords(int price) {

@@ -41,6 +41,14 @@ public class GUI extends Observable implements ActionListener, UserInterface {
     return gameFrame.askString(message, title);
   }
   
+  public Object askOptions (String message, Object[] options) {
+    return this.askOptions(message, "Pergunta", options);
+  }
+
+  public Object askOptions (String message, String title, Object[] options) {
+    return gameFrame.askOptions(message, title, options);
+  }
+  
   public int askInt (String message, int max) {
     return this.askInt(message, "Pergunta", 1, max);
   }
@@ -69,6 +77,7 @@ public class GUI extends Observable implements ActionListener, UserInterface {
     String cmd = e.getActionCommand();
     UserInterfaceEvents event = null;
     HashMap<String, Object> args = new HashMap<String, Object>();
+    System.out.println(cmd);
 
     if ("diceButton".equals(cmd)) {
       event = UserInterfaceEvents.ROLL_DICES;
@@ -102,7 +111,7 @@ public class GUI extends Observable implements ActionListener, UserInterface {
       
     } else if("cardPulverizeBuildingButton".equals(cmd)) {
       NegotiableCard card = ((CardListButton)e.getSource()).getCard();
-      event = UserInterfaceEvents.CARD_PULVERIZE_BULDING;
+      event = UserInterfaceEvents.CARD_REMOVE_BULDING;
       args.put("card", card);
     }
     

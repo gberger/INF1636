@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.monopoly.engine.cards.Card;
 import com.monopoly.engine.cards.PropertyCard;
+import com.monopoly.engine.cards.TerrainCard;
 import com.monopoly.engine.cards.chancecards.ChanceCard;
 import com.monopoly.engine.cards.chancecards.JailPassChanceCard;
 import com.monopoly.engine.squares.Square;
@@ -38,6 +39,11 @@ public class Player implements Entity {
   public String getName() {
     return this.color.name();
   }
+  
+  @Override
+  public String toString() {
+    return this.getName();
+  }
 
   public PlayerColor getColor() {
     return color;
@@ -61,6 +67,24 @@ public class Player implements Entity {
 
   public List<Card> getCards() {
     return cards;
+  }
+  
+  public boolean ownsCard(Card card) {
+    for(Card c : this.cards){
+      if(c == card){
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean ownsTerrainCards(List<TerrainCard> cards){
+    for(TerrainCard c : cards){
+      if(!this.ownsCard(c)){
+        return false;
+      }
+    }
+    return true;
   }
 
   public boolean isInJail() {
@@ -223,6 +247,7 @@ public class Player implements Entity {
       if(turnsInJail == 4){
         ui.showMessage(this.getName() + ", como se passaram 4 turnos, você pagará a fiança de $50 e sairá da cadeia.");
         this.payTo(this.game.getBank(), 50);
+        this.removeFromJail();
         this.move(steps);
       } else {
         ui.showMessage(this.getName() + " continua na cadeia.");

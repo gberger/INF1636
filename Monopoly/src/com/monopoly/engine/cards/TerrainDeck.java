@@ -1,11 +1,13 @@
 package com.monopoly.engine.cards;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.monopoly.engine.core.Game;
+import com.monopoly.engine.squares.TerrainColor;
 
 
 public class TerrainDeck extends Deck<TerrainCard> {
@@ -27,5 +29,16 @@ public class TerrainDeck extends Deck<TerrainCard> {
     }
     return (TerrainCard)null;
   }
-
+  
+  public List<TerrainCard> findByColor(TerrainColor color){
+    List<TerrainCard> res = new ArrayList<TerrainCard>();
+    
+    for(TerrainCard c : this.cards){
+      if(c.getColor() == color){
+        res.add(c);
+      }
+    }
+    
+    return res;
+  }
 }

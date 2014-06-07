@@ -6,4 +6,5 @@ public interface Entity {
   public void charge(int x);
   public void give(int x);
   public void payTo(Entity other, int x);
+  public String toString();
 }

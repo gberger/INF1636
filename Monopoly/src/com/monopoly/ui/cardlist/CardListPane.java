@@ -84,7 +84,7 @@ public class CardListPane extends JPanel {
         button = new CardListButton(cardN, UserInterfaceEvents.CARD_NEW_BUILDING);
         this.buttons.add(button);
         row2.add( button );
-        button = new CardListButton(cardN, UserInterfaceEvents.CARD_PULVERIZE_BULDING);
+        button = new CardListButton(cardN, UserInterfaceEvents.CARD_REMOVE_BULDING);
         this.buttons.add(button);
         row2.add( button );
         

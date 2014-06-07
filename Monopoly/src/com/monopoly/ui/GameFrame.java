@@ -72,6 +72,14 @@ public class GameFrame extends JFrame {
     System.out.println("[Resposta] " + answer);
     return answer;
   }
+  
+  public Object askOptions(String message, String title, Object[] options) {
+    AskOptionsDialog dialog = new AskOptionsDialog(this, message, title, options);
+    System.out.println("[Pergunta OPT] " + title + " - " + message);
+    Object answer = dialog.getAnswer();
+    System.out.println("[Resposta] " + answer);
+    return answer;
+  }
 
   public void showMessage (String message, String title) {
     System.out.println("[Mensagem] " + title + " - " + message);

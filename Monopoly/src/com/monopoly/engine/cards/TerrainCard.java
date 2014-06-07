@@ -54,6 +54,48 @@ public class TerrainCard extends PropertyCard {
   public int getHotelCost() {
     return hotelCost;
   }
+  
+  public int getNextBuildingCost() {
+    if(this.buildings < 4){
+      return this.houseCost;
+    } else {
+      return this.hotelCost;
+    }
+  }
+  
+  public int getNextBuildingRemovalEarnings() {
+    if(this.buildings <= 4){
+      return this.houseCost;
+    } else {
+      return this.hotelCost;
+    }
+  }
+  
+  public boolean isFull() {
+    return this.buildings >= 5;
+  }
+  
+  public boolean isEmpty() {
+    return this.buildings <= 0;
+  }
+  
+  public boolean addBuilding() {
+    if(this.isFull()){
+      return false;
+    } else {
+      this.buildings += 1;
+      return true;
+    }
+  }
+  
+  public boolean removeBuilding() {
+    if(this.isEmpty()){
+      return false;
+    } else {
+      this.buildings -= 1;
+      return true;
+    }
+  }
 
   public int getRent(){
     return this.rentByBuildings.get(this.buildings);
@@ -62,9 +104,10 @@ public class TerrainCard extends PropertyCard {
   public String getInfoText()
   {
     String text = "Aluguel: $" + rentByBuildings.get(0);
-    for(int i = 1; i<5;i++)
+    for(int i = 1; i<5;i++) {
       text += "\nC/ " + i + " casa: $" + rentByBuildings.get(i);
-    text += "\nC/ hotel: " + rentByBuildings.get(5);
+    }
+    text += "\nC/ hotel: $" + rentByBuildings.get(5);
     
     text += "\n\nCada casa: $" + houseCost;
     text += "\nHotel: $" + hotelCost;

@@ -31,8 +31,6 @@ public class DoubleDice {
 
     this.lastRoll[0] = dice.roll();
     this.lastRoll[1] = dice.roll();
-    this.lastRoll[0] = 3;
-    this.lastRoll[1] = 1;
 
     if(this.wasLastRollDouble()) {
       this.doubleCounter += 1;
