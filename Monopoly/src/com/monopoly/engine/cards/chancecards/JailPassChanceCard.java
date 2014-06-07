@@ -17,7 +17,7 @@ public class JailPassChanceCard extends ChanceCard implements NegotiableCard {
   
   @Override
   public void affectPlayer(Player player) {
-    player.giveJailPass(this);
+    player.give(this);
   }
 
   @Override

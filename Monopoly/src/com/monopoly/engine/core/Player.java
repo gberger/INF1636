@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.monopoly.engine.cards.Card;
+import com.monopoly.engine.cards.NegotiableCard;
 import com.monopoly.engine.cards.PropertyCard;
 import com.monopoly.engine.cards.TerrainCard;
 import com.monopoly.engine.cards.chancecards.ChanceCard;
@@ -16,7 +17,7 @@ public class Player implements Entity {
   private PlayerColor color;
   private int position;
   private int money;
-  private List<Card> cards;
+  private List<NegotiableCard> cards;
   private boolean inJail;
   private int turnsInJail;
   private DoubleDice doubleDice;
@@ -29,7 +30,7 @@ public class Player implements Entity {
     this.color = color;
     this.position = 0;
     this.money = (8*1) + (10*5) + (10*10) + (10*50) + (8*100) + (2*500);
-    this.cards = new ArrayList<Card>();
+    this.cards = new ArrayList<NegotiableCard>();
     this.inJail = false;
     this.turnsInJail = 0;
     this.inGame = true;
@@ -65,26 +66,8 @@ public class Player implements Entity {
     return this.money - debtSum;
   }
 
-  public List<Card> getCards() {
+  public List<NegotiableCard> getCards() {
     return cards;
-  }
-  
-  public boolean ownsCard(Card card) {
-    for(Card c : this.cards){
-      if(c == card){
-        return true;
-      }
-    }
-    return false;
-  }
-  
-  public boolean ownsTerrainCards(List<TerrainCard> cards){
-    for(TerrainCard c : cards){
-      if(!this.ownsCard(c)){
-        return false;
-      }
-    }
-    return true;
   }
 
   public boolean isInJail() {
@@ -100,8 +83,17 @@ public class Player implements Entity {
     return this.money >= price;
   }
 
-  public boolean owns(PropertyCard card) {
+  public boolean owns(NegotiableCard card) {
     return this.cards.contains(card);
+  }
+
+  public boolean owns(List<TerrainCard> cards) {
+    for(Card c : cards) {
+      if(!this.owns((NegotiableCard)c)){
+        return false;
+      }
+    }
+    return true;
   }
 
   public void charge(int x){
@@ -115,6 +107,20 @@ public class Player implements Entity {
   public void give(int x){
     this.money += x;
     this.payDebts();
+  }
+  
+  public void give(NegotiableCard card) {
+    this.cards.add(card);
+    card.setOwner(this);
+  }
+  
+  public void sellCardTo(Entity other, NegotiableCard card, int amount) {
+    if(this.owns(card) && other.affords(amount)){
+      this.cards.remove(card);
+      other.charge(amount);
+      this.give(amount);
+      other.give(card);
+    }
   }
 
   public void payTo(Entity other, int amount) {
@@ -157,7 +163,7 @@ public class Player implements Entity {
 
   public void buyProperty(PropertyCard card) {
     this.charge(card.getPrice());
-    this.cards.add(card);
+    this.give(card);
   }
 
   public void goToJail() {
@@ -173,12 +179,8 @@ public class Player implements Entity {
     this.give(200);
   }
 
-  public void giveJailPass(ChanceCard jailPass) {
-    this.cards.add(jailPass);
-  }
-
   public void returnJailPass() {
-    for(Card c : this.cards) {
+    for(NegotiableCard c : this.cards) {
       if(c instanceof JailPassChanceCard) {
         this.cards.remove(c);
         this.game.getChanceDeck().addToBottom((ChanceCard)c);
@@ -188,7 +190,7 @@ public class Player implements Entity {
   }
 
   public boolean hasJailPass() {
-    for(Card c : this.cards) {
+    for(NegotiableCard c : this.cards) {
       if(c instanceof JailPassChanceCard) {
         return true;
       }

@@ -29,7 +29,7 @@ public class CardListPane extends JPanel {
     this.removeAll();
     this.buttons.clear();
     
-    ArrayList<Card> cardList = (ArrayList<Card>) player.getCards();
+    ArrayList<NegotiableCard> cardList = (ArrayList<NegotiableCard>) player.getCards();
     
     this.setSize(600,20*cardList.size());
     
@@ -38,7 +38,7 @@ public class CardListPane extends JPanel {
     
     this.rows = new ArrayList<JPanel>();
     
-    for(Card card : cardList)
+    for(NegotiableCard card : cardList)
     {
       if(card instanceof NegotiableCard)
       {

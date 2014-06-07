@@ -271,26 +271,58 @@ public class Game implements Observer {
   private void negotiateCard(NegotiableCard card) {
     Player currPlayer = this.getCurrentPlayer();
     
-    List<Entity> others = new ArrayList<Entity>();
-    others.add(this.bank);
-    for(Player p : this.players) {
-      if(p != currPlayer && !p.isOutOfGame()) {
-        others.add(p);
-      }
+    if(card instanceof TerrainCard && !((TerrainCard)card).isEmpty()) {
+      this.ui.showMessage("Há construções no terreno, devem ser demolidos pelo dono antes de negociar!");
+      return;
     }
     
-    Object[] options = others.toArray();
-    Object choice = this.ui.askOptions("Com quem você quer negociar?", options);
+    if(currPlayer.owns(card)){
+      // Sell card to another player      
+      List<Entity> others = new ArrayList<Entity>();
+      if(card instanceof PropertyCard && !((PropertyCard)card).isInMortgage()) {
+        others.add(this.bank);
+      }
+      for(Player p : this.players) {
+        if(p != currPlayer && !p.isOutOfGame()) {
+          others.add(p);
+        }
+      }
+      Object[] options = others.toArray();
+      
+      Object choice = this.ui.askOptions(currPlayer + ", com quem você quer negociar?", options);
+      if(choice == bank){
+        int amount = ((PropertyCard)card).getPrice()/2;
+        boolean answer = this.ui.askBoolean("O banco comprará esta carta por $" + amount + ". Aceita?");
+        if(answer) {
+          currPlayer.sellCardTo(bank, card, amount);
+        }
+      } else {
+        Player other = (Player)choice;
+        int amount = this.ui.askInt(currPlayer + ", quanto você pede?", other.getBalance());
+        boolean answer = this.ui.askBoolean(other + ", " + currPlayer + " deseja te vendar a carta por $" + amount + ". Aceita?");
+        if(answer) {
+          currPlayer.sellCardTo(other, card, amount);
+        }
+      }
+    } else {
+      // Buy card from another player
+      Player other = (Player)card.getOwner();
+      int amount = this.ui.askInt(currPlayer + ", quanto você oferece?", currPlayer.getBalance());
+      boolean answer = this.ui.askBoolean(other + ", " + currPlayer + " deseja comprar a carta por $" + amount + ". Aceita?");
+      if(answer) {
+        other.sellCardTo(currPlayer, card, amount);
+      }
+    }
   }
 
   private boolean validateNewBuilding(TerrainCard card) {
     Player currPlayer = this.getCurrentPlayer();
     List<TerrainCard> allCards = this.terrainDeck.findByColor(card.getColor());
-    if(!currPlayer.ownsCard(card)){
+    if(!currPlayer.owns(card)){
       this.ui.showMessage("Voce nao eh o dono desta carta!");
       return false;
     }
-    if(!currPlayer.ownsTerrainCards(allCards)) {
+    if(!currPlayer.owns(allCards)) {
       this.ui.showMessage("Voce deve possuir todas as cartas dessa cor antes de constuir.");
       return false;
     }
@@ -299,7 +331,7 @@ public class Game implements Observer {
       return false;
     }
     for(TerrainCard c : allCards){
-      if(c.getBuildings() != card.getBuildings()){
+      if(c.getBuildings() < card.getBuildings()){
         this.ui.showMessage("Voce deve antes construir mais construções nos outros terrenos de mesma cor.");
         return false;
       }
@@ -324,7 +356,7 @@ public class Game implements Observer {
   private boolean validateRemoveBuilding(TerrainCard card) {
     Player currPlayer = this.getCurrentPlayer();
     List<TerrainCard> allCards = this.terrainDeck.findByColor(card.getColor());
-    if(!currPlayer.ownsCard(card)){
+    if(!currPlayer.owns(card)){
       this.ui.showMessage("Voce nao eh o dono desta carta!");
       return false;
     }

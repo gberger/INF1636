@@ -4,17 +4,22 @@ public abstract class PropertyCard extends Card implements NegotiableCard {
   protected int price;
   protected int mortgage;
   protected String name;
+  protected boolean inMortgage;
   
   public int getPrice() {
     return this.price;
   }
   
   public String getName() {
-    return name;
+    return this.name;
   }
   
-  public int getMortgage() {
-    return mortgage;
+  public int getMortgageValue() {
+    return this.mortgage;
+  }
+  
+  public boolean isInMortgage() {
+    return this.inMortgage;
   }
   
   public abstract String getInfoText();

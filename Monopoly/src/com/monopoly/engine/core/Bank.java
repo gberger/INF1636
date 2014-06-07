@@ -1,5 +1,8 @@
 package com.monopoly.engine.core;
 
+import com.monopoly.engine.cards.Card;
+import com.monopoly.engine.cards.NegotiableCard;
+
 public class Bank implements Entity {
 
   @Override
@@ -24,6 +27,11 @@ public class Bank implements Entity {
 
   @Override
   public void give(int x) {
+    return;
+  }
+
+  @Override
+  public void give(NegotiableCard card) {
     return;
   }
 

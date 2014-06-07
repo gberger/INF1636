@@ -114,11 +114,12 @@ public class BoardPanel extends JPanel {
       g.drawImage(pin, coords.get("x"), coords.get("y"), 15, 24, null);
       
       g.setFont(g.getFont().deriveFont(Font.BOLD,14));
-      for(Card card : player.getCards())
+      for(NegotiableCard card : player.getCards())
       {
-        if(card instanceof TerrainCard && ((TerrainCard)card).getBuildings() > 0)
+        if(card instanceof TerrainCard && !((TerrainCard)card).isEmpty())
         {
-          coords = this.getCoordinatesForPosition(card.getId(), true);
+          TerrainCard tcard = (TerrainCard) card;
+          coords = this.getCoordinatesForPosition(tcard.getId(), true);
           g.drawImage(this.houseIcon, coords.get("x"), coords.get("y"), 16, 16, null);
           if(((TerrainCard)card).getBuildings() > 1)
             g.drawString("2", coords.get("x")-9, coords.get("y")+16);

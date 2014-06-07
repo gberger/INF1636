@@ -1,14 +1,14 @@
 package com.monopoly.engine.cards;
 
+import com.monopoly.engine.core.Entity;
 import com.monopoly.engine.core.Game;
-import com.monopoly.engine.core.Player;
 
 public abstract class Card {
   protected Game game;
   private int id;
   private boolean ownable;
   private boolean owned;
-  private Player owner;
+  private Entity owner;
 
   public int getId(){
     return this.id;
@@ -22,7 +22,11 @@ public abstract class Card {
     return this.owned;
   }
 
-  public Player getOwner(){
+  public Entity getOwner(){
     return this.owner;
+  }
+  
+  public void setOwner(Entity p) {
+    this.owner = p;
   }
 }
