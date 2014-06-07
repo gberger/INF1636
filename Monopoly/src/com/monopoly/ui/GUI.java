@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Observable;
 
 import com.monopoly.engine.core.*;
+import com.monopoly.ui.cardlist.CardListFrame;
 
 
 public class GUI extends Observable implements ActionListener, UserInterface {
@@ -76,11 +77,16 @@ public class GUI extends Observable implements ActionListener, UserInterface {
       event = UserInterfaceEvents.GO_BANKRUPT;
     } else if("buildHouseButton".equals(cmd)) {
       args.put("id", 5);
-      event = UserInterfaceEvents.BUILD_HOUSE;
+      event = UserInterfaceEvents.CARD_NEW_BUILDING;
+    } else if("showCardsButton".equals(cmd)) {
+      new CardListFrame( ((ShowCardsButton)e.getSource()).getPlayer() );
     }
     
-    this.setChanged();
-    this.notifyObservers(new UserInterfaceNotification(event, args));
+    if(event != null)
+    {
+      this.setChanged();
+      this.notifyObservers(new UserInterfaceNotification(event, args));
+    }
     this.gameFrame.repaint();
   }
 

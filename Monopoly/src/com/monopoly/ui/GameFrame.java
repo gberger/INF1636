@@ -34,6 +34,7 @@ public class GameFrame extends JFrame {
     }
 
     this.repaint();
+    
   }
   
   public void bindGame(Game game){
@@ -42,6 +43,8 @@ public class GameFrame extends JFrame {
     
     PlayerListPanel playerList = new PlayerListPanel(game);
     this.getContentPane().add(playerList, BorderLayout.LINE_START);
+    
+    this.buttons.addAll(playerList.getShowCardsButtonList());
     
     this.repaint();
   }
