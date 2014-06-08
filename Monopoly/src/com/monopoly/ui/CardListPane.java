@@ -1,4 +1,4 @@
-package com.monopoly.ui.cardlist;
+package com.monopoly.ui;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -7,7 +7,6 @@ import javax.swing.*;
 
 import com.monopoly.engine.core.*;
 import com.monopoly.engine.cards.*;
-import com.monopoly.ui.UserInterfaceEvents;
 
 public class CardListPane extends JPanel {
   private static final long serialVersionUID = 8840501986485230422L;

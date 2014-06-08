@@ -1,4 +1,4 @@
-package com.monopoly.ui.cardlist;
+package com.monopoly.ui;
 
 import java.awt.*;
 import java.awt.event.ActionListener;

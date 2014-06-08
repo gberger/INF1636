@@ -9,8 +9,6 @@ import java.util.Observable;
 
 import com.monopoly.engine.cards.NegotiableCard;
 import com.monopoly.engine.core.*;
-import com.monopoly.ui.cardlist.CardListButton;
-import com.monopoly.ui.cardlist.CardListFrame;
 
 
 public class GUI extends Observable implements ActionListener, WindowListener, UserInterface {

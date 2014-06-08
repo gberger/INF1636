@@ -1,11 +1,10 @@
-package com.monopoly.ui.cardlist;
+package com.monopoly.ui;
 
 import java.awt.Insets;
 
 import javax.swing.JButton;
 
 import com.monopoly.engine.cards.*;
-import com.monopoly.ui.*;
 
 public class CardListButton extends JButton {
   private static final long serialVersionUID = 12373562376198L;
