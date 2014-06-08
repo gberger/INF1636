@@ -66,9 +66,9 @@ public class TerrainCard extends PropertyCard {
   
   public int getNextBuildingRemovalEarnings() {
     if(this.buildings <= 4){
-      return this.houseCost;
+      return this.houseCost/2;
     } else {
-      return this.hotelCost;
+      return this.hotelCost/2;
     }
   }
   

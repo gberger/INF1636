@@ -386,6 +386,8 @@ public class Game implements Observer {
         other.sellCardTo(currPlayer, card, amount);
       }
     }
+    
+    this.ui.repaint();
   }
   
   private boolean validateDoMortgage(PropertyCard card) {
