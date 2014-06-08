@@ -2,6 +2,7 @@ package com.monopoly.engine.cards;
 
 import com.monopoly.engine.core.Entity;
 import com.monopoly.engine.core.Player;
+import com.monopoly.ui.UserInterface;
 
 public abstract class PropertyCard extends Card implements NegotiableCard {
   protected int price;
@@ -55,5 +56,44 @@ public abstract class PropertyCard extends Card implements NegotiableCard {
   public abstract String getInfoText();
 
   public abstract int getRent(Player player);
+
+  public void toggleMortgage() {    
+    if (this.isInMortgage()) {
+      this.removeFromMortgage();
+    } else {
+      this.putIntMortgage();
+    }
+  }
+
+  private void putIntMortgage() {
+    UserInterface ui = this.game.getUI();
+    int putValue = this.getMortgageValue();
+    int removePrice = this.getRemoveFromMortgageValue();
+    
+    if (this.canBeMortgaged()) {
+      boolean answer = ui.askBoolean("Deseja hipotecar? Receberá $" + putValue + ", mas para retirar deverá pagar $" + removePrice);
+      if (answer) {
+        this.setMortgage(true);
+        owner.give(putValue);
+      }
+    } else {
+      ui.showMessage("É necessário demolir as construções antes de hipotecar.");
+    }
+  }
+
+  private void removeFromMortgage() {
+    UserInterface ui = this.game.getUI();
+    int removePrice = this.getRemoveFromMortgageValue();
+    
+    if (owner.affords(removePrice)) {
+      boolean answer = ui.askBoolean("Deseja retirar da hipoteca por $" + removePrice + "?");
+      if (answer) {
+        this.setMortgage(false);
+        this.owner.charge(removePrice);
+      }
+    } else {
+      ui.showMessage("É necessário $" + removePrice + " para retirar a carta da hipoteca.");
+    }
+  }
 
 }
