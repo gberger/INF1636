@@ -277,10 +277,11 @@ public class Game implements Observer {
     }
     
     if(currPlayer.owns(card)){
-      // Sell card to another player      
-      List<Entity> others = new ArrayList<Entity>();
+      // Sell card to another player
+      List<Object> others = new ArrayList<Object>();
       if(card instanceof PropertyCard && !((PropertyCard)card).isInMortgage()) {
         others.add(this.bank);
+        others.add("Leilão");
       }
       for(Player p : this.players) {
         if(p != currPlayer && !p.isOutOfGame()) {
@@ -291,11 +292,19 @@ public class Game implements Observer {
       
       Object choice = this.ui.askOptions(currPlayer + ", com quem você quer negociar?", options);
       if(choice == bank){
-        int amount = ((PropertyCard)card).getPrice()/2;
+        int amount = ((PropertyCard)card).getBankOffer();
         boolean answer = this.ui.askBoolean("O banco comprará esta carta por $" + amount + ". Aceita?");
         if(answer) {
           currPlayer.sellCardTo(bank, card, amount);
         }
+        
+      } else if (choice == "Leilão"){
+        Entity highestBidder = this.bank;
+        int highestBid = ((PropertyCard)card).getBankOffer();
+        int i = 0;
+        
+        // TODO
+            
       } else {
         Player other = (Player)choice;
         int amount = this.ui.askInt(currPlayer + ", quanto você pede?", other.getBalance());
