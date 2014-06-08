@@ -11,7 +11,7 @@ public class JailPassButton extends JButton {
   
   public JailPassButton setup(){
     this.setActionCommand("jailPassButton");
-    this.setBounds(10,380,240,40);
+    this.setBounds(10,440,240,40);
     return this;
   }
 }

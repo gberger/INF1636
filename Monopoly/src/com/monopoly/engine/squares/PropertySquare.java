@@ -1,6 +1,5 @@
 package com.monopoly.engine.squares;
 
-import com.monopoly.engine.cards.Card;
 import com.monopoly.engine.cards.PropertyCard;
 import com.monopoly.engine.core.Entity;
 import com.monopoly.engine.core.Player;
@@ -16,16 +15,7 @@ public abstract class PropertySquare extends Square {
     Entity owner = this.associatedCard.getOwner();
     PropertyCard card = (PropertyCard)associatedCard;
 
-    if(owner == this.game.getBank()) {
-      if(player.affords(card.getPrice())) {
-        String message = player.getName() + ", deseja adquirir esta carta por $" + card.getPrice() + "?\n\n" + card.getInfoText();
-        if(ui.askBoolean(message)) {
-          player.buyProperty(card);
-        }
-      } else {
-        ui.showMessage("Desculpe, " + player.getName() + ", mas você não tem dinheiro suficiente para tentar comprar este terreno.");
-      }
-    } else if(owner != player) {
+    if(owner != player && owner != this.game.getBank()) {
       if(card.isInMortgage()) {
         ui.showMessage("A propriedade pertence a " + owner.getName() + ", mas está hipotecada.");
       } else {
@@ -39,7 +29,7 @@ public abstract class PropertySquare extends Square {
     
   }
 
-  public Card getAssociatedCard() {
+  public PropertyCard getAssociatedCard() {
     return this.associatedCard;
   }
 

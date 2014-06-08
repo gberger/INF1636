@@ -20,4 +20,9 @@ public class JailSquare extends Square {
   public void affectPassingPlayer(Player player) {
     // do nothing
   }
+
+  @Override
+  public String getDescription() {
+    return "Prisão";
+  }
 }

@@ -36,4 +36,6 @@ public abstract class Square {
 
   public abstract void affectPassingPlayer(Player player);
 
+  public abstract String getDescription();
+
 }

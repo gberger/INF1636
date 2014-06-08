@@ -53,6 +53,11 @@ public class Player implements Entity {
   public int getPosition() {
     return position;
   }
+  
+  public Square getSquare() {
+    Board board = this.game.getBoard();
+    return board.getSquare(this.getPosition());
+  }
 
   public int getMoney() {
     return money;
@@ -267,11 +272,6 @@ public class Player implements Entity {
     this.getSquare().affectLandingPlayer(this);
   }
   
-  private Square getSquare() {
-    Board board = this.game.getBoard();
-    return board.getSquare(this.getPosition());
-  }
-
   public int getLastRollTotal() {
     return this.doubleDice.getLastRollTotal();
   }

@@ -23,4 +23,9 @@ public class ProfitsSquare extends Square {
   public void affectPassingPlayer(Player player) {
     // do nothing
   }
+
+  @Override
+  public String getDescription() {
+    return "Lucros e Dividendos: ganhe $200 ao parar";
+  }
 }

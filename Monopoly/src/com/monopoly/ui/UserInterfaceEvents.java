@@ -2,6 +2,8 @@ package com.monopoly.ui;
 
 public enum UserInterfaceEvents {
   ROLL_DICES,
+  BUY_PROPERTY,
+  VIEW_SQUARE,
   PASS_TURN,
   JAIL_PASS,
   GO_BANKRUPT,

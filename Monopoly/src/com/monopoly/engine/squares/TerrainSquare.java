@@ -11,4 +11,9 @@ public class TerrainSquare extends PropertySquare {
     this.associatedCard = game.getTerrainDeck().findByName((String)jobj.get("name"));
   }
 
+  @Override
+  public String getDescription() {
+    return "Terreno \n\n" + this.associatedCard.getInfoText();
+  }
+
 }

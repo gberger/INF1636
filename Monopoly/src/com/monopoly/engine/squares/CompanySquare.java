@@ -10,4 +10,9 @@ public class CompanySquare extends PropertySquare {
     this.id = new Long((long) jobj.get("id")).intValue();
     this.associatedCard = game.getCompanyDeck().findByName((String)jobj.get("name"));
   }
+
+  @Override
+  public String getDescription() {
+    return "Companhia \n\n" + this.associatedCard.getInfoText();
+  }
 }

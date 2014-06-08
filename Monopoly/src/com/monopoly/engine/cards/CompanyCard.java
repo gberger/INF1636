@@ -30,6 +30,7 @@ public class CompanyCard extends PropertyCard implements NegotiableCard {
   public String getInfoText()
   {
     String text = this.getName();
+    text += "\nDono: " + this.getOwner();
     text += "\nValor a pagar: pontos dos dados multiplicados por $" + multiplier;
     text += "\nHipoteca: $" + mortgage;
     return text;

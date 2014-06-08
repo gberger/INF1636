@@ -20,4 +20,9 @@ public class FreeSquare extends Square {
   public void affectPassingPlayer(Player player) {
     // do nothing
   }
+
+  @Override
+  public String getDescription() {
+    return "Parada livre";
+  }
 }

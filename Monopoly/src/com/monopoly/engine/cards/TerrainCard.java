@@ -45,6 +45,14 @@ public class TerrainCard extends PropertyCard {
     return buildings;
   }
 
+  public int getHouses() {
+    return Math.min(buildings, 4);
+  }
+
+  public int getHotels() {
+    return Math.max(buildings-4, 0);
+  }
+
   public ArrayList<Integer> getRentByBuildings() {
     return this.rentByBuildings;
   }
@@ -112,6 +120,9 @@ public class TerrainCard extends PropertyCard {
   public String getInfoText()
   {
     String text = this.getName();
+    text += "\nDono: " + this.getOwner();
+    text += "\nCasas: " + this.getHouses();
+    text += "\nHotéis: " + this.getHotels();
     text += "\nCor: " + this.getColor().getName();
     text += "\n\nAluguel: $" + rentByBuildings.get(0);
     for(int i = 1; i<5;i++) {

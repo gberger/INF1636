@@ -31,4 +31,9 @@ public class ChanceSquare extends Square {
     // do nothing
   }
 
+  @Override
+  public String getDescription() {
+    return "Sorte ou Revés";
+  }
+
 }

@@ -23,4 +23,9 @@ public class StartSquare extends Square {
     player.give(200);
     ui.showMessage(player.getName() + " passou pelo início e recebeu $200!");
   }
+
+  @Override
+  public String getDescription() {
+    return "Início: ganhe $200 ao passar.";
+  }
 }

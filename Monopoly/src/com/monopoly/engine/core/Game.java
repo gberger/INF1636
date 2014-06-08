@@ -18,6 +18,8 @@ import com.monopoly.engine.cards.PropertyCard;
 import com.monopoly.engine.cards.TerrainCard;
 import com.monopoly.engine.cards.TerrainDeck;
 import com.monopoly.engine.cards.chancecards.ChanceDeck;
+import com.monopoly.engine.squares.PropertySquare;
+import com.monopoly.engine.squares.Square;
 import com.monopoly.ui.UserInterface;
 import com.monopoly.ui.UserInterfaceEvents;
 import com.monopoly.ui.UserInterfaceNotification;
@@ -168,6 +170,12 @@ public class Game implements Observer {
       } else {
         this.ui.showMessage("Ação proibida!");
       }
+      
+    } else if (event == UserInterfaceEvents.VIEW_SQUARE) {
+      this.viewSquare();
+
+    } else if (event == UserInterfaceEvents.BUY_PROPERTY) {
+      this.buyProperty();
 
     } else if (event == UserInterfaceEvents.JAIL_PASS) {
       if (this.validateUseJailPass()) {
@@ -255,6 +263,53 @@ public class Game implements Observer {
       this.currentPlayerIndex %= this.players.size();
     }
   }
+  
+  private void viewSquare() {
+    String description = this.getCurrentPlayer().getSquare().getDescription();
+    this.ui.showMessage(description);
+  }
+  
+  private void buyProperty(){
+    Player currPlayer = this.getCurrentPlayer();
+    Square square = currPlayer.getSquare();
+    
+    if(!hasCurrPlayerPlayed) {
+      this.ui.showMessage("Você deve jogar os dados antes!");
+      return; 
+    }
+    
+    if(!(square instanceof PropertySquare)) {
+      this.ui.showMessage("Não pode comprar: não é uma propriedade!");
+      return;
+    }
+
+    PropertySquare psquare = (PropertySquare)square;
+    PropertyCard card = psquare.getAssociatedCard(); 
+    Entity owner = card.getOwner();
+    
+    if(owner == currPlayer) {
+      this.ui.showMessage("Você já é o dono!");
+      return;
+    }
+    
+    if(owner != this.getBank()){
+      this.negotiateOthersCard(card, currPlayer);
+      return;
+    }
+    
+    //owner == bank
+    
+    if(!currPlayer.affords(card.getPrice())) {
+      ui.showMessage("Desculpe, " + currPlayer.getName() + ", mas você não tem dinheiro suficiente para tentar comprar este terreno.");
+      return;
+    }
+    
+    String message = currPlayer.getName() + ", deseja adquirir esta carta por $" + card.getPrice() + "?\n\n" + card.getInfoText();
+    if(ui.askBoolean(message)) {
+      currPlayer.buyProperty(card);
+    }
+    
+  }
 
   private boolean validateUseJailPass() {
     Player currPlayer = this.getCurrentPlayer();
@@ -317,7 +372,7 @@ public class Game implements Observer {
         + ", com quem você quer negociar?", options);
     if (choice == bank) {
       this.negotiateOwnCardWithBank((PropertyCard) card, currPlayer);
-    } else if (choice == "Leilão") {
+    } else if ("Leilão".equals(choice)) {
       this.negotiateOwnCardWithAuction((PropertyCard) card, currPlayer);
     } else {
       this.negotiateOwnCardWithAnotherPlayer(card, currPlayer, (Player) choice);
@@ -401,13 +456,11 @@ public class Game implements Observer {
 
   private void negotiateOthersCard(NegotiableCard card, Player currPlayer) {
     Player other = (Player) card.getOwner();
-    int amount = this.ui.askInt(currPlayer + ", quanto você oferece?",
-        currPlayer.getBalance());
+    int amount = this.ui.askInt(currPlayer + ", quanto você oferece a " + other + "?", currPlayer.getBalance());
     if (amount == -1) {
       return;
     }
-    boolean answer = this.ui.askBoolean(other + ", " + currPlayer
-        + " deseja comprar a carta por $" + amount + ". Aceita?");
+    boolean answer = this.ui.askBoolean(other + ", " + currPlayer + " deseja comprar a carta por $" + amount + ". Aceita?");
     if (answer) {
       other.sellCardTo(currPlayer, card, amount);
     }
@@ -422,9 +475,8 @@ public class Game implements Observer {
     Player currPlayer = this.getCurrentPlayer();
     int putValue = card.getMortgageValue();
     int removePrice = card.getRemoveFromMortgageValue();
-    card.toggleMortgage();
+    
     if (card.isInMortgage()) {
-
       if (currPlayer.affords(removePrice)) {
         boolean answer = this.ui.askBoolean("Deseja retirar da hipoteca por $" + removePrice + "?");
         if (answer) {

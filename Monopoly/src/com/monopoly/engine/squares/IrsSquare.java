@@ -23,4 +23,9 @@ public class IrsSquare extends Square {
   public void affectPassingPlayer(Player player) {
     // do nothing
   }
+
+  @Override
+  public String getDescription() {
+    return "Imposto de Renda: pague $200 ao parar";
+  }
 }

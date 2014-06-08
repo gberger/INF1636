@@ -6,7 +6,7 @@ public class GoBankruptButton extends JButton {
   private static final long serialVersionUID = 1L;
 
   public GoBankruptButton() {
-    super("Ir A Falencia");
+    super("Ir à falência");
   }
   
   public GoBankruptButton setup(){

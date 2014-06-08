@@ -56,8 +56,4 @@ public abstract class PropertyCard extends Card implements NegotiableCard {
 
   public abstract int getRent(Player player);
 
-  public void toggleMortgage() {
-    
-  }
-
 }

@@ -24,4 +24,9 @@ public class GoToJailSquare extends Square {
     // do nothing
   }
 
+  @Override
+  public String getDescription() {
+    return "Vá para a cadeia";
+  }
+
 }

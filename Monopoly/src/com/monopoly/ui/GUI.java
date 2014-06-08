@@ -84,7 +84,13 @@ public class GUI extends Observable implements ActionListener, WindowListener, U
 
     if ("diceButton".equals(cmd)) {
       event = UserInterfaceEvents.ROLL_DICES;
-      
+
+    } else if("viewSquareButton".equals(cmd)) {
+      event = UserInterfaceEvents.VIEW_SQUARE;
+
+    } else if("buyPropertyButton".equals(cmd)) {
+      event = UserInterfaceEvents.BUY_PROPERTY;
+
     } else if("passTurnButton".equals(cmd)) {
       event = UserInterfaceEvents.PASS_TURN;
       

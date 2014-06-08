@@ -11,7 +11,7 @@ public class PassTurnButton extends JButton {
   
   public PassTurnButton setup(){
     this.setActionCommand("passTurnButton");
-    this.setBounds(10,440,240,40);
+    this.setBounds(10,500,240,40);
     return this;
   }
 }
