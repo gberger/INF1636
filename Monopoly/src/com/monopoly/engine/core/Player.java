@@ -182,6 +182,7 @@ public class Player implements Entity {
   public void returnJailPass() {
     for(NegotiableCard c : this.cards) {
       if(c instanceof JailPassChanceCard) {
+        c.setOwner(null);
         this.cards.remove(c);
         this.game.getChanceDeck().addToBottom((ChanceCard)c);
         return;

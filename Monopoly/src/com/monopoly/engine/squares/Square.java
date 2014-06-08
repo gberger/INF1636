@@ -2,8 +2,6 @@ package com.monopoly.engine.squares;
 
 import org.json.simple.JSONObject;
 
-import com.monopoly.engine.cards.Card;
-import com.monopoly.engine.cards.PropertyCard;
 import com.monopoly.engine.core.Game;
 import com.monopoly.engine.core.Player;
 
@@ -11,7 +9,6 @@ import com.monopoly.engine.core.Player;
 public abstract class Square {
   protected Game game;
   protected int id;
-  protected Card associatedCard = null;
 
   public static Square fromType(String type, JSONObject jobj, Game game) {    
     if(type.equals("chance"))        { return new ChanceSquare(jobj, game); }
@@ -33,14 +30,6 @@ public abstract class Square {
 
   public int getPosition() {
     return this.id;
-  }
-
-  public Card getAssociatedCard() {
-    return this.associatedCard;
-  }
-
-  public boolean isProperty() {
-    return (associatedCard instanceof PropertyCard);
   }
 
   public abstract void affectLandingPlayer(Player player);

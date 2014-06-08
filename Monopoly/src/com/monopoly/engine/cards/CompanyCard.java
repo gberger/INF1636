@@ -10,6 +10,7 @@ public class CompanyCard extends PropertyCard implements NegotiableCard {
 
   public CompanyCard(JSONObject jobj, Game game) {
     this.game = game;
+    this.owner = this.game.getBank();
     this.name = (String) jobj.get("name");
     this.multiplier = new Long((long) jobj.get("multiplier")).intValue();
     this.mortgage = new Long((long) jobj.get("mortgage")).intValue();

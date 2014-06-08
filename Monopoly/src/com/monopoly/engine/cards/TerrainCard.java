@@ -18,6 +18,7 @@ public class TerrainCard extends PropertyCard {
 
   public TerrainCard(JSONObject jobj, Game game) {
     this.game = game;
+    this.owner = this.game.getBank();
     this.name = (String) jobj.get("name");
     this.color = TerrainColor.valueOf((String) jobj.get("color"));
     this.buildings = 0;
