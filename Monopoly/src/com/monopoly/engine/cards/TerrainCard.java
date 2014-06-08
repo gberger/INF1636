@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.monopoly.engine.core.Game;
+import com.monopoly.engine.core.Player;
 import com.monopoly.engine.squares.TerrainColor;
 
 public class TerrainCard extends PropertyCard {
@@ -101,7 +102,8 @@ public class TerrainCard extends PropertyCard {
     }
   }
 
-  public int getRent() {
+  @Override
+  public int getRent(Player player) {
     return this.rentByBuildings.get(this.buildings);
   }
   

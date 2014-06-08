@@ -3,6 +3,7 @@ package com.monopoly.engine.cards;
 import org.json.simple.JSONObject;
 
 import com.monopoly.engine.core.Game;
+import com.monopoly.engine.core.Player;
 
 public class CompanyCard extends PropertyCard implements NegotiableCard {
   private int multiplier;
@@ -19,7 +20,9 @@ public class CompanyCard extends PropertyCard implements NegotiableCard {
     return multiplier;
   }
 
-  public int getRent(int roll) {
+  @Override
+  public int getRent(Player player) {
+    int roll = player.getLastRollTotal();
     return this.multiplier * roll;
   }
   

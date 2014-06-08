@@ -323,7 +323,6 @@ public class Game implements Observer {
         if(card instanceof PropertyCard && ((PropertyCard)card).isInMortgage()){
           int mortgageAmount = ((PropertyCard)card).getRemoveFromMortgageValue();
           amount = this.ui.askInt(currPlayer + ", quanto você pede?", other.getBalance()-mortgageAmount);
-          
           answer = this.ui.askBoolean(other + ", " + currPlayer + " deseja te vendar a carta por $" + amount + 
               ". Você também terá que pagar $" + mortgageAmount + " ao banco. Aceita?");
           if(answer) {

@@ -1,5 +1,7 @@
 package com.monopoly.engine.cards;
 
+import com.monopoly.engine.core.Player;
+
 public abstract class PropertyCard extends Card implements NegotiableCard {
   protected int price;
   protected int mortgage;
@@ -37,5 +39,7 @@ public abstract class PropertyCard extends Card implements NegotiableCard {
   public abstract boolean canBeMortgaged();
   
   public abstract String getInfoText();
+
+  public abstract int getRent(Player player);
 
 }
