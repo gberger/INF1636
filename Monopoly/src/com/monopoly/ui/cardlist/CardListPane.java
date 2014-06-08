@@ -57,7 +57,7 @@ public class CardListPane extends JPanel {
         row1.add( nameLabel );
         
         if(cardN instanceof TerrainCard) {
-          JLabel colorLabel = new JLabel( "Cor: " + ((TerrainCard)cardN).getColorName());
+          JLabel colorLabel = new JLabel( "Cor: " + ((TerrainCard)cardN).getColor().getName());
           colorLabel.setSize(40,15);
           row1.add(colorLabel);
           JLabel buildingsLabel = new JLabel( "(" + ((TerrainCard)cardN).getBuildings() + " imóveis)");

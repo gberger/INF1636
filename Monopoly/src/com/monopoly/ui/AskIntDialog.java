@@ -21,7 +21,12 @@ public class AskIntDialog {
     }
     Object[] options = optionList.toArray();
     
-    this.answer = Integer.parseInt((String)JOptionPane.showInputDialog(window, message, title, JOptionPane.QUESTION_MESSAGE, null, options, options[0]));
+    String s = (String)JOptionPane.showInputDialog(window, message, title, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+    if(s == null){
+      this.answer = -1;
+    } else {
+      this.answer = Integer.parseInt(s);  
+    }
   }
   
   public int getAnswer() {

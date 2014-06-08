@@ -28,7 +28,8 @@ public class CompanyCard extends PropertyCard implements NegotiableCard {
   
   public String getInfoText()
   {
-    String text = "Valor a pagar: pontos dos dados multiplicados por $" + multiplier;
+    String text = this.getName();
+    text += "\nValor a pagar: pontos dos dados multiplicados por $" + multiplier;
     text += "\nHipoteca: $" + mortgage;
     return text;
   }

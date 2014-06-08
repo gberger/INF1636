@@ -126,6 +126,16 @@ public class Game implements Observer {
   public List<Player> getPlayers() {
     return this.players;
   }
+  
+  public List<Player> getRemainingPlayers() {
+    List<Player> rem = new ArrayList<Player>();
+    for(Player p: this.players){
+      if(!p.isOutOfGame()){
+        rem.add(p);
+      }
+    }
+    return rem;
+  }
 
   public Bank getBank() {
     return this.bank;
@@ -291,7 +301,9 @@ public class Game implements Observer {
       List<Object> others = new ArrayList<Object>();
       if(card instanceof PropertyCard && !((PropertyCard)card).isInMortgage()) {
         others.add(this.bank);
-        others.add("Leilão");
+        if(this.getRemainingPlayers().size() > 2){
+          others.add("Leilão");
+        }
       }
       for(Player p : this.players) {
         if(p != currPlayer && !p.isOutOfGame()) {
@@ -309,11 +321,40 @@ public class Game implements Observer {
         }
         
       } else if (choice == "Leilão"){
-        Entity highestBidder = this.bank;
-        int highestBid = ((PropertyCard)card).getBankOffer();
+        PropertyCard pcard = (PropertyCard)card;
+        Player highestBidder = null;
+        int highestBid = pcard.getBankOffer();
         int i = 0;
         
-        // TODO
+        while(true) {
+          Player bidder = this.players.get(i);
+          
+          if(bidder == highestBidder) {
+            break;
+          }
+          
+          if(bidder != currPlayer && bidder.getBalance() > highestBid){
+            int bid = this.ui.askInt(bidder + ", deseja fazer uma oferta?", highestBid+1, bidder.getBalance());
+            if(bid > 0){
+              highestBid = bid;
+              highestBidder = bidder;
+            }
+          }
+          
+          i += 1;
+          i %= this.players.size();
+          
+          if(i == 0 && highestBidder == null){
+            break;
+          }
+        }
+        
+        if(highestBidder == null){
+          this.ui.showMessage("Não há interessados em comprar a propriedade.");
+        } else {
+          this.ui.showMessage("Vendido para " + highestBidder.getName() + " por $" + highestBid + "!");
+          currPlayer.sellCardTo(highestBidder, pcard, highestBid);
+        }
             
       } else {
         Player other = (Player)choice;
@@ -451,17 +492,9 @@ public class Game implements Observer {
   }
   
   private void checkWinner(){
-    int playersStillInGame = 0;
-    Player winner = null;
-    for(Player player : this.players){
-      if(!player.isOutOfGame()){
-        winner = player;
-        playersStillInGame++;
-      }
-    }
-    
-    if(playersStillInGame == 1){
-      this.ui.showMessage("O GANHADOR EH " + winner.getName(), "FIM DE JOGO");
+    List<Player> rem = this.getRemainingPlayers();    
+    if(rem.size() == 1){
+      this.ui.showMessage("O GANHADOR EH " + rem.get(0), "FIM DE JOGO");
       System.exit(0);
     }
   }
