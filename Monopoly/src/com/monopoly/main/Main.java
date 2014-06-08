@@ -5,6 +5,7 @@ import java.util.List;
 import com.monopoly.engine.cards.CompanyCard;
 import com.monopoly.engine.cards.TerrainCard;
 import com.monopoly.engine.core.Game;
+import com.monopoly.engine.core.Player;
 import com.monopoly.engine.squares.TerrainColor;
 import com.monopoly.ui.GUI;
 import com.monopoly.ui.UserInterface;
@@ -29,6 +30,9 @@ public class Main {
       }
       for(CompanyCard card : game.getCompanyDeck().getCards()){
         game.getPlayers().get(0).give(card);
+      }
+      for(Player p : game.getPlayers()){
+        p.charge(2000);
       }
     }
   }
