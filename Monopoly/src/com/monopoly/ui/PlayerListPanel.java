@@ -44,7 +44,7 @@ public class PlayerListPanel extends JPanel {
   protected void paintComponent(Graphics g) {
     
     // Creates title border for this panel
-    this.setBounds(10,100,320,50+25*this.game.getPlayers().size());
+    this.setBounds(10,100,320,45+27*this.game.getPlayers().size());
     TitledBorder title = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black)," JOGADORES ");
     title.setTitleFont(new Font("Arial",Font.PLAIN,20));
     title.setTitleJustification(TitledBorder.CENTER);
