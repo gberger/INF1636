@@ -22,9 +22,19 @@ public abstract class PropertyCard extends Card implements NegotiableCard {
     return this.mortgage;
   }
   
+  public int getRemoveFromMortgageValue() {
+    return (int)(this.mortgage * 1.2);
+  }
+  
   public boolean isInMortgage() {
     return this.inMortgage;
   }
+  
+  public void setMortgage(boolean b) {
+    this.inMortgage = b;
+  }
+  
+  public abstract boolean canBeMortgaged();
   
   public abstract String getInfoText();
 

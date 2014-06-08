@@ -79,6 +79,10 @@ public class TerrainCard extends PropertyCard {
     return this.buildings <= 0;
   }
   
+  public boolean canBeMortgaged() {
+    return this.isEmpty();
+  }
+  
   public boolean addBuilding() {
     if(this.isFull()){
       return false;

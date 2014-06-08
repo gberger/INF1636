@@ -35,7 +35,14 @@ public class CardListButton extends JButton {
       
     } else if(this.eType == UserInterfaceEvents.CARD_MORTGAGE) {
       this.setText("Hipotecar");
-      this.setEnabled(this.card instanceof TerrainCard || this.card instanceof CompanyCard);
+      if(this.card instanceof PropertyCard) {
+        this.setEnabled(true);
+        if(((PropertyCard)card).isInMortgage()) {
+          this.setText("Des-hipotecar");
+        }
+      } else {
+        this.setEnabled(false);
+      }
       this.setActionCommand("cardMortgageButton");
       
     } else if(this.eType == UserInterfaceEvents.CARD_NEW_BUILDING) {

@@ -29,5 +29,9 @@ public class JailPassChanceCard extends ChanceCard implements NegotiableCard {
   public String getName() {
     return "SAIDA LIVRE DA PRISAO";
   }
+  
+  public String getInfoText() {
+    return this.text;
+  }
 
 }

@@ -29,5 +29,9 @@ public class CompanyCard extends PropertyCard implements NegotiableCard {
     text += "\nHipoteca: $" + mortgage;
     return text;
   }
+  
+  public boolean canBeMortgaged() {
+    return true;
+  }
  
 }

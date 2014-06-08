@@ -181,15 +181,20 @@ public class Game implements Observer {
         this.ui.showMessage("Ação proibida!");
       }
     } else if(event == UserInterfaceEvents.CARD_VIEW) {
-      PropertyCard card = (PropertyCard)args.get("card");
-      this.ui.showMessage(card.getInfoText(), card.getName());
+      NegotiableCard card = (NegotiableCard)args.get("card");
+      this.viewCard(card);
       
     } else if(event == UserInterfaceEvents.CARD_NEGOTIATE) {
       NegotiableCard card = (NegotiableCard)args.get("card");
       this.negotiateCard(card);
+      
     } else if(event == UserInterfaceEvents.CARD_MORTGAGE) {
       PropertyCard card = (PropertyCard)args.get("card");
-      
+      if(this.validateDoMortgage(card)){
+        this.doMortgage(card);
+      } else {
+        this.ui.showMessage("Ação proibida!");
+      }
       
     } else if(event == UserInterfaceEvents.CARD_NEW_BUILDING) {
       TerrainCard card = (TerrainCard)args.get("card");
@@ -198,6 +203,7 @@ public class Game implements Observer {
       } else {
         this.ui.showMessage("Ação proibida!");
       }
+      
     } else if(event == UserInterfaceEvents.CARD_REMOVE_BULDING) {
       TerrainCard card = (TerrainCard)args.get("card");
       if(this.validateRemoveBuilding(card)){
@@ -268,6 +274,10 @@ public class Game implements Observer {
     this.checkWinner();
   }
   
+  private void viewCard(NegotiableCard card) {
+    this.ui.showMessage(card.getInfoText(), card.getName());
+  }
+  
   private void negotiateCard(NegotiableCard card) {
     Player currPlayer = this.getCurrentPlayer();
     
@@ -307,8 +317,22 @@ public class Game implements Observer {
             
       } else {
         Player other = (Player)choice;
-        int amount = this.ui.askInt(currPlayer + ", quanto você pede?", other.getBalance());
-        boolean answer = this.ui.askBoolean(other + ", " + currPlayer + " deseja te vendar a carta por $" + amount + ". Aceita?");
+        int amount;
+        boolean answer = false;
+        
+        if(card instanceof PropertyCard && ((PropertyCard)card).isInMortgage()){
+          int mortgageAmount = ((PropertyCard)card).getRemoveFromMortgageValue();
+          amount = this.ui.askInt(currPlayer + ", quanto você pede?", other.getBalance()-mortgageAmount);
+          
+          answer = this.ui.askBoolean(other + ", " + currPlayer + " deseja te vendar a carta por $" + amount + 
+              ". Você também terá que pagar $" + mortgageAmount + " ao banco. Aceita?");
+          if(answer) {
+            other.charge(mortgageAmount);
+          }
+        } else {
+          amount = this.ui.askInt(currPlayer + ", quanto você pede?", other.getBalance());
+          answer = this.ui.askBoolean(other + ", " + currPlayer + " deseja te vendar a carta por $" + amount + ". Aceita?");
+        }
         if(answer) {
           currPlayer.sellCardTo(other, card, amount);
         }
@@ -320,6 +344,38 @@ public class Game implements Observer {
       boolean answer = this.ui.askBoolean(other + ", " + currPlayer + " deseja comprar a carta por $" + amount + ". Aceita?");
       if(answer) {
         other.sellCardTo(currPlayer, card, amount);
+      }
+    }
+  }
+  
+  private boolean validateDoMortgage(PropertyCard card) {
+    Player currPlayer = this.getCurrentPlayer();
+    return currPlayer.owns(card);
+  }
+  
+  private void doMortgage(PropertyCard card) {
+    Player currPlayer = this.getCurrentPlayer();
+    int putValue    = card.getMortgageValue();
+    int removePrice = card.getRemoveFromMortgageValue();
+    if(card.isInMortgage()) {
+      if(currPlayer.affords(removePrice)) {
+        boolean answer = this.ui.askBoolean("Deseja retirar da hipoteca por $" + removePrice + "?");
+        if(answer) {
+          card.setMortgage(false);
+          currPlayer.charge(removePrice);
+        }
+      } else {
+        this.ui.showMessage("É necessário $" + removePrice + " para retirar a carta da hipoteca.");
+      }
+    } else {
+      if(card.canBeMortgaged()) {
+        boolean answer = this.ui.askBoolean("Deseja hipotecar? Receberá $" + putValue + ", mas para retirar deverá pagar $" + removePrice);
+        if(answer) {
+          card.setMortgage(true);
+          currPlayer.give(putValue);
+        }
+      } else {
+        this.ui.showMessage("É necessário demolir as construções antes de hipotecar.");
       }
     }
   }
@@ -337,6 +393,10 @@ public class Game implements Observer {
     }
     if(card.isFull()){
       this.ui.showMessage("Nao eh possivel construir mais construções neste terreno.");
+      return false;
+    }
+    if(card.isInMortgage()) {
+      this.ui.showMessage("É necessário retirar da hipoteca antes de construir casas.");
       return false;
     }
     for(TerrainCard c : allCards){
