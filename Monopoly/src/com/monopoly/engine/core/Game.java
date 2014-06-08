@@ -426,27 +426,23 @@ public class Game implements Observer {
     if (card.isInMortgage()) {
 
       if (currPlayer.affords(removePrice)) {
-        boolean answer = this.ui.askBoolean("Deseja retirar da hipoteca por $"
-            + removePrice + "?");
+        boolean answer = this.ui.askBoolean("Deseja retirar da hipoteca por $" + removePrice + "?");
         if (answer) {
           card.setMortgage(false);
           currPlayer.charge(removePrice);
         }
       } else {
-        this.ui.showMessage("É necessário $" + removePrice
-            + " para retirar a carta da hipoteca.");
+        this.ui.showMessage("É necessário $" + removePrice + " para retirar a carta da hipoteca.");
       }
     } else {
       if (card.canBeMortgaged()) {
-        boolean answer = this.ui.askBoolean("Deseja hipotecar? Receberá $"
-            + putValue + ", mas para retirar deverá pagar $" + removePrice);
+        boolean answer = this.ui.askBoolean("Deseja hipotecar? Receberá $" + putValue + ", mas para retirar deverá pagar $" + removePrice);
         if (answer) {
           card.setMortgage(true);
           currPlayer.give(putValue);
         }
       } else {
-        this.ui
-            .showMessage("É necessário demolir as construções antes de hipotecar.");
+        this.ui.showMessage("É necessário demolir as construções antes de hipotecar.");
       }
     }
   }
@@ -455,28 +451,24 @@ public class Game implements Observer {
     Player currPlayer = this.getCurrentPlayer();
     List<TerrainCard> allCards = this.terrainDeck.findByColor(card.getColor());
     if (!currPlayer.owns(card)) {
-      this.ui.showMessage("Voce nao eh o dono desta carta!");
+      this.ui.showMessage("Você nao é o dono desta carta!");
       return false;
     }
     if (!currPlayer.owns(allCards)) {
-      this.ui
-          .showMessage("Voce deve possuir todas as cartas dessa cor antes de constuir.");
+      this.ui.showMessage("Você deve possuir todas as cartas dessa cor antes de constuir.");
       return false;
     }
     if (card.isFull()) {
-      this.ui
-          .showMessage("Nao eh possivel construir mais construções neste terreno.");
+      this.ui.showMessage("Não é possível construir mais construções neste terreno.");
       return false;
     }
     if (card.isInMortgage()) {
-      this.ui
-          .showMessage("É necessário retirar da hipoteca antes de construir casas.");
+      this.ui.showMessage("É necessário retirar da hipoteca antes de construir casas.");
       return false;
     }
     for (TerrainCard c : allCards) {
       if (c.getBuildings() < card.getBuildings()) {
-        this.ui
-            .showMessage("Voce deve antes construir mais construções nos outros terrenos de mesma cor.");
+        this.ui.showMessage("Você deve antes construir mais construções nos outros terrenos de mesma cor.");
         return false;
       }
     }
@@ -493,8 +485,7 @@ public class Game implements Observer {
     int cost = card.getNextBuildingCost();
     if (currPlayer.affords(cost) && card.addBuilding()) {
       currPlayer.charge(cost);
-      this.ui.showMessage(currPlayer.getName() + " gastou $" + cost
-          + " em uma nova construcao em " + card.getName());
+      this.ui.showMessage(currPlayer.getName() + " gastou $" + cost + " em uma nova construcao em " + card.getName());
     }
   }
 
@@ -511,8 +502,7 @@ public class Game implements Observer {
     }
     for (TerrainCard c : allCards) {
       if (c.getBuildings() > card.getBuildings()) {
-        this.ui
-            .showMessage("Você deve antes demolir construções em outros terrenos desta mesma cor.");
+        this.ui.showMessage("Você deve antes demolir construções em outros terrenos desta mesma cor.");
         return false;
       }
     }

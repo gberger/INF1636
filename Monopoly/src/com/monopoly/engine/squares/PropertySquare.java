@@ -27,11 +27,11 @@ public abstract class PropertySquare extends Square {
       }
     } else if(owner != player) {
       if(card.isInMortgage()) {
-        int value = card.getRent(player);
-        player.payTo(owner, value);
-        ui.showMessage(player.getName() + " deve pagar $" + value + " a " + owner.getName());
-      } else {
         ui.showMessage("A propriedade pertence a " + owner.getName() + ", mas está hipotecada.");
+      } else {
+        int value = card.getRent(player);
+        ui.showMessage(player.getName() + " deve pagar $" + value + " a " + owner.getName());
+        player.payTo(owner, value);
       }
     } else if(owner == player) {
       ui.showMessage(player.getName() + " parou em sua própria propriedade " + card.getName());

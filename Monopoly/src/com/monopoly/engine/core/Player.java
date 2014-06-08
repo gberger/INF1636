@@ -135,7 +135,7 @@ public class Player implements Entity {
   public void addDebt(Entity other, Integer amount){
     Debt debt = new Debt(other, amount);
     this.debts.add(debt);
-    this.game.getUI().showMessage(this.getName() + " deve $" + amount + " a " + other.getName());
+    this.game.getUI().showMessage(this.getName() + " tem uma dívida de $" + amount + " a " + other.getName());
   }
   
   public void payDebts(){
@@ -147,11 +147,11 @@ public class Player implements Entity {
       this.debts.remove(d);
       int amount = d.amount;
       if(amount > this.money){
-        this.game.getUI().showMessage(this.getName() + " pagou $" + this.money + " a " + d.other.getName());
+        this.game.getUI().showMessage(this.getName() + " pagou $" + this.money + " referente a sua dívida com " + d.other.getName());
         this.addDebt(d.other, amount - money);
         this.money = 0;
       } else {
-        this.game.getUI().showMessage(this.getName() + " pagou $" + amount + " a " + d.other.getName());
+        this.game.getUI().showMessage(this.getName() + " pagou $" + amount + " referente a sua dívida com " + d.other.getName());
         this.money -= amount;
       }
     }
