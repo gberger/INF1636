@@ -20,7 +20,7 @@ public class Main {
     game.bindUI(ui);
 
     /** TEST CODE */
-    boolean testMode = true;
+    boolean testMode = false;
     if(testMode){
       ui.showMessage("IN TEST MODE!");
       List<TerrainCard> cards = game.getTerrainDeck().findByColor(TerrainColor.LIGHT_BLUE);
